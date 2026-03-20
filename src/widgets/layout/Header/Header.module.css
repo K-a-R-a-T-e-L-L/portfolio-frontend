@@ -1,0 +1,28 @@
+﻿.header {
+  border-bottom: 1px solid color-mix(in srgb, var(--mantine-color-default-border) 75%, transparent 25%);
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--mantine-color-body) 85%, transparent 15%);
+}
+
+.brand {
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--mantine-color-text);
+}
+
+.link {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: var(--mantine-color-text);
+  opacity: 0.86;
+  transition: opacity 0.15s ease;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.localeButton {
+  min-width: 44px;
+}
