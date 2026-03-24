@@ -1,0 +1,15 @@
+.card {
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandPrimary-5) 20%, transparent 80%);
+  border-left: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandPrimary-5) 10%, transparent 90%);
+  border-top: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandPrimary-5) 10%, transparent 90%);
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-3px) translateX(-1px);
+  box-shadow: 2px 2px 3px
+    color-mix(in srgb, var(--mantine-color-brandPrimary-5) 20%, transparent 80%);
+}

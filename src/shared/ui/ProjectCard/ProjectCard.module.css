@@ -1,0 +1,348 @@
+.card {
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 18%, transparent 82%),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 18%, transparent 82%),
+      color-mix(in srgb, var(--mantine-color-brandSecondaryB-9) 14%, transparent 86%)
+    );
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 24%, transparent 76%);
+  overflow: hidden;
+  position: relative;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -35% 38% auto -45%;
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-6) 34%, transparent 66%),
+    transparent 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-5) 0%, transparent 100%);
+  pointer-events: none;
+  transition: border-color 0.25s ease;
+}
+
+.card :global(*) {
+  min-width: 0;
+}
+
+.card:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-6) 40%,
+    transparent 60%
+  );
+  box-shadow:
+    0 18px 46px rgba(2, 11, 31, 0.44),
+    inset 0 0 28px
+      color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 26%, transparent 74%);
+  transform: translateY(-4px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover::after {
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-5) 36%,
+    transparent 64%
+  );
+}
+
+.card:hover .previewImage {
+  transform: scale(1.02);
+}
+
+.badge {
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 45%, transparent 55%);
+  background: color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 40%, black 60%);
+  color: var(--mantine-color-brandPrimary-1);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.insideCard {
+  background: color-mix(in srgb, #031021 88%, var(--mantine-color-brandSecondaryA-9) 12%);
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 26%, transparent 74%);
+}
+
+.windowBar {
+  align-items: center;
+  background: color-mix(in srgb, #061428 92%, var(--mantine-color-brandSecondaryA-9) 8%);
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 20%, transparent 80%);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.windowActionIcon {
+  flex: 0 0 auto;
+}
+
+.windowDots {
+  padding-right: 4px;
+}
+
+.colorDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ffcb47;
+}
+
+.colorDot:first-of-type {
+  background: #ff5f57;
+}
+
+.colorDot:last-of-type {
+  background: #28c840;
+}
+
+.url {
+  background: color-mix(in srgb, #13314a 58%, #071a2e 42%) !important;
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 22%, transparent 78%);
+  flex: 1;
+}
+
+.urlText {
+  color: color-mix(in srgb, var(--mantine-color-brandPrimary-1) 84%, white 16%);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.previewFrame {
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 30%, transparent 70%);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.previewImage {
+  min-height: clamp(170px, 30vw, 270px);
+  transition: transform 0.35s ease;
+}
+
+.previewOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(3, 10, 24, 0.54), transparent 45%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.22), transparent 35%);
+}
+
+.featuresPanel {
+  background: color-mix(in srgb, #051326 90%, var(--mantine-color-brandSecondaryA-9) 10%);
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 20%, transparent 80%);
+}
+
+.featureCard {
+  background: color-mix(in srgb, #071d33 88%, var(--mantine-color-brandSecondaryA-9) 12%);
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 18%, transparent 82%);
+  max-width: 100%;
+}
+
+.featureIconWrap {
+  align-items: center;
+  background: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-8) 24%,
+    transparent 76%
+  );
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-6) 32%, transparent 68%);
+  border-radius: 8px;
+  color: var(--mantine-color-brandSecondaryA-3);
+  display: inline-flex;
+  height: 26px;
+  justify-content: center;
+  min-width: 26px;
+}
+
+.techTag {
+  background: color-mix(in srgb, #06243d 80%, var(--mantine-color-brandSecondaryA-8) 20%);
+  border: 1px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 28%, transparent 72%);
+  color: var(--mantine-color-brandPrimary-1);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 18px !important;
+  }
+
+  .windowBar {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .card {
+    padding: 14px !important;
+  }
+
+  .badge {
+    font-size: 12px;
+    padding: 8px 12px !important;
+  }
+
+  .windowBar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .windowDots {
+    order: 1;
+  }
+
+  .url {
+    order: 2;
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .windowActionIcon {
+    order: 3;
+  }
+
+  .featuresPanel {
+    padding: 12px !important;
+  }
+
+  .urlText {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .card {
+    border-radius: 16px !important;
+    padding: 12px !important;
+  }
+
+  .insideCard {
+    padding: 10px !important;
+  }
+
+  .previewFrame {
+    border-radius: 10px;
+  }
+
+  .previewImage {
+    min-height: 140px;
+  }
+
+  .featureCard {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .card {
+    padding: 10px !important;
+  }
+
+  .card :global(.mantine-Paper-root) {
+    max-width: 100%;
+  }
+
+  .insideCard {
+    padding: 8px !important;
+  }
+
+  .windowBar {
+    padding: 8px;
+    gap: 6px;
+    border-radius: 10px;
+  }
+
+  .windowDots {
+    padding-right: 0;
+  }
+
+  .badge {
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 7px 10px !important;
+  }
+
+  .previewImage {
+    min-height: 124px;
+  }
+
+  .featureIconWrap {
+    min-width: 22px;
+    height: 22px;
+  }
+
+  .featuresPanel {
+    padding: 10px !important;
+  }
+
+  .techTag {
+    padding: 5px 10px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .card {
+    padding: 8px !important;
+  }
+
+  .badge {
+    width: 100%;
+    text-align: center;
+  }
+
+  .windowBar {
+    padding: 7px;
+  }
+
+  .url {
+    padding: 7px 10px !important;
+  }
+
+  .urlText {
+    font-size: 11px;
+  }
+
+  .previewImage {
+    min-height: 112px;
+  }
+}

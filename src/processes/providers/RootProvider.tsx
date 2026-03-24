@@ -11,7 +11,7 @@ import AppClientProviders from "./AppClientProviders";
 
 export default function RootProvider({ children, locale }: { children: ReactNode; locale: Locale }) {
   return (
-    <MantineProvider theme={themeMantine} defaultColorScheme="auto">
+    <MantineProvider theme={themeMantine} defaultColorScheme="dark">
       <AppClientProviders>
         <Wrapper>
           <Header locale={locale} />

@@ -1,26 +1,50 @@
-﻿.header {
-  border-bottom: 1px solid color-mix(in srgb, var(--mantine-color-default-border) 75%, transparent 25%);
-  backdrop-filter: blur(10px);
-  background: color-mix(in srgb, var(--mantine-color-body) 85%, transparent 15%);
+.header {
+  border-bottom: 1px solid rgba(117, 145, 197, 0.24);
+  backdrop-filter: blur(12px);
+  background: linear-gradient(
+    90deg,
+    rgba(5, 10, 24, 0.88) 0%,
+    rgba(9, 19, 41, 0.8) 55%,
+    rgba(7, 28, 48, 0.86) 100%
+  );
 }
 
 .brand {
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--mantine-color-text);
+  color: #e8f1ff;
 }
 
 .link {
   text-decoration: none;
   font-size: 0.95rem;
-  color: var(--mantine-color-text);
-  opacity: 0.86;
-  transition: opacity 0.15s ease;
+  color: #c7d8f4;
+  opacity: 0.9;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease;
+    position: relative;
+}
+
+.link::after {
+  content: "";
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(to right, #79d9ff, var(--mantine-color-brandPrimary-2));
+  transition: all 0.2s linear;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 
 .link:hover {
   opacity: 1;
+  color: #79d9ff;
+}
+
+.link:hover::after {
+  width: 100%;
 }
 
 .localeButton {

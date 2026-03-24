@@ -1,0 +1,32 @@
+@keyframes breath {
+  0% {
+    box-shadow: 0 0 10px 5px
+      color-mix(in srgb, var(--color) 50%, transparent 50%);
+  }
+  50% {
+    box-shadow: 0 0 0px color-mix(in srgb, var(--color) 50%, transparent 50%);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px
+      color-mix(in srgb, var(--color) 50%, transparent 50%);
+  }
+}
+
+.dot {
+  width: var(--size);
+  height: var(--size);
+  flex: 0 0 var(--size);
+  max-width: var(--size);
+  max-height: var(--size);
+  min-width: var(--size);
+  min-height: var(--size);
+  background: var(--color);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  animation: breath 3s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: box-shadow;
+}

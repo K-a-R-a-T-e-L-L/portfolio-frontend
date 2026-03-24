@@ -1,0 +1,65 @@
+.card {
+  background: linear-gradient(
+    130deg,
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 20%, black 80%),
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-3) 15%, black 85%)
+  );
+  box-shadow: 0 0 10px 10px color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 60%, black 40%);
+}
+
+.inside_card {
+  background: linear-gradient(
+    130deg,
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 30%, black 70%),
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-3) 15%, black 90%)
+  );
+  transition: all 0.2s ease-in-out;
+}
+
+.inside_card:hover {
+  background: linear-gradient(
+    130deg,
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 35%, black 70%),
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-3) 17%, black 90%)
+  );
+}
+
+.dot {
+  width: 13px;
+  aspect-ratio: 1/1;
+  background: yellow;
+  border-radius: 100px;
+}
+
+.dot:first-of-type {
+  background: red;
+}
+
+.dot:last-of-type {
+  background: rgb(0, 255, 0);
+}
+
+.code_text {
+  font-family: "Fira Code", "JetBrains Mono", monospace;
+  white-space: pre-wrap;
+  font-size: 14px;
+}
+
+.code_text__number_row {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-right: 15px;
+  position: absolute;
+  left: 0;
+  top: 3;
+}
+
+@media (width < 992px) {
+  .code_text__number_row {
+    font-size: 11px;
+  }
+
+  .dot {
+    width: 10px;
+  }
+}

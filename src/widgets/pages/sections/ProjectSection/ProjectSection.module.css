@@ -1,0 +1,10 @@
+.group_minor_cards {
+  gap: 20px;
+}
+
+@media (width < 1250px) {
+  .group_minor_cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -2,7 +2,6 @@
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import "@mantine/core/styles.css";
-import "@mantine/carousel/styles.css";
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 
 const inter = Inter({
@@ -20,17 +19,29 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
   title: {
     default: "Next App Template",
     template: "%s | Next App Template",
   },
-  description: "Scalable Next.js template with Mantine, next-intl, React Query and Kubb.",
+  description:
+    "Scalable Next.js template with Mantine, next-intl, React Query and Kubb.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" {...mantineHtmlProps} className={`${inter.variable} ${manrope.variable}`}>
+    <html
+      lang="en"
+      {...mantineHtmlProps}
+      className={`${inter.variable} ${manrope.variable}`}
+      {...mantineHtmlProps}
+    >
       <head>
         <ColorSchemeScript />
       </head>

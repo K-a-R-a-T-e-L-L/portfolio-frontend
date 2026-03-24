@@ -1,0 +1,75 @@
+.badge {
+  border-radius: 100px;
+  padding: 10px 25px;
+  border: 2px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 90%, black 10%);
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+  background: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-9) 50%,
+    black 50%
+  );
+  transition: all 0.1s ease-in-out;
+}
+
+.badge:hover {
+  border: 2px solid
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 90%, black 10%);
+}
+
+.keyword {
+  color: var(--mantine-color-brandSecondaryA-4);
+}
+
+.punctuator {
+  color: var(--mantine-color-brandSecondaryA-7);
+}
+
+.staples {
+  color: var(--mantine-color-brandSecondaryB-3);
+}
+
+.string {
+  color: var(--mantine-color-brandPrimary-4);
+}
+
+.identifier {
+  color: var(--mantine-color-brandPrimary-1);
+}
+
+.inside {
+  padding-left: 17px;
+}
+
+@media (width < 992px) {
+  .badge {
+    align-self: auto;
+  }
+
+  .left_col_stack {
+    align-items: center;
+  }
+
+  .left_col_group_buttons {
+    justify-content: center;
+  }
+
+  .left_col_flex_cards {
+    justify-content: center;
+  }
+}
+
+@media (width < 400px) {
+  .group_cards {
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 100% !important;
+  }
+}
