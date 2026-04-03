@@ -1,26 +1,54 @@
-.card{
-    border: 2px solid var(--mantine-color-brandSecondaryA-9);
-    transition: all 0.3s ease-in-out;
+.card {
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-7) 24%,
+      transparent 76%
+    );
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-8) 18%,
+        transparent 82%
+      ),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-9) 18%,
+        transparent 82%
+      ),
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryB-9) 14%,
+        transparent 86%
+      )
+    );
+  transition: all 0.3s ease-in-out;
 }
 
-.card:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 5px 10px 1px var(--mantine-color-brandSecondaryA-9);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px 1px var(--mantine-color-brandSecondaryA-9);
 }
 
-.card_box_icon{
-    display: grid;
-    place-items: center;
-    width: 60px;
-    border-radius: 10px;
-    aspect-ratio: 1/1;
-    border: 1px solid var(--mantine-color-brandSecondaryA-7);
-    align-self: flex-start;
-    background: var(--mantine-color-brandSecondaryA-9);
+.card_box_icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  border-radius: 10px;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--mantine-color-brandSecondaryA-7);
+  align-self: flex-start;
+  background: var(--mantine-color-brandSecondaryA-9);
 }
 
 @media (width < 992px) {
-    .card{
-        padding: 15px !important;
-    }
+  .card {
+    padding: 15px !important;
+  }
 }

@@ -1,0 +1,26 @@
+.text_top {
+  background: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-9) 55%,
+    black 45%
+  );
+   font-family: "Fira Code", "JetBrains Mono", monospace;
+}
+
+.text_bottom {
+  background: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-9) 20%,
+    black 80%
+  );
+   font-family: "Fira Code", "JetBrains Mono", monospace;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--mantine-color-brandSecondaryA-3);
+}
+
+.link:hover {
+  text-decoration: underline;
+}

@@ -14,7 +14,6 @@ import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
 import ProjectLinkActions from "./ProjectLinkActions";
 
 interface ProjectCardProps {
-  typeCard?: "main" | "minor";
   type: string;
   title: string;
   description: string;
@@ -30,7 +29,6 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const {
-    typeCard = "main",
     type,
     title,
     description,
@@ -43,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     props;
   return (
     <Paper
-      w={typeCard === "main" ? "100%" : "auto"}
+      w={"100%"}
       p="xl"
       radius="xl"
       className={styles.card}
@@ -87,9 +85,9 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
               />
             </Group>
 
-            <Box className={styles.previewFrame}>
+            <Box className={styles.previewFrame} style={{'--bg-blur': `url(${preview})`}}>
               <Image
-                fit="cover"
+                fit="contain"
                 src={preview}
                 alt={title}
                 className={styles.previewImage}

@@ -31,7 +31,8 @@ const PerformanceCard: React.FC<PerformanceCardProps> = (props) => {
                 key={index}
                 radius="xl"
                 fz={{ base: 11, md: 12 }}
-                c="var(--mantine-color-brandSecondaryA-3)"
+                c="var(--mantine-color-brandSecondaryA-2)"
+                bg='color-mix(in srgb, #06243d 70%, var(--mantine-color-brandSecondaryA-8) 30%)'
               >
                 {el}
               </Card>

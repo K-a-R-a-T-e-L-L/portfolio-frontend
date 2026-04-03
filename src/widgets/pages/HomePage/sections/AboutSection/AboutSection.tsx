@@ -8,6 +8,27 @@ import InfiniteSlider from "@/shared/ui/InfiniteSlider/InfiniteSlider";
 
 interface AboutSectionProps {}
 
+const list = [
+  {
+    Icon: IconRocket,
+    title: "Продукт, который приносит результат",
+    text: "Делаю интерфейсы, которые выглядят премиально и работают быстро: четкая структура, логичные сценарии, высокая конверсия и готовность к масштабированию.",
+    stack: ["UI/UX-фокус", "Core Web Vitals", "SEO-ready"],
+  },
+  {
+    Icon: IconCpu,
+    title: "Надежная архитектура и код",
+    text: "Строю поддерживаемую архитектуру с акцентом на качество: типизация, переиспользуемые компоненты, чистая структура и предсказуемое развитие проекта.",
+    stack: ["Next.js + TypeScript", "FSD-подход", "API-first"],
+  },
+  {
+    Icon: IconBrandTelegram,
+    title: "Telegram и автоматизация",
+    text: "Разрабатываю Mini Apps, ботов и интеграции, которые сокращают ручные операции, ускоряют обработку заявок и дают прозрачную аналитику.",
+    stack: ["Mini Apps", "Telegram Bots", "Business automation"],
+  },
+];
+
 const AboutSection: React.FC<AboutSectionProps> = () => {
   return (
     <Section ariaLabelledby="" id="about-section">
@@ -34,24 +55,17 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
         </Text>
 
         <Group mt={20} justify="center">
-          <PerformanceCard
-            Icon={IconRocket}
-            title="Продукт, который приносит результат"
-            text="Делаю интерфейсы, которые выглядят премиально и работают быстро: четкая структура, логичные сценарии, высокая конверсия и готовность к масштабированию."
-            stack={["UI/UX-фокус", "Core Web Vitals", "SEO-ready"]}
-          />
-          <PerformanceCard
-            Icon={IconCpu}
-            title="Надежная архитектура и код"
-            text="Строю поддерживаемую архитектуру с акцентом на качество: типизация, переиспользуемые компоненты, чистая структура и предсказуемое развитие проекта."
-            stack={["Next.js + TypeScript", "FSD-подход", "API-first"]}
-          />
-          <PerformanceCard
-            Icon={IconBrandTelegram}
-            title="Telegram и автоматизация"
-            text="Разрабатываю Mini Apps, ботов и интеграции, которые сокращают ручные операции, ускоряют обработку заявок и дают прозрачную аналитику."
-            stack={["Mini Apps", "Telegram Bots", "Business automation"]}
-          />
+          {list.map((card, index) => {
+            return (
+              <PerformanceCard
+                key={index}
+                Icon={card.Icon}
+                title={card.title}
+                text={card.text}
+                stack={card.stack}
+              />
+            );
+          })}
         </Group>
 
         <InfiniteSlider
@@ -61,7 +75,7 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
             "TELEGRAM MINI APPS",
             "TELEGRAM BOTS",
             "REST API И ИНТЕГРАЦИИ",
-            "НАСТРОЙКА СЕРВЕРОВ ДЛЯ ДЕПЛОЯ",
+            "DEVOPS",
             "DOCKER-ОКРУЖЕНИЕ",
             "CI/CD ПАЙПЛАЙНЫ",
             "АВТОМАТИЗАЦИЯ БИЗНЕС-ПРОЦЕССОВ",

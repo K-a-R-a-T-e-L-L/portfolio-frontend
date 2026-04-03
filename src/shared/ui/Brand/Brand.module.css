@@ -1,0 +1,24 @@
+.brand {
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #e8f1ff;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.brand__text {
+  font-size: 20px;
+  background-image: linear-gradient(
+    to right,
+    var(--mantine-color-brandSecondaryA-4),
+    var(--mantine-color-brandPrimary-4)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+.brand__focus {
+  font-size: 25px;
+}

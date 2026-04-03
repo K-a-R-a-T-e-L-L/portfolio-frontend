@@ -1,0 +1,172 @@
+.cards_card {
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-7) 24%,
+      transparent 76%
+    );
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-8) 18%,
+        transparent 82%
+      ),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-9) 18%,
+        transparent 82%
+      ),
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryB-9) 14%,
+        transparent 86%
+      )
+    );
+}
+
+.form {
+  width: 100%;
+}
+
+.formLabel {
+  color: color-mix(
+    in srgb,
+    var(--mantine-color-brandPrimary-1) 88%,
+    #ffffff 12%
+  );
+  font-weight: 600;
+}
+
+.formRequired {
+  color: var(--mantine-color-red-5);
+}
+
+.formInput {
+  background: color-mix(
+    in srgb,
+    #081a2f 86%,
+    var(--mantine-color-brandSecondaryA-9) 14%
+  );
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-6) 34%,
+      transparent 66%
+    );
+  color: var(--mantine-color-brandPrimary-1);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.formInput::placeholder {
+  color: color-mix(
+    in srgb,
+    var(--mantine-color-brandPrimary-1) 50%,
+    transparent 50%
+  );
+}
+
+.formInput:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-5) 50%,
+    transparent 50%
+  );
+}
+
+.formInput:focus,
+.formInput:focus-within {
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-4) 70%,
+    transparent 30%
+  );
+  box-shadow:
+    0 0 0 1px
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-5) 65%,
+        transparent 35%
+      ),
+    0 0 18px rgba(0, 195, 255, 0.2);
+  background: color-mix(
+    in srgb,
+    #0a2138 84%,
+    var(--mantine-color-brandSecondaryA-9) 16%
+  );
+}
+
+.formDropdown {
+  background: color-mix(
+    in srgb,
+    #07192d 90%,
+    var(--mantine-color-brandSecondaryA-9) 10%
+  );
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-6) 36%,
+      transparent 64%
+    );
+}
+
+.formOption {
+  color: var(--mantine-color-brandPrimary-1);
+}
+
+.formOption[data-checked="true"] {
+  background: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-8) 42%,
+    transparent 58%
+  );
+}
+
+.formError {
+  color: var(--mantine-color-red-4);
+}
+
+.submitButton {
+  margin-top: 6px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-6) 72%, #2f8fff 28%),
+    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 78%, #2fd6ff 22%)
+  );
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-4) 50%,
+      transparent 50%
+    );
+  color: #eaf9ff;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.submitButton:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 0 16px rgba(0, 200, 255, 0.28);
+}
+
+.chars{
+  font-size: 11px;
+  opacity: 0.6;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+@media (width < 992px) {
+  .group_cards {
+    flex-wrap: wrap;
+  }
+}

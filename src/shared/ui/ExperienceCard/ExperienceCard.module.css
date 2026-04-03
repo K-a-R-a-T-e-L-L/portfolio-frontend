@@ -1,0 +1,53 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-7) 24%,
+      transparent 76%
+    );
+  background: color-mix(
+    in srgb,
+    #031021 88%,
+    var(--mantine-color-brandSecondaryA-9) 12%
+  );
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px var(--mantine-color-brandSecondaryA-9);
+}
+
+.card:hover .card_decor {
+  background: var(--mantine-color-brandSecondaryA-7);
+}
+
+.card_decor {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--mantine-color-brandSecondaryA-8);
+}
+
+@media (width < 992px) {
+  .card {
+    padding: 15px !important;
+    border-radius: 15px;
+  }
+
+  .group_stack {
+    gap: 5px;
+  }
+
+  .stack_col {
+    gap: 10px;
+  }
+
+  .card_decor {
+    width: 3px;
+  }
+}

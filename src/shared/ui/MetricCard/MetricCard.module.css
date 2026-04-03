@@ -1,10 +1,33 @@
 .card {
-  border: 1px solid
+  border: 2px solid
     color-mix(in srgb, var(--mantine-color-brandPrimary-5) 20%, transparent 80%);
-  border-left: 1px solid
+  border-left: 2px solid
     color-mix(in srgb, var(--mantine-color-brandPrimary-5) 10%, transparent 90%);
-  border-top: 1px solid
+  border-top: 2px solid
     color-mix(in srgb, var(--mantine-color-brandPrimary-5) 10%, transparent 90%);
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-8) 18%,
+        transparent 82%
+      ),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-9) 18%,
+        transparent 82%
+      ),
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryB-9) 14%,
+        transparent 86%
+      )
+    );
   transition: all 0.3s ease-in-out;
 }
 

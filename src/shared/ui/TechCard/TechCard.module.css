@@ -1,0 +1,28 @@
+.container__card {
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-7) 24%,
+      transparent 76%
+    );
+  background: color-mix(
+    in srgb,
+    #031021 88%,
+    var(--mantine-color-brandSecondaryA-9) 12%
+  );
+}
+
+.techTag {
+  background: color-mix(
+    in srgb,
+    #06243d 80%,
+    var(--mantine-color-brandSecondaryA-8) 20%
+  );
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-7) 28%,
+      transparent 72%
+    );
+  color: var(--mantine-color-brandPrimary-1);
+}

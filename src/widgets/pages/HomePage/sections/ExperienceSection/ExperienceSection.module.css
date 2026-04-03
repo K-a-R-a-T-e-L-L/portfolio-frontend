@@ -1,0 +1,49 @@
+@keyframes apwp {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+.box_list {
+  width: 100%;
+  position: relative;
+}
+
+.box_list > img {
+  animation: apwp 3s ease-in-out;
+}
+
+.box_list > .box_card:nth-of-type(odd) {
+  justify-content: flex-start;
+}
+
+.box_list > .box_card:nth-of-type(even) {
+  justify-content: flex-end;
+}
+
+.dot {
+  position: absolute;
+  width: 30%;
+  height: calc(100% - 100px);
+  display: grid;
+  place-items: center;
+  top: 0;
+  opacity: 0.3;
+}
+
+.box_list > .box_card:nth-of-type(odd) > .dot {
+  right: 0;
+}
+
+.box_list > .box_card:nth-of-type(even) > .dot {
+  left: 0;
+}
+
+@media (width < 992px) {
+  .dot {
+    width: 10%;
+  }
+}

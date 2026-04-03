@@ -1,9 +1,11 @@
-﻿import { AppShellHeader, Container, Group } from "@mantine/core";
+﻿import { AppShellHeader, Container, Group, Image } from "@mantine/core";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/shared/lib/i18n/navigation";
 import { Locale } from "@/shared/lib/i18n/routing";
 import styles from "./Header.module.css";
 import LanguageToggle from "@/shared/ui/LanguageToggle/LanguageToggle";
+import { MEDIA } from "@/shared/lib/media";
+import Brand from "@/shared/ui/Brand/Brand";
 
 export default async function Header({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: "nav" });
@@ -12,9 +14,7 @@ export default async function Header({ locale }: { locale: Locale }) {
     <AppShellHeader component="header" className={styles.header}>
       <Container size="xl" h="100%">
         <Group h="100%" justify="space-between" align="center">
-          <Link href="#hero-section" locale={locale} className={styles.brand}>
-            Portfolio @K_a_R_a_T_e_L_L
-          </Link>
+          <Brand locale={locale}/>
 
           <Group gap={16} display={{ base: "none", md: "flex" }}>
             <Link href="#about-section" locale={locale} className={styles.link}>

@@ -9,13 +9,6 @@
   );
 }
 
-.brand {
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: #e8f1ff;
-}
-
 .link {
   text-decoration: none;
   font-size: 0.95rem;
@@ -24,14 +17,18 @@
   transition:
     opacity 0.15s ease,
     color 0.15s ease;
-    position: relative;
+  position: relative;
 }
 
 .link::after {
   content: "";
   width: 0%;
   height: 1px;
-  background: linear-gradient(to right, #79d9ff, var(--mantine-color-brandPrimary-2));
+  background: linear-gradient(
+    to right,
+    #79d9ff,
+    var(--mantine-color-brandPrimary-2)
+  );
   transition: all 0.2s linear;
   position: absolute;
   left: 0;

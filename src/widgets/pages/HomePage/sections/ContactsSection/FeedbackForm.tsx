@@ -1,0 +1,168 @@
+﻿"use client";
+import {
+  Alert,
+  Box,
+  Button,
+  Group,
+  Select,
+  Stack,
+  Text,
+  Textarea,
+  TextInput,
+  Title,
+} from "@mantine/core";
+import styles from "./ContactsSection.module.css";
+import useFeedback from "./useFeedback";
+import { IconAlertCircle } from "@tabler/icons-react";
+
+interface FeedbackFormProps {}
+
+const contactMethods = [
+  { value: "telegram", label: "Telegram", icon: "/icons/telegram.svg" },
+  { value: "whatsapp", label: "WhatsApp", icon: "/icons/whatsapp.svg" },
+  { value: "phone", label: "Телефон", icon: "/icons/phone.svg" },
+  { value: "email", label: "Email", icon: "/icons/email.svg" },
+  { value: "vk", label: "VKontakte", icon: "/icons/vk.svg" },
+  { value: "max", label: "MAX", icon: "/icons/max.svg" },
+];
+
+const methodMeta = Object.fromEntries(
+  contactMethods.map((item) => [item.value, item]),
+) as Record<string, (typeof contactMethods)[number]>;
+
+const fieldClassNames = {
+  label: styles.formLabel,
+  input: styles.formInput,
+  error: styles.formError,
+  required: styles.formRequired,
+};
+
+const FeedbackForm: React.FC<FeedbackFormProps> = () => {
+  const { form, onSubmit, codeError, setCodeError } = useFeedback();
+
+  return (
+    <form onSubmit={onSubmit} className={styles.form}>
+      <Stack gap={10}>
+        <Title
+          fz={{ base: 20, md: 24 }}
+          order={3}
+          className={styles.template_title}
+        >
+          Оставить заявку
+        </Title>
+
+        <TextInput
+          label="Ваше имя"
+          placeholder="Например, Кирилл"
+          withAsterisk
+          classNames={fieldClassNames}
+          key={form.key("name")}
+          {...form.getInputProps("name")}
+          maxLength={120}
+        />
+
+        <Select
+          label="Способ связи"
+          placeholder="Выберите способ"
+          data={contactMethods.map(({ value, label }) => ({ value, label }))}
+          classNames={{
+            ...fieldClassNames,
+            dropdown: styles.formDropdown,
+            option: styles.formOption,
+          }}
+          renderOption={({ option }) => {
+            const meta = methodMeta[option.value];
+
+            return (
+              <Group gap={8} wrap="nowrap">
+                <Box
+                  component="img"
+                  src={meta?.icon ?? "/icons/email.svg"}
+                  alt={option.label}
+                  w={16}
+                  h={16}
+                />
+                <Text fz={14}>{option.label}</Text>
+              </Group>
+            );
+          }}
+          withAsterisk
+          key={form.key("method")}
+          {...form.getInputProps("method")}
+        />
+
+        <TextInput
+          label="Контакт"
+          placeholder="@username / +7... / email"
+          withAsterisk
+          classNames={fieldClassNames}
+          key={form.key("contact")}
+          {...form.getInputProps("contact")}
+          maxLength={500}
+        />
+
+        <Box pos="relative">
+          <Textarea
+            label="Комментарий"
+            placeholder="Кратко опишите задачу"
+            minRows={4}
+            autosize
+            withAsterisk
+            classNames={fieldClassNames}
+            key={form.key("comment")}
+            {...form.getInputProps("comment")}
+            maxLength={2000}
+          />
+          <span className={styles.chars}>
+            {(form.values.comment || "").length} / 2000
+          </span>
+        </Box>
+        <Button type="submit" className={styles.submitButton}>
+          Отправить
+        </Button>
+        {codeError == 500 ? (
+          <Alert
+            icon={<IconAlertCircle size={30} />}
+            bd='1px solid red'
+            title="Ошибка!"
+            c="red"
+            variant="outline"
+            withCloseButton
+            onClick={() => setCodeError(null)}
+            color='red'
+          >
+            Что-то пошло не так. Пожалуйста, попробуйте позже.
+          </Alert>
+        ) : codeError == 400 ? (
+          <Alert
+            icon={<IconAlertCircle size={30} />}
+            bd='1px solid red'
+            title="Ошибка!"
+            c="red"
+            variant="outline"
+            withCloseButton
+            onClick={() => setCodeError(null)}
+            color='red'
+          >
+            Проверьте правильность введнных данных.
+          </Alert>
+        ) : !codeError ? null : (
+          <Alert
+            icon={<IconAlertCircle size={30} />}
+            bd='1px solid red'
+            title="Ошибка!"
+            c="red"
+            variant="outline"
+            withCloseButton
+            onClick={() => setCodeError(null)}
+            color='red'
+          >
+            Слишком много попыток. Пожалуйста, попробуйте позже.
+          </Alert>
+        )}
+      </Stack>
+    </form>
+  );
+};
+
+export default FeedbackForm;

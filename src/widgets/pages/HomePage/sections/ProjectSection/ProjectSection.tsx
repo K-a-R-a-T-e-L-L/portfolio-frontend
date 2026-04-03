@@ -1,12 +1,15 @@
-import Section from "@/shared/ui/Section/Section";
+﻿import Section from "@/shared/ui/Section/Section";
 import { Group, Stack, Text, Title } from "@mantine/core";
 import NameSection from "@/shared/ui/NameSection/NameSection";
 import ProjectCard from "@/shared/ui/ProjectCard/ProjectCard";
 import { MEDIA } from "@/shared/lib/media";
 import {
   IconAffiliate,
+  IconChartBar,
+  IconDatabase,
   IconLink,
   IconRocket,
+  IconShieldCheck,
   IconUsers,
 } from "@tabler/icons-react";
 import styles from "./ProjectSection.module.css";
@@ -27,24 +30,38 @@ const ProjectSection: React.FC<ProjectSectionProps> = () => {
         >
           <span className={"title__primary_word"}>Избранные</span> работы
         </Title>
-        <Text>Реальные проекты, запущенные в продакшн и решающие задачи бизнеса.</Text>
+        <Text>
+          Реальные проекты, запущенные в продакшн и решающие бизнес-задачи.
+        </Text>
 
         <Group w="100%" justify="center" mt={40}>
           <ProjectCard
-            typeCard="main"
-            type="Template Community Platform"
-            technologiesBadge="Next.js • NestJS • PostgreSQL"
+            type="UI Template Platform"
+            technologiesBadge="Next.js • NestJS • TypeORM"
             technologies={[
               "Next.js",
-              "NestJS",
-              "PostgreSQL",
-              "Prisma",
+              "React",
               "TypeScript",
-              "Docker",
-              "JWT Auth",
-              "CI/CD",
+              "NestJS",
+              "TypeORM",
+              "PostgreSQL",
+              "Mantine UI",
+              "TanStack Query",
+              "next-intl",
+              "JWT",
+              "Swagger / OpenAPI",
+              "Joi",
+              "class-validator",
+              "class-transformer",
+              "Helmet",
+              "cookie-parser",
+              "Kubb",
+              "D3.js",
+              "Embla Carousel",
+              "Swiper",
+              "Swagger UI",
             ]}
-            title="My-UI — платформа шаблонов, где пользователи публикуют решения и конкурируют по лайкам"
+            title="My-UI — платформа шаблонов, где пользователи публикуют решения и конкурируют по рейтингу"
             description="Продакшн-сервис для UI-сообщества: авторы отправляют шаблоны на модерацию, публикуют их в каталог, собирают лайки и попадают в топ витрину. Реализованы профиль автора, избранное, категории, теги, статистика копирований и полный цикл управления своими шаблонами."
             url="https://my-ui.karatell.ru/ru"
             preview={MEDIA.images.myUiPreview.src}
@@ -55,25 +72,47 @@ const ProjectSection: React.FC<ProjectSectionProps> = () => {
               },
               {
                 icon: IconAffiliate,
-                text: "Лайки/избранное, копирование кода, модерация и рейтинг сообщества",
+                text: "Лайки/избранное, копирование кода, модерация и рейтинговая витрина",
+              },
+              {
+                icon: IconDatabase,
+                text: "Серверная архитектура на NestJS + PostgreSQL с масштабируемой моделью данных",
+              },
+              {
+                icon: IconShieldCheck,
+                text: "Роли и контур модерации для контроля качества пользовательского контента",
+              },
+              {
+                icon: IconChartBar,
+                text: "Метрики активности и популярности шаблонов для роста вовлеченности",
               },
             ]}
           />
 
-          <Group wrap="nowrap" className={styles.group_minor_cards}>
+          <Group wrap="nowrap" className={styles.group_minor_cards} align="flex-start">
             <ProjectCard
-              typeCard="minor"
-              type="E-commerce / Flower Delivery"
-              technologiesBadge="Next.js • NestJS • amoCRM"
+              type="E-commerce"
+              technologiesBadge="Next.js • NestJS • Redis"
               technologies={[
                 "Next.js",
-                "NestJS",
+                "React",
                 "TypeScript",
+                "NestJS",
+                "TypeORM",
+                "PostgreSQL",
+                "Redis",
                 "REST API",
-                "SEO",
-                "Telegram Bot",
-                "amoCRM",
-                "S3 Storage",
+                "TanStack Query",
+                "Mantine UI",
+                "Telegram Bot API",
+                "amoCRM API",
+                "AWS S3 SDK",
+                "JWT",
+                "Joi",
+                "Swagger / OpenAPI",
+                "Yandex Maps API",
+                "Yandex Metrica",
+                "Kubb",
               ]}
               title="«Она хочет» — крупный коммерческий проект по продаже цветов с доставкой по России"
               description="Полноценная e-commerce платформа: каталог, корзина, оформление заказа, сценарии получателя и адресной доставки. В системе реализован мультигород (поддомены и города РФ), интеграции с amoCRM, Telegram-уведомлениями и операционной логикой обработки заказов."
@@ -88,22 +127,36 @@ const ProjectSection: React.FC<ProjectSectionProps> = () => {
                   icon: IconLink,
                   text: "Интеграции: amoCRM, Telegram-оповещения, city-based маршрутизация",
                 },
+                {
+                  icon: IconUsers,
+                  text: "Продуманный checkout: получатель, адресация, дата/время доставки, пожелания",
+                },
+                {
+                  icon: IconDatabase,
+                  text: "Каталог, остатки, карточки товара и заказы с бизнес-логикой обработки",
+                },
+                {
+                  icon: IconChartBar,
+                  text: "Мультигород и маршрутизация витрины под региональные сценарии",
+                },
               ]}
             />
 
             <ProjectCard
-              typeCard="minor"
-              type="Education / Launch Funnel"
-              technologiesBadge="Next.js • Landing System • Conversion UX"
+              type="Edu Landing"
+              technologiesBadge="Next.js • Mantine • Mantine UI"
               technologies={[
                 "Next.js",
+                "React",
+                "React DOM",
                 "TypeScript",
                 "Mantine UI",
-                "Adaptive Layout",
-                "SEO meta",
-                "Program builder",
-                "Tariff matrix",
-                "Lead-oriented UX",
+                "@mantine/hooks",
+                "@tabler/icons-react",
+                "Tailwind CSS v4",
+                "PostCSS",
+                "ESLint",
+                "Yandex Metrica",
               ]}
               title="«Система запуска» — продающая платформа для запуска образовательного продукта"
               description="Продуктовый лендинг для курса Phenomen Club с глубокой структурой контента: Hero, программа по модулям, тарифная матрица, FAQ, trust-блоки и финальная воронка. Главная цель проекта — конверсия трафика в заявки и оплаты через понятный путь пользователя."
@@ -116,7 +169,19 @@ const ProjectSection: React.FC<ProjectSectionProps> = () => {
                 },
                 {
                   icon: IconLink,
-                  text: "Модульная подача программы и тарифов для повышения конверсии",
+                  text: "Модульная подача программы и тарифов для роста конверсии",
+                },
+                {
+                  icon: IconRocket,
+                  text: "Адаптивная воронка от первого экрана до заявки/оплаты без лишних шагов",
+                },
+                {
+                  icon: IconShieldCheck,
+                  text: "Четкая UX-иерархия для высокого доверия и прозрачного оффера",
+                },
+                {
+                  icon: IconChartBar,
+                  text: "Оптимизация под конверсию: акценты на ценности, возражениях и CTA",
                 },
               ]}
             />

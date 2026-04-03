@@ -1,5 +1,10 @@
-.group_minor_cards {
+﻿.group_minor_cards {
   gap: 20px;
+  align-items: stretch;
+}
+
+.group_minor_cards > :global(.mantine-Paper-root) {
+  height: 100%;
 }
 
 @media (width < 1250px) {
