@@ -1,3 +1,12 @@
+@keyframes identifier {
+  0%{
+    width: 0;
+  }
+  100%{
+    width: 100%;
+  }
+}
+
 .header {
   border-bottom: 1px solid rgba(117, 145, 197, 0.24);
   backdrop-filter: blur(12px);
@@ -7,6 +16,25 @@
     rgba(9, 19, 41, 0.8) 55%,
     rgba(7, 28, 48, 0.86) 100%
   );
+}
+
+.header::before{
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+    background: linear-gradient(
+    180deg,
+    rgba(5, 10, 24, 0.88) 0%,
+    rgba(9, 19, 41, 0.8) 55%,
+    rgba(7, 28, 48, 0.86) 100%
+  );
+  animation: identifier linear both;
+  animation-timeline: scroll();
+  animation-range: 0 100%;
+  opacity: 0.8;
 }
 
 .link {

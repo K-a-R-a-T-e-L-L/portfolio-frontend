@@ -5,6 +5,7 @@ interface SectionProps {
   ariaLabelledby: string;
   styles?: CSSProperties;
   id?: string;
+  className?: string
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -12,6 +13,7 @@ const Section: React.FC<SectionProps> = ({
   ariaLabelledby,
   styles,
   id,
+  className,
 }) => {
   return (
     <section
@@ -24,6 +26,7 @@ const Section: React.FC<SectionProps> = ({
         ...styles,
       }}
       id={id}
+      className={className}
     >
       {children}{" "}
     </section>

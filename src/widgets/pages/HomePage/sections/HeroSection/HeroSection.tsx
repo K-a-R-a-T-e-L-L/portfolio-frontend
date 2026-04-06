@@ -1,4 +1,4 @@
-import Section from "@/shared/ui/Section/Section";
+﻿import Section from "@/shared/ui/Section/Section";
 import styles from "./HeroSection.module.css";
 import {
   Box,
@@ -7,7 +7,6 @@ import {
   Grid,
   GridCol,
   Group,
-  Paper,
   Stack,
   Text,
   Title,
@@ -19,10 +18,10 @@ import {
   IconBusinessplan,
   IconDeviceMobile,
   IconLeaf,
-  IconPill,
-  IconWash,
 } from "@tabler/icons-react";
 import AnimatedDot from "@/shared/ui/AnimatedDot/AnimatedDot";
+import { nbspPrepositions } from "@/shared/lib/nbspPrepositionsю";
+import AnimatedTitle from "./AnimatedTitle";
 
 interface HeroSectionProps {}
 
@@ -55,11 +54,11 @@ const listRowsCode = [
     <span className={styles.identifier}>stack</span>
     <span className={styles.punctuator}> :</span>
     <span className={styles.staples}> {"["}</span>
-    <span className={styles.string}> "NextJS"</span>
+    <span className={styles.string}> "Next.js"</span>
     <span className={styles.punctuator}>,</span>
-    <span className={styles.string}> "NextJS"</span>
+    <span className={styles.string}> "NestJS"</span>
     <span className={styles.punctuator}>,</span>
-    <span className={styles.string}> "NextJS"</span>
+    <span className={styles.string}> "TypeScript"</span>
     <span className={styles.staples}> {"]"}</span>
   </span>,
   <span className={styles.inside}>
@@ -73,43 +72,55 @@ const listRowsCode = [
   <span className={styles.staples}> {"}"}</span>,
 ];
 
-const HeroSection: React.FC<HeroSectionProps> = (props) => {
-  const {} = props;
-
+const HeroSection: React.FC<HeroSectionProps> = () => {
   return (
     <Section
       ariaLabelledby=""
       id="hero-section"
       styles={{ paddingTop: "20px" }}
+      className={styles.hero_section}
     >
       <Grid w="100%">
         <GridCol span={{ base: 12, md: 7 }}>
           <Stack className={styles.left_col_stack}>
             <Box className={styles.badge}>
               <AnimatedDot size={6} color="cyan" />
-              Full-time | | freelance
+              Full-time | freelance
             </Box>
             <Title
               order={1}
               fz={{ base: 64, md: 86 }}
               fw={900}
+              w="100%"
               style={{ fontWeight: "bold" }}
               ta={{ base: "center", md: "left" }}
               className={"title"}
+              pos="relative"
             >
-              FULL-STACK{" "}
-              <span className={"title__primary_word"}>DEVELOPER</span>
+              <span
+                style={{
+                  opacity: 0.05,
+                  position: "absolute",
+                  width: "100%",
+                  left: 0,
+                }}
+              >
+                FULL-STACK <br /> DEVELOPER
+              </span>
+              <AnimatedTitle />
             </Title>
             <Text
               fz={{ base: 18, md: 20 }}
               opacity={0.6}
               ta={{ base: "center", md: "left" }}
             >
-              Меня зовут Кирилл. Веб-разработчик, специализирующийся на
-              отточенных интерфейсах, масштабируемой архитектуре и реализации
-              бизнес-идей. Я превращаю идеи для продуктов в адаптивные,
-              высокопроизводительные решения, которые выглядят премиально и
-              приносят прибыль.
+              {nbspPrepositions(`
+                Меня зовут Кирилл. Я веб-разработчик, специализирующийся на
+                отточенных интерфейсах, масштабируемой архитектуре и реализации
+                бизнес-идей. Превращаю идеи в адаптивные,
+                высокопроизводительные решения, которые выглядят премиально и
+                приносят результат.
+              `)}
             </Text>
             <Group mt={10} className={styles.left_col_group_buttons}>
               <Button
@@ -142,7 +153,12 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
         <GridCol span={{ base: 12, md: 5 }}>
           <CodeCard code={listRowsCode}>
             <Stack gap={10} mt={{ base: 20, md: 0 }}>
-              <Group gap={10} wrap="nowrap" className={styles.group_cards}>
+              <Group
+                gap={10}
+                wrap="nowrap"
+                className={styles.group_cards}
+                align="stretch"
+              >
                 <MetricCard
                   w={"50%"}
                   title={
@@ -172,7 +188,12 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
                   size="md"
                 />
               </Group>
-              <Group gap={10} wrap="nowrap" className={styles.group_cards}>
+              <Group
+                gap={10}
+                wrap="nowrap"
+                className={styles.group_cards}
+                align="stretch"
+              >
                 <MetricCard
                   w={"50%"}
                   title={
@@ -181,7 +202,7 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
                       Чистый
                     </>
                   }
-                  text="Код, переиспользуемые компоненты, поддерживаемая архитектура."
+                  text="Код, переиспользуемые компоненты и поддерживаемая архитектура."
                   className={styles.card}
                   size="md"
                 />
@@ -195,7 +216,7 @@ const HeroSection: React.FC<HeroSectionProps> = (props) => {
                       Влияние
                     </>
                   }
-                  text="На результат, заточенный под конверсию, удержание пользователей и бизнес-цели."
+                  text="Фокус на конверсию, удержание пользователей и бизнес-цели."
                   className={styles.card}
                   size="md"
                 />

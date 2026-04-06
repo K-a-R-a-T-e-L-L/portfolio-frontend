@@ -27,6 +27,7 @@ const CodeCard: React.FC<CodeCardProps> = (props) => {
                   pl={30}
                   pos="relative"
                   key={index}
+                  className={styles.row}
                 >
                   <span className={styles.code_text__number_row}>
                     {index + 1}

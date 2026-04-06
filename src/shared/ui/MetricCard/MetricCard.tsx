@@ -1,6 +1,7 @@
 import { MantineStyleProps, Paper, Stack, Text, Title } from "@mantine/core";
 import styles from "./MetricCard.module.css";
 import { ReactNode } from "react";
+import AnimatedMetric from "./AnimatedMetric";
 
 interface MetricCardProps {
   title: string | ReactNode;
@@ -27,7 +28,11 @@ const MetricCard: React.FC<MetricCardProps> = (props) => {
           order={3}
           c="brandPrimary.2"
         >
-          {title}
+          {typeof title === "string" ? (
+            <AnimatedMetric metric={title} />
+          ) : (
+            title
+          )}
         </Title>
         <Text
           fz={size == "xl" ? { base: 14, md: 16 } : { base: 14, md: 12 }}

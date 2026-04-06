@@ -87,7 +87,7 @@ const list = [
 const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
   return (
     <Section ariaLabelledby="" id="experience-section">
-      <Stack w="100%" align="center">
+      <Stack w="100%" align="center" pos='relative'>
         <NameSection name="Мой опыт" />
         <Title
           order={2}

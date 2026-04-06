@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-timeline: --scroll-page y;
+}
+
 html,
 body {
   margin: 0;

@@ -1,6 +1,15 @@
 ﻿import Section from "@/shared/ui/Section/Section";
 import styles from "./ContactsSection.module.css";
-import { Group, Paper, Stack, Text, Title } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Card,
+  Group,
+  Paper,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 import NameSection from "@/shared/ui/NameSection/NameSection";
 import {
   IconBrandGithub,
@@ -11,6 +20,7 @@ import {
 } from "@tabler/icons-react";
 import ContactCard from "@/shared/ui/ContactCard/ContactCard";
 import FeedbackForm from "./FeedbackForm";
+import FileCard from "@/shared/ui/FileCard/FileCard";
 
 interface ContactsSectionProps {}
 
@@ -99,13 +109,19 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
           </Paper>
         </Group>
         <Paper w="100%" p="lg" radius="md" className={styles.cards_card}>
-          <Title
-            fz={{ base: 20, md: 24 }}
-            order={3}
-            className={styles.template_title}
-          >
-            Резюме
-          </Title>
+          <Stack>
+            <Title
+              fz={{ base: 20, md: 24 }}
+              order={3}
+              className={styles.template_title}
+            >
+              Резюме
+            </Title>
+            <Group wrap="nowrap" className={styles.group_cards}>
+              <FileCard name="resume_ru.pdf" mb="100mb" href="/resume_ru.pdf" />
+              <FileCard name="resume_en.pdf" mb="98mb" href="/resume_en.pdf" />
+            </Group>
+          </Stack>
         </Paper>
       </Stack>
     </Section>

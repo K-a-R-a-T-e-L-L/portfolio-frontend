@@ -16,7 +16,7 @@ const ContactCard: React.FC<ContactCardProps> = (props) => {
   const { Icon, name, link, copyText } = props;
 
   return (
-    <Card p={0} radius="sm">
+    <Card p={0} className={styles.card} radius="sm">
       <Stack p={0} pl={3} bg="var(--mantine-color-brandPrimary-9)" gap={0}>
         <Group className={styles.text_top} p="5 10" justify="space-between">
           <Group gap={5}>
