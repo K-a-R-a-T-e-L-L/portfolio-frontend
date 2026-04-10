@@ -6,6 +6,7 @@ import { IconBrandTelegram, IconCpu, IconRocket } from "@tabler/icons-react";
 import PerformanceCard from "@/shared/ui/PerformanceCard/PerformanceCard";
 import InfiniteSlider from "@/shared/ui/InfiniteSlider/InfiniteSlider";
 import { nbspPrepositions } from "@/shared/lib/nbspPrepositionsю";
+import MotionBox from "@/shared/ui/MotionBox/MotionBox";
 
 interface AboutSectionProps {}
 
@@ -45,38 +46,58 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
     >
       <Stack align="center" w="100%">
         <NameSection name="Обо мне" />
-        <Title
-          order={2}
-          fz={{ base: 48, md: 64 }}
-          fw={900}
-          className={"title"}
-          style={{ fontWeight: "bold" }}
-          ta="center"
+        <MotionBox
+          start={{ opacity: 0.1, y: -20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
         >
-          <span className={"title__primary_word"}>Цифровые решения </span>
-          для роста бизнеса
-        </Title>
+          <Title
+            order={2}
+            fz={{ base: 48, md: 64 }}
+            fw={900}
+            className={"title"}
+            style={{ fontWeight: "bold" }}
+            ta="center"
+          >
+            <span className={"title__primary_word"}>Цифровые решения </span>
+            для роста бизнеса
+          </Title>
+        </MotionBox>
 
-        <Text ta="center" maw={980}>
-          {nbspPrepositions(`
+        <MotionBox
+          start={{ opacity: 0.1, y: 20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+          styles={{ marginLeft: "auto", marginRight: "auto" }}
+        >
+          <Text ta="center" maw={980}>
+            {nbspPrepositions(`
             Я занимаюсь fullstack-разработкой и специализируюсь на веб-продуктах и
             Telegram-решениях. Создаю и запускаю проекты под конкретные задачи
             бизнеса: от лендингов и корпоративных сайтов до API-сервисов,
             интеграций с CRM, Telegram Mini Apps и ботов с автоматизацией рутинных
             процессов
           `)}
-        </Text>
+          </Text>
+        </MotionBox>
 
         <Group mt={20} justify="center">
           {list.map((card, index) => {
             return (
-              <PerformanceCard
-                key={index}
-                Icon={card.Icon}
-                title={card.title}
-                text={card.text}
-                stack={card.stack}
-              />
+              <MotionBox
+                start={{
+                  opacity: 0.1,
+                  y: 20,
+                  x: index == 0 ? -20 : index == 1 ? 0 : 20,
+                }}
+                end={{ opacity: 1, y: 0, x: 0 }}
+              >
+                <PerformanceCard
+                  key={index}
+                  Icon={card.Icon}
+                  title={card.title}
+                  text={card.text}
+                  stack={card.stack}
+                />
+              </MotionBox>
             );
           })}
         </Group>
