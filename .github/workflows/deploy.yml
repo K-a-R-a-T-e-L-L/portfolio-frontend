@@ -29,12 +29,22 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Validate required CI variables
+        run: |
+          test -n "${{ vars.NEXT_PUBLIC_SITE_URL }}" || (echo "Missing vars.NEXT_PUBLIC_SITE_URL" && exit 1)
+          test -n "${{ vars.NEXT_PUBLIC_API_URL }}" || (echo "Missing vars.NEXT_PUBLIC_API_URL" && exit 1)
+
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            NEXT_PUBLIC_SITE_URL=${{ vars.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
+            OPENAPI_PATH=${{ vars.OPENAPI_PATH }}
+            API_DOCS_URL=${{ vars.API_DOCS_URL }}
           tags: |
             ${{ env.REGISTRY }}/${{ vars.GHCR_NAMESPACE }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ vars.GHCR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
@@ -46,4 +56,3 @@ jobs:
             -H "x-api-key: ${{ secrets.DOKPLOY_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d "{\"applicationId\":\"${{ secrets.DOKPLOY_APPLICATION_ID }}\"}"
-

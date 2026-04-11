@@ -1,8 +1,11 @@
 {
-  "description": "Scalable frontend template for rapid product delivery.",
-  "copyright": "(c) Next App Template",
-  "faq": "FAQ",
-  "sitemap": "Sitemap",
-  "privacy": "Privacy Policy",
-  "terms": "Terms of Use"
+  "menuTitle": "Navigation",
+  "contactsTitle": "Contacts",
+  "about": "About",
+  "projects": "Projects",
+  "experience": "Experience",
+  "stack": "Stack",
+  "contacts": "Contact",
+  "copyright": "© 2026 Portfolio",
+  "note": "Frontend / Backend / Integrations"
 }

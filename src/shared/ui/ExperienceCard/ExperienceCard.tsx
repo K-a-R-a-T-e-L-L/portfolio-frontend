@@ -18,7 +18,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (props) => {
       radius="xl"
       p="xl"
       mb={100}
-      maw={{ base: "90%", md: "70%" }}
+      maw={'100%'}
       className={styles.card}
     >
       <Box className={styles.card_decor}></Box>

@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode } from "react";
 import {
+  Easing,
   motion,
   MotionStyle,
   TargetAndTransition,
@@ -12,12 +13,23 @@ interface MotionBoxProps {
   start: boolean | TargetAndTransition | VariantLabels | undefined;
   end: TargetAndTransition | VariantLabels | undefined;
   duration?: number;
+  delay?: number;
+  ease?: Easing | Easing[];
   styles?: MotionStyle;
-  className?: string
+  className?: string;
 }
 
 const MotionBox: React.FC<MotionBoxProps> = (props) => {
-  const { children, start, end, duration = 0.5, styles, className } = props;
+  const {
+    children,
+    start,
+    end,
+    duration = 0.5,
+    delay,
+    ease,
+    styles,
+    className,
+  } = props;
 
   return (
     <motion.div
@@ -31,7 +43,7 @@ const MotionBox: React.FC<MotionBoxProps> = (props) => {
       initial={start}
       whileInView={end}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: duration }}
+      transition={{ duration: duration, delay: delay, ease: ease }}
     >
       {children}
     </motion.div>

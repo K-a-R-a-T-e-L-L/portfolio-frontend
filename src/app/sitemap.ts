@@ -4,14 +4,14 @@ import { routing } from "@/shared/lib/i18n/routing";
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const now = new Date();
-  const paths = ["", "/about", "/docs", "/faq", "/privacy", "/terms", "/sitemap"] as const;
+  const paths = [""] as const;
 
   return routing.locales.flatMap((locale) =>
     paths.map((path) => ({
       url: `${siteUrl}/${locale}${path}`,
       lastModified: now,
       changeFrequency: "weekly" as const,
-      priority: path === "" ? 1 : 0.7,
+      priority: 1,
     })),
   );
 }

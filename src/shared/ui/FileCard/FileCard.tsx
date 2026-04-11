@@ -35,7 +35,7 @@ const FileCard: React.FC<FileCardProps> = (props) => {
       className={styles.card}
       p="md"
       radius="lg"
-      w={{ base: "100%", sm: "calc(50% - 8px)" }}
+      w={"100%"}
     >
       <Stack gap={10}>
         <Group justify="space-between" wrap="nowrap" gap={12}>

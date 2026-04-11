@@ -83,6 +83,7 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
           {list.map((card, index) => {
             return (
               <MotionBox
+                key={index}
                 start={{
                   opacity: 0.1,
                   y: 20,
@@ -91,7 +92,6 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
                 end={{ opacity: 1, y: 0, x: 0 }}
               >
                 <PerformanceCard
-                  key={index}
                   Icon={card.Icon}
                   title={card.title}
                   text={card.text}

@@ -1,8 +1,11 @@
 {
-  "description": "Масштабируемый frontend-шаблон для быстрого запуска продуктов.",
-  "copyright": "© Шаблон Next App",
-  "faq": "FAQ",
-  "sitemap": "Карта сайта",
-  "privacy": "Политика конфиденциальности",
-  "terms": "Условия использования"
+  "menuTitle": "Навигация",
+  "contactsTitle": "Контакты",
+  "about": "Обо мне",
+  "projects": "Проекты",
+  "experience": "Опыт",
+  "stack": "Технологии",
+  "contacts": "Связаться",
+  "copyright": "© 2026 Portfolio",
+  "note": "Frontend / Backend / Integrations"
 }

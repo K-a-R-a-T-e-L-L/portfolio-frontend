@@ -1,8 +1,10 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Inter, Manrope } from "next/font/google";
-import "./globals.css";
-import "@mantine/core/styles.css";
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
+import "@mantine/core/styles.css";
+import "./globals.css";
+
 import CustomCursor from "@/shared/ui/CustomCursor/CustomCursor";
 
 const inter = Inter({
@@ -31,15 +33,17 @@ export const metadata: Metadata = {
     "Scalable Next.js template with Mantine, next-intl, React Query and Kubb.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value === "ru" ? "ru" : "en";
+
   return (
     <html
-      lang="en"
-      {...mantineHtmlProps}
+      lang={locale}
       className={`${inter.variable} ${manrope.variable}`}
       {...mantineHtmlProps}
     >

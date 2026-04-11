@@ -5,6 +5,7 @@ import NameSection from "@/shared/ui/NameSection/NameSection";
 import ExperienceCard from "@/shared/ui/ExperienceCard/ExperienceCard";
 import { MEDIA } from "@/shared/lib/media";
 import AnimatedDot from "@/shared/ui/AnimatedDot/AnimatedDot";
+import MotionBox from "@/shared/ui/MotionBox/MotionBox";
 
 interface ExperienceSectionProps {}
 
@@ -87,39 +88,82 @@ const list = [
 const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
   return (
     <Section ariaLabelledby="" id="experience-section">
-      <Stack w="100%" align="center" pos='relative'>
+      <Stack w="100%" align="center" pos="relative">
         <NameSection name="Мой опыт" />
-        <Title
-          order={2}
-          fz={{ base: 48, md: 64 }}
-          fw={900}
-          className={"title"}
-          ta="center"
-          style={{ fontWeight: "bold" }}
+        <MotionBox
+          start={{ opacity: 0.1, y: -20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+          styles={{ width: "100%" }}
         >
-          Путь в<span className={"title__primary_word"}> разработке</span>
-        </Title>
-        <Text ta="center">
-          От обучения и фриланса до коммерческой разработки, наставничества
-          и продуктовой работы.
-        </Text>
+          <Title
+            order={2}
+            fz={{ base: 48, md: 64 }}
+            fw={900}
+            className={"title"}
+            ta="center"
+            style={{ fontWeight: "bold" }}
+          >
+            Путь в<span className={"title__primary_word"}> разработке</span>
+          </Title>
+        </MotionBox>
+
+        <MotionBox
+          start={{ opacity: 0.1, y: 20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+          styles={{ width: "100%" }}
+        >
+          <Text ta="center">
+            От обучения и фриланса до коммерческой разработки, наставничества и
+            продуктовой работы.
+          </Text>
+        </MotionBox>
 
         <Group w="100%" mt={40} className={styles.box_list}>
-          <Image src={MEDIA.images.line.src} pos='absolute' w='100%' top={0} h='100%' />
+            <Image
+              src={MEDIA.images.line.src}
+              pos="absolute"
+              w="100%"
+              top={0}
+              h="100%"
+            />
+
           {list.map((el, index) => {
             return (
-              <Group key={index} w="100%" pos='relative' className={styles.box_card}>
-                <ExperienceCard
-                  key={index}
-                  date={el.date}
-                  title={el.title}
-                  work={el.work}
-                  skills={el.skills}
-                  stack={el.stack}
-                />
-                <Box className={styles.dot}>
-                  <AnimatedDot size={10} color="var(--mantine-color-brandPrimary-3)"/>
-                </Box>
+              <Group
+                key={index}
+                w="100%"
+                pos="relative"
+                className={styles.box_card}
+              >
+                <MotionBox
+                  start={{ opacity: 0.1, x: index % 2 == 0 ? -50 : 50 }}
+                  end={{ opacity: 1, y: 0, x: 0 }}
+                  className={styles.motion_card}
+                >
+                  <ExperienceCard
+                    key={index}
+                    date={el.date}
+                    title={el.title}
+                    work={el.work}
+                    skills={el.skills}
+                    stack={el.stack}
+                  />
+                </MotionBox>
+
+                <MotionBox
+                  start={{ opacity: 0, x: index % 2 == 0 ? -300 : 300 }}
+                  end={{ opacity: 1, y: 0, x: 0 }}
+                  ease="easeInOut"
+                  delay={0.7}
+                  className={styles.dot}
+                >
+                  <Box>
+                    <AnimatedDot
+                      size={10}
+                      color="var(--mantine-color-brandPrimary-3)"
+                    />
+                  </Box>
+                </MotionBox>
               </Group>
             );
           })}

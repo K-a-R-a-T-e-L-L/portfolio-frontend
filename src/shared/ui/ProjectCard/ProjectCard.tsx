@@ -12,6 +12,7 @@ import styles from "./ProjectCard.module.css";
 import { IconProps } from "@tabler/icons-react";
 import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
 import ProjectLinkActions from "./ProjectLinkActions";
+import MotionBox from "../MotionBox/MotionBox";
 
 interface ProjectCardProps {
   type: string;
@@ -37,46 +38,85 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     technologiesBadge,
     technologies,
     characteristics,
-  } =
-    props;
+  } = props;
   return (
-    <Paper
-      w={"100%"}
-      p="xl"
-      radius="xl"
-      className={styles.card}
-    >
+    <Paper w={"100%"} p="xl" radius="xl" className={styles.card}>
       <Stack gap="lg">
         <Group justify="space-between" gap={12}>
-          <Card p="10px 20px" radius="xl" className={styles.badge}>
-            {type}
-          </Card>
-          <Card p="10px 20px" radius="xl" className={styles.badge}>
-            {technologiesBadge}
-          </Card>
+          <MotionBox
+            start={{ opacity: 0.1, x: -10 }}
+            end={{ opacity: 1, y: 0, x: 0 }}
+          >
+            <Card p="10px 20px" radius="xl" className={styles.badge}>
+              {type}
+            </Card>
+          </MotionBox>
+
+          <MotionBox
+            start={{ opacity: 0.1, x: 10 }}
+            end={{ opacity: 1, y: 0, x: 0 }}
+          >
+            <Card p="10px 20px" radius="xl" className={styles.badge}>
+              {technologiesBadge}
+            </Card>
+          </MotionBox>
         </Group>
 
-        <Title order={3} fz={{ base: 22, md: 28 }} maw={860}>
-          {title}
-        </Title>
+        <MotionBox
+          start={{ opacity: 0.1, y: -20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+        >
+          <Title order={3} fz={{ base: 22, md: 28 }} maw={860}>
+            {title}
+          </Title>
+        </MotionBox>
 
-        <Text opacity={0.68} fz={{ base: 14, md: 16 }} maw={760}>
-          {description}
-        </Text>
+        <MotionBox
+          start={{ opacity: 0.1, y: 20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+        >
+          <Text opacity={0.68} fz={{ base: 14, md: 16 }} maw={760}>
+            {description}
+          </Text>
+        </MotionBox>
 
         <Card className={styles.insideCard} p="md" radius="lg">
           <Stack gap="md">
             <Group className={styles.windowBar} wrap="nowrap">
               <Group wrap="nowrap" gap={8} className={styles.windowDots}>
-                <Box className={styles.colorDot} />
-                <Box className={styles.colorDot} />
-                <Box className={styles.colorDot} />
+                {[1, 2, 3].map((_, index) => {
+                  return (
+                    <MotionBox
+                      key={index}
+                      start={{ opacity: 0.1, x: -10 }}
+                      end={{ opacity: 1, y: 0, x: 0 }}
+                      delay={index * 0.2}
+                    >
+                      <Box
+                        className={`${styles.colorDot}`}
+                        style={{
+                          "--bg":
+                            index == 0
+                              ? "#ff5f57"
+                              : index == 1
+                                ? "#ffcb47"
+                                : "#28c840",
+                        }}
+                      />
+                    </MotionBox>
+                  );
+                })}
               </Group>
 
               <Card radius="xl" className={styles.url} p="8px 14px">
-                <Text className={styles.urlText} title={url}>
-                  {url}
-                </Text>
+                <MotionBox
+                  start={{ opacity: 0.1, x: -10 }}
+                  end={{ opacity: 1, y: 0, x: 0 }}
+                >
+                  <Text className={styles.urlText} title={url}>
+                    {url}
+                  </Text>
+                </MotionBox>
               </Card>
 
               <ProjectLinkActions
@@ -85,7 +125,10 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
               />
             </Group>
 
-            <Box className={styles.previewFrame} style={{'--bg-blur': `url(${preview})`}}>
+            <Box
+              className={styles.previewFrame}
+              style={{ "--bg-blur": `url(${preview})` }}
+            >
               <Image
                 fit="contain"
                 src={preview}
@@ -105,21 +148,27 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                     const Icon = el.icon;
 
                     return (
-                      <Card
+                      <MotionBox
                         key={index}
-                        p="10px 12px"
-                        radius="md"
-                        className={styles.featureCard}
+                        start={{ opacity: 0.1, y: -10 }}
+                        end={{ opacity: 1, y: 0, x: 0 }}
+                        delay={index * 0.2}
                       >
-                        <Group wrap="nowrap" align="center" gap={8}>
-                          <Box className={styles.featureIconWrap}>
-                            <Icon size={16} />
-                          </Box>
-                          <Text fz={{ base: 12, md: 13 }} lh={1.35}>
-                            {el.text}
-                          </Text>
-                        </Group>
-                      </Card>
+                        <Card
+                          p="10px 12px"
+                          radius="md"
+                          className={styles.featureCard}
+                        >
+                          <Group wrap="nowrap" align="center" gap={8}>
+                            <Box className={styles.featureIconWrap}>
+                              <Icon size={16} />
+                            </Box>
+                            <Text fz={{ base: 12, md: 13 }} lh={1.35}>
+                              {el.text}
+                            </Text>
+                          </Group>
+                        </Card>
+                      </MotionBox>
                     );
                   })}
                 </Group>
@@ -129,17 +178,23 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                     Полный стек проекта
                   </Text>
                   <Group gap={8} wrap="wrap">
-                    {technologies.map((tech) => (
-                      <Card
-                        key={tech}
-                        p="6px 12px"
-                        radius="xl"
-                        className={styles.techTag}
+                    {technologies.map((tech, index) => (
+                      <MotionBox
+                        key={index}
+                        start={{ opacity: 0.1, x: -10 }}
+                        end={{ opacity: 1, y: 0, x: 0 }}
+                        delay={index * 0.1}
                       >
-                        <Text fz={12} lh={1.2}>
-                          {tech}
-                        </Text>
-                      </Card>
+                        <Card
+                          p="6px 12px"
+                          radius="xl"
+                          className={styles.techTag}
+                        >
+                          <Text fz={12} lh={1.2}>
+                            {tech}
+                          </Text>
+                        </Card>
+                      </MotionBox>
                     ))}
                   </Group>
                 </Stack>

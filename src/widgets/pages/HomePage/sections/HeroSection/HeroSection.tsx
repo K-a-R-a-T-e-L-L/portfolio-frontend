@@ -85,8 +85,9 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
         <GridCol span={{ base: 12, md: 7 }}>
           <Stack className={styles.left_col_stack}>
             <MotionBox
-              start={{ opacity: 0, x: -100 }}
+              start={{ opacity: 0.1, x: -100 }}
               end={{ opacity: 1, x: 0 }}
+              className={styles.badge_motion}
             >
               <Box className={styles.badge}>
                 <AnimatedDot size={6} color="cyan" />

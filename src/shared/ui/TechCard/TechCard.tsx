@@ -2,7 +2,7 @@ import { Card, Group, Paper, Stack, Text, Title } from "@mantine/core";
 import styles from "./TechCard.module.css";
 
 interface TechCardProps {
-  className: string;
+  className?: string;
   title: string;
   stack: string[];
 }
@@ -14,6 +14,7 @@ const TechCard: React.FC<TechCardProps> = (props) => {
     <Paper
       className={`${styles.container__card} ${className}`}
       w="100%"
+      h='100%'
       radius="md"
       p="md"
     >

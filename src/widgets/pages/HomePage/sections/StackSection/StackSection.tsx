@@ -3,6 +3,7 @@ import styles from "./StackSection.module.css";
 import { Box, Paper, Stack, Text, Title } from "@mantine/core";
 import NameSection from "@/shared/ui/NameSection/NameSection";
 import TechCard from "@/shared/ui/TechCard/TechCard";
+import MotionBox from "@/shared/ui/MotionBox/MotionBox";
 
 interface StackSectionProps {}
 
@@ -107,50 +108,99 @@ const list = [
   },
 ];
 
+const getY = (index: number) => {
+  return index === 0 || index === 1 ? -30 : index === 6 ? 30 : 0;
+};
+const getX = (index: number) => {
+  return index === 0 || index === 2 || index === 3
+    ? -30
+    : index === 1 || index === 4 || index === 5
+      ? 30
+      : 0;
+};
+
 const StackSection: React.FC<StackSectionProps> = () => {
   return (
     <Section ariaLabelledby="" id="stack-section">
       <Stack w="100%" align="center">
         <NameSection name="Мой стек" />
-        <Title
-          order={2}
-          fz={{ base: 48, md: 64 }}
-          fw={900}
-          className={"title"}
-          ta="center"
-          style={{ fontWeight: "bold" }}
+        <MotionBox
+          start={{ opacity: 0.1, y: -20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+          styles={{ width: "100%" }}
         >
-          <span className={"title__primary_word"}>Инструменты,</span> которые я
-          использую
-        </Title>
-        <Text ta="center">
-          Не просто набор технологий, а инструменты, из которых собираются
-          быстрые, стабильные и масштабируемые продукты.
-        </Text>
+          <Title
+            order={2}
+            fz={{ base: 48, md: 64 }}
+            fw={900}
+            className={"title"}
+            ta="center"
+            style={{ fontWeight: "bold" }}
+          >
+            <span className={"title__primary_word"}>Инструменты,</span> которые
+            я использую
+          </Title>
+        </MotionBox>
 
-        <Paper w="100%" radius="xl" p="xl" mt={10} bg="transparent" className={styles.map}>
+        <MotionBox
+          start={{ opacity: 0.1, y: 20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+          styles={{ width: "100%" }}
+        >
+          <Text ta="center">
+            Не просто набор технологий, а инструменты, из которых собираются
+            быстрые, стабильные и масштабируемые продукты.
+          </Text>
+        </MotionBox>
+
+        <Paper
+          w="100%"
+          radius="xl"
+          p="xl"
+          mt={10}
+          bg="transparent"
+          className={styles.map}
+        >
           <Box className={styles.map__container}>
             {list.map((card, index) => {
               return (
-                <TechCard
+                <MotionBox
                   key={index}
+                  start={{
+                    opacity: 0.1,
+                    y: getY(index),
+                    x: getX(index),
+                  }}
+                  end={{ opacity: 1, y: 0, x: 0 }}
+                  delay={index * 0.1}
                   className={styles.tech_card}
-                  title={card.title}
-                  stack={card.stack}
-                />
+                  duration={0.7}
+                >
+                  <TechCard
+                    title={`${card.title} ${index}`}
+                    stack={card.stack}
+                  />
+                </MotionBox>
               );
             })}
 
-            <Box className={styles.map__center}>
+            <MotionBox
+              start={{
+                opacity: 0.1,
+                y: -30,
+              }}
+              end={{ opacity: 1, y: 0, x: 0 }}
+              duration={0.7}
+              className={styles.map__center}
+            >
               <Stack align="center" gap={10}>
                 <Title order={3} fz={{ base: 22, md: 26 }} ta="center">
                   Технологии, библиотеки и инструменты, которые формируют основу
                   моей работы.
                 </Title>
-                <Text ta="center" opacity={0.7}>
-                </Text>
+                <Text ta="center" opacity={0.7}></Text>
               </Stack>
-            </Box>
+            </MotionBox>
           </Box>
         </Paper>
       </Stack>

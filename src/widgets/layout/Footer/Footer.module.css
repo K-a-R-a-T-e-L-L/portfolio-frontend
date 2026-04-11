@@ -8,10 +8,50 @@
   );
 }
 
-.footerContainer {
-  padding-top: 18px;
-  padding-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.blockTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: color-mix(in srgb, var(--mantine-color-brandPrimary-3) 86%, white 14%);
+}
+
+.link {
+  position: relative;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #c7d8f4;
+  opacity: 0.9;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    #79d9ff,
+    var(--mantine-color-brandPrimary-2)
+  );
+  transition: width 0.2s linear;
+}
+
+.link:hover {
+  opacity: 1;
+  color: #79d9ff;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .link {
+    font-size: 0.9rem;
+  }
 }

@@ -14,6 +14,7 @@ import {
 } from "@tabler/icons-react";
 import styles from "./ProjectSection.module.css";
 import { nbspPrepositions } from "@/shared/lib/nbspPrepositionsю";
+import MotionBox from "@/shared/ui/MotionBox/MotionBox";
 
 interface ProjectSectionProps {}
 
@@ -214,20 +215,37 @@ const ProjectSection: React.FC<ProjectSectionProps> = () => {
     <Section ariaLabelledby="" id="project-section">
       <Stack w="100%">
         <NameSection name="Мои проекты" />
-        <Title
-          order={2}
-          fz={{ base: 48, md: 64 }}
-          fw={900}
-          className={"title"}
-          style={{ fontWeight: "bold" }}
+        <MotionBox
+          start={{ opacity: 0.1, y: -20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
         >
-          <span className={"title__primary_word"}>Избранные</span> работы
-        </Title>
-        <Text>
-          Реальные проекты, запущенные в продакшн и решающие бизнес-задачи.
-        </Text>
+          <Title
+            order={2}
+            fz={{ base: 48, md: 64 }}
+            fw={900}
+            className={"title"}
+            style={{ fontWeight: "bold" }}
+          >
+            <span className={"title__primary_word"}>Избранные</span> работы
+          </Title>
+        </MotionBox>
 
-        <Group w="100%" justify="center" mt={40} align="stretch">
+        <MotionBox
+          start={{ opacity: 0.1, y: 20 }}
+          end={{ opacity: 1, y: 0, x: 0 }}
+        >
+          <Text>
+            Реальные проекты, запущенные в продакшн и решающие бизнес-задачи.
+          </Text>
+        </MotionBox>
+
+        <Group
+          w="100%"
+          justify="center"
+          mt={40}
+          className={styles.bottom_group}
+          align="stretch"
+        >
           {list.map((project, index) => {
             if (index === 1 || index === 2) return;
             return (

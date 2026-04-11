@@ -12,4 +12,8 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .bottom_group{
+    align-items: flex-start;
+  }
 }
