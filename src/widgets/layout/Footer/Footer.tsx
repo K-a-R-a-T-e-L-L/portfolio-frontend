@@ -77,9 +77,6 @@ export default async function Footer({ locale }: { locale: Locale }) {
             <Text size="xs" c="dimmed">
               {t("copyright")}
             </Text>
-            <Text size="xs" c="dimmed">
-              {t("note")}
-            </Text>
           </Group>
         </Stack>
       </Container>

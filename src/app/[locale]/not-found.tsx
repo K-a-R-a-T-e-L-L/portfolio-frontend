@@ -1,5 +1,5 @@
+import NotFoundPage from "@/widgets/pages/NotFoundPage/NotFoundPage";
 import { getLocale } from "next-intl/server";
-import NotFoundPage from "@/shared/ui/NotFoundPage/NotFoundPage";
 
 export default async function LocaleNotFound() {
   const locale = await getLocale();

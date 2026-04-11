@@ -13,7 +13,7 @@ import {
 } from "@mantine/core";
 import styles from "./ContactsSection.module.css";
 import useFeedback from "./useFeedback";
-import { IconAlertCircle } from "@tabler/icons-react";
+import { IconAlertCircle, IconCircleCheck } from "@tabler/icons-react";
 
 interface FeedbackFormProps {}
 
@@ -38,7 +38,15 @@ const fieldClassNames = {
 };
 
 const FeedbackForm: React.FC<FeedbackFormProps> = () => {
-  const { form, onSubmit, codeError, setCodeError } = useFeedback();
+  const {
+    form,
+    onSubmit,
+    codeError,
+    setCodeError,
+    isSubmitting,
+    isSuccess,
+    setIsSuccess,
+  } = useFeedback();
 
   return (
     <form onSubmit={onSubmit} className={styles.form}>
@@ -117,9 +125,21 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
             {(form.values.comment || "").length} / 2000
           </span>
         </Box>
-        <Button type="submit" className={styles.submitButton}>
+        <Button type="submit" className={styles.submitButton} loading={isSubmitting}>
           Отправить
         </Button>
+        {isSuccess ? (
+          <Alert
+            icon={<IconCircleCheck size={22} />}
+            title="Готово!"
+            color="teal"
+            variant="light"
+            withCloseButton
+            onClose={() => setIsSuccess(false)}
+          >
+            Заявка успешно отправлена. Я свяжусь с вами в ближайшее время.
+          </Alert>
+        ) : null}
         {codeError == 500 ? (
           <Alert
             icon={<IconAlertCircle size={30} />}
@@ -128,7 +148,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
             c="red"
             variant="outline"
             withCloseButton
-            onClick={() => setCodeError(null)}
+            onClose={() => setCodeError(null)}
             color='red'
           >
             Что-то пошло не так. Пожалуйста, попробуйте позже.
@@ -141,7 +161,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
             c="red"
             variant="outline"
             withCloseButton
-            onClick={() => setCodeError(null)}
+            onClose={() => setCodeError(null)}
             color='red'
           >
             Проверьте правильность введнных данных.
@@ -154,7 +174,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
             c="red"
             variant="outline"
             withCloseButton
-            onClick={() => setCodeError(null)}
+            onClose={() => setCodeError(null)}
             color='red'
           >
             Слишком много попыток. Пожалуйста, попробуйте позже.

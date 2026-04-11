@@ -1,4 +1,6 @@
 .container__card {
+  position: relative;
+  overflow: hidden;
   border: 1px solid
     color-mix(
       in srgb,
@@ -10,6 +12,43 @@
     #031021 88%,
     var(--mantine-color-brandSecondaryA-9) 12%
   );
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background-color 0.28s ease;
+}
+
+.container__card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(
+      280px 120px at var(--mx, 50%) 0%,
+      color-mix(in srgb, var(--mantine-color-brandSecondaryA-5) 28%, transparent 72%),
+      transparent 72%
+    );
+  transition: opacity 0.28s ease;
+}
+
+.container__card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-6) 46%,
+    transparent 54%
+  );
+  box-shadow:
+    0 16px 36px rgba(2, 9, 24, 0.45),
+    0 0 0 1px rgba(84, 184, 255, 0.2) inset;
+}
+
+.container__card:hover::before {
+  opacity: 1;
 }
 
 .techTag {
@@ -25,4 +64,38 @@
       transparent 72%
     );
   color: var(--mantine-color-brandPrimary-1);
+  transition:
+    border-color 0.22s ease,
+    background-color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.container__card:hover .techTag {
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-6) 42%,
+    transparent 58%
+  );
+  background: color-mix(
+    in srgb,
+    #0a2f4c 78%,
+    var(--mantine-color-brandSecondaryA-7) 22%
+  );
+}
+
+.container__card:hover .techTag:hover {
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container__card,
+  .container__card::before,
+  .techTag {
+    transition: none;
+  }
+
+  .container__card:hover,
+  .container__card:hover .techTag:hover {
+    transform: none;
+  }
 }

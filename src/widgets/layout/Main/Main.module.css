@@ -1,3 +1,24 @@
-.main{
-    padding-bottom: 0;
+@keyframes rotate {
+  0% {
+    transform: translateY(-50%) rotate(0);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.main {
+  padding-bottom: 0;
+}
+
+.icon_sett {
+  position: fixed;
+  left: -23%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -10;
+  opacity: 0.03;
+  animation: rotate linear both;
+  animation-timeline: scroll();
+  filter: drop-shadow(0 0 10px var(--mantine-color-brandPrimary-3));
 }

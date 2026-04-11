@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./NotFoundPage.module.css";
 import NotFoundAutoRedirect from "./NotFoundAutoRedirect";
-import Section from "../Section/Section";
+import Section from "@/shared/ui/Section/Section";
 
 type NotFoundPageProps = {
   locale: "ru" | "en";

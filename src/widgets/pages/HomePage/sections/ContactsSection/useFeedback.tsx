@@ -3,6 +3,8 @@ import { useState } from "react";
 
 const useFeedback = () => {
   const [codeError, setCodeError] = useState<number | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm({
     mode: "controlled",
@@ -27,6 +29,10 @@ const useFeedback = () => {
   });
 
   const onSubmit = form.onSubmit(async (values) => {
+    setIsSubmitting(true);
+    setIsSuccess(false);
+    setCodeError(null);
+
     const backendUrl = process.env.NEXT_PUBLIC_API_URL
       ? `${process.env.NEXT_PUBLIC_API_URL}/api/feedback`
       : "http://localhost:4000/api/feedback";
@@ -45,15 +51,16 @@ const useFeedback = () => {
         return;
       }
 
-      setCodeError(null);
+      setIsSuccess(true);
+      form.reset();
     } catch (error) {
       setCodeError(500);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    form.reset();
   });
 
-  return { form, onSubmit, codeError, setCodeError };
+  return { form, onSubmit, codeError, setCodeError, isSubmitting, isSuccess, setIsSuccess };
 };
 
 export default useFeedback;

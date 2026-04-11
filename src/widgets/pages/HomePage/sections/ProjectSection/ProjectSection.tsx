@@ -51,8 +51,8 @@ const list = [
     description: nbspPrepositions(
       "Продакшн-сервис для UI-сообщества: авторы отправляют шаблоны на модерацию, публикуют их в каталог, собирают лайки и попадают в топ витрину. Реализованы профиль автора, избранное, категории, теги, статистика копирований и полный цикл управления своими шаблонами.",
     ),
-    url: "https://my-ui.karatell.ru/ru",
-    preview: MEDIA.images.myUiPreview.src,
+    url: "https://my-ui.karatell.ru",
+    preview: MEDIA.images.myUi.src,
     characteristics: [
       {
         icon: IconUsers,
@@ -116,8 +116,8 @@ const list = [
     description: nbspPrepositions(
       "Полноценная e-commerce платформа: каталог, корзина, оформление заказа, сценарии получателя и адресной доставки. В системе реализован мультигород (поддомены и города РФ), интеграции с amoCRM, Telegram-уведомлениями и операционной логикой обработки заказов.",
     ),
-    url: "https://onahochet.ru/",
-    preview: MEDIA.images.myUiPreview.src,
+    url: "https://onahochet.ru",
+    preview: MEDIA.images.onaHochet.src,
     characteristics: [
       {
         icon: IconRocket,
@@ -173,8 +173,8 @@ const list = [
     description: nbspPrepositions(
       "Продуктовый лендинг для курса Phenomen Club с глубокой структурой контента: Hero, программа по модулям, тарифная матрица, FAQ, trust-блоки и финальная воронка. Главная цель проекта — конверсия трафика в заявки и оплаты через понятный путь пользователя.",
     ),
-    url: "https://courses.phenomenclub.ru",
-    preview: MEDIA.images.myUiPreview.src,
+    url: "https://phenomenclub.ru",
+    preview: MEDIA.images.bussinesClub.src,
     characteristics: [
       {
         icon: IconUsers,

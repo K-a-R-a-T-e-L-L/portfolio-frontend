@@ -15,6 +15,8 @@
 }
 
 .map__center {
+  position: relative;
+  overflow: hidden;
   grid-area: map;
   min-height: 240px;
   border-radius: 20px;
@@ -33,6 +35,42 @@
   place-items: center;
   text-align: center;
   padding: 18px;
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.map__center::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(
+      320px 130px at 50% 0%,
+      color-mix(in srgb, var(--mantine-color-brandSecondaryA-5) 26%, transparent 74%),
+      transparent 72%
+    );
+  transition: opacity 0.28s ease;
+}
+
+.map__center:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-6) 46%,
+    transparent 54%
+  );
+  box-shadow:
+    0 16px 36px rgba(2, 9, 24, 0.45),
+    0 0 0 1px rgba(84, 184, 255, 0.2) inset;
+}
+
+.map__center:hover::before {
+  opacity: 1;
 }
 
 .map__center :global(.mantine-Title-root),
@@ -118,5 +156,16 @@
   .map__center {
     min-height: 0;
     padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map__center,
+  .map__center::before {
+    transition: none;
+  }
+
+  .map__center:hover {
+    transform: none;
   }
 }

@@ -1,5 +1,4 @@
 ﻿"use client";
-
 import { SegmentedControl } from "@mantine/core";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "../../../shared/lib/i18n/navigation";
@@ -20,6 +19,7 @@ const LanguageToggle = ({ ruLabel, enLabel }: LanguageToggleProps) => {
       size="xs"
       radius="xl"
       value={locale}
+      disabled
       data={[
         { value: "ru", label: ruLabel },
         { value: "en", label: enLabel },
