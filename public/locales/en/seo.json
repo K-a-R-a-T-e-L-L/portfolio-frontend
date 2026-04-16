@@ -1,17 +1,17 @@
 {
-  "title": "Fullstack developer portfolio",
-  "description": "Portfolio of a Fullstack Developer focused on web products, Telegram Mini Apps, backend services, business automations, and scalable architecture.",
-  "siteName": "Fullstack Developer Portfolio",
+  "title": "Fullstack Developer | React, Next.js, Node.js, NestJS",
+  "description": "I build web products with React/Next.js and Node.js/NestJS: from interfaces and API to integrations, Telegram Mini Apps, and business process automation.",
+  "siteName": "Portfolio",
   "keywords": [
-    "Fullstack Developer",
+    "React Engineer",
     "React",
     "Next.js",
     "TypeScript",
     "Node.js",
     "NestJS",
     "Telegram Mini Apps",
-    "Telegram Bot",
-    "Web Development",
-    "Portfolio"
+    "Telegram Bot API",
+    "Product Engineering",
+    "Automation and Integrations"
   ]
 }

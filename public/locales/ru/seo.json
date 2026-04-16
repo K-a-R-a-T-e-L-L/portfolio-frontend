@@ -1,17 +1,17 @@
 {
-  "title": "Портфолио Fullstack-разработчик",
-  "description": "Портфолио Fullstack-разработчика: веб-продукты, Telegram Mini Apps, backend-сервисы, автоматизация бизнес-процессов и масштабируемая архитектура.",
-  "siteName": "Портфолио Fullstack-разработчика",
+  "title": "Fullstack-разработчик | React, Next.js, Node.js, NestJS",
+  "description": "Разрабатываю веб-продукты на React/Next.js и Node.js/NestJS: от интерфейсов и API до интеграций, Telegram Mini Apps и автоматизации бизнес-процессов.",
+  "siteName": "Портфолио",
   "keywords": [
-    "Fullstack-разработчик",
-    "React",
+    "React разработчик",
     "Next.js",
     "TypeScript",
     "Node.js",
     "NestJS",
+    "Fullstack разработчик",
     "Telegram Mini Apps",
-    "Telegram бот",
-    "Веб-разработка",
-    "Портфолио"
+    "Telegram Bot API",
+    "Интеграции и автоматизация",
+    "Продуктовая разработка"
   ]
 }
