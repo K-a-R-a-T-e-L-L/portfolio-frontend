@@ -3,16 +3,32 @@
   background:
     radial-gradient(
       circle at 84% 8%,
-      color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 18%, transparent 82%),
+      color-mix(
+        in srgb,
+        var(--mantine-color-brandSecondaryA-8) 18%,
+        transparent 82%
+      ),
       transparent 45%
     ),
     linear-gradient(
       140deg,
-      color-mix(in srgb, #031021 88%, var(--mantine-color-brandSecondaryA-9) 12%),
-      color-mix(in srgb, #041a32 86%, var(--mantine-color-brandSecondaryB-9) 14%)
+      color-mix(
+        in srgb,
+        #031021 88%,
+        var(--mantine-color-brandSecondaryA-9) 12%
+      ),
+      color-mix(
+        in srgb,
+        #041a32 86%,
+        var(--mantine-color-brandSecondaryB-9) 14%
+      )
     );
   border: 1px solid
-    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 28%, transparent 72%);
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-7) 28%,
+      transparent 72%
+    );
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -21,13 +37,21 @@
 
 .card:focus-visible {
   outline: 2px solid
-    color-mix(in srgb, var(--mantine-color-brandSecondaryA-5) 60%, transparent 40%);
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-5) 60%,
+      transparent 40%
+    );
   outline-offset: 2px;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--mantine-color-brandSecondaryA-5) 48%, transparent 52%);
+  border-color: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-5) 48%,
+    transparent 52%
+  );
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
 }
 
@@ -41,20 +65,32 @@
   display: grid;
   place-items: center;
   border-radius: 12px;
-  background: color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 55%, transparent 45%);
+  background: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-9) 55%,
+    transparent 45%
+  );
   border: 1px solid
-    color-mix(in srgb, var(--mantine-color-brandSecondaryA-7) 34%, transparent 66%);
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-7) 34%,
+      transparent 66%
+    );
   color: color-mix(in srgb, var(--mantine-color-brandPrimary-1) 86%, #fff 14%);
 }
 
 .fileName {
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 .fileSize {
-  color: color-mix(in srgb, var(--mantine-color-brandPrimary-1) 70%, transparent 30%);
+  color: color-mix(
+    in srgb,
+    var(--mantine-color-brandPrimary-1) 70%,
+    transparent 30%
+  );
   flex-shrink: 0;
 }
 
@@ -93,8 +129,16 @@
 
 .download {
   border: 1px solid
-    color-mix(in srgb, var(--mantine-color-brandSecondaryA-6) 34%, transparent 66%);
-  background: color-mix(in srgb, var(--mantine-color-brandSecondaryA-9) 34%, transparent 66%);
+    color-mix(
+      in srgb,
+      var(--mantine-color-brandSecondaryA-6) 34%,
+      transparent 66%
+    );
+  background: color-mix(
+    in srgb,
+    var(--mantine-color-brandSecondaryA-9) 34%,
+    transparent 66%
+  );
 }
 
 @media (max-width: 767px) {

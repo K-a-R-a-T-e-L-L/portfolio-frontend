@@ -6,6 +6,7 @@ import path from "node:path";
 import { routing } from "./routing";
 
 const namespaces = [
+  "seo",
   "header",
   "hero",
   "about",

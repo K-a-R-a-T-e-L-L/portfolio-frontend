@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ),
   title: {
     default: "Next App Template",
-    template: "%s | Next App Template",
+    template: "%s",
   },
   description:
     "Scalable Next.js template with Mantine, next-intl, React Query and Kubb.",
