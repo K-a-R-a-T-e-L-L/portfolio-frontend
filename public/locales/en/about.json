@@ -1,4 +1,37 @@
 {
-  "title": "About Template",
-  "description": "The template keeps only reusable infrastructure: layout, providers, i18n and API generation."
+  "name": "About me",
+  "ctaTitle": "Digital solutions",
+  "title": "for business growth",
+  "description": "I'm engaged in full-stack development with a specialization in web products and Telegram-based solutions. I create and launch projects tailored to specific business needs: from landing pages and corporate websites to API services, CRM integrations, Telegram Mini Apps, and bots that automate routine processes.",
+  "cards": [
+    {
+      "title": "A product that delivers results",
+      "description": "I build interfaces that look premium and perform fast: clear structure, logical user flows, high conversion rates, and scalability readiness.",
+      "list": ["UI/UX-focused", "Core Web Vitals", "SEO-ready"]
+    },
+    {
+      "title": "Robust architecture and code",
+      "description": "I build maintainable architecture with an emphasis on quality: strict typing, reusable components, clean structure, and predictable project evolution.",
+      "list": ["Next.js + TypeScript", "FSD approach", "API-first"]
+    },
+    {
+      "title": "Telegram and automation",
+      "description": "I develop Mini Apps, bots, and integrations that reduce manual work, accelerate request processing, and provide transparent analytics.",
+      "list": ["Mini Apps", "Telegram Bots", "Business automation"]
+    }
+  ],
+  "slider": [
+    "FRONTEND DEVELOPMENT",
+    "BACKEND DEVELOPMENT",
+    "TELEGRAM MINI APPS",
+    "TELEGRAM BOTS",
+    "REST API AND INTEGRATIONS",
+    "DEVOPS",
+    "DOCKER ENVIRONMENT",
+    "CI/CD PIPELINES",
+    "BUSINESS PROCESS AUTOMATION",
+    "AI AUTOMATION",
+    "PERFORMANCE OPTIMIZATION",
+    "MAINTENANCE AND PROJECT GROWTH"
+  ]
 }

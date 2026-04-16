@@ -1,16 +1,10 @@
 "use client";
-import {
-  ActionIcon,
-  Box,
-  Card,
-  Group,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core";
-import styles from "./FileCard.module.css";
+
+import { ActionIcon, Box, Card, Group, Stack, Text, Title } from "@mantine/core";
 import { IconDownload, IconFileTypePdf } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+
+import styles from "./FileCard.module.css";
 
 interface FileCardProps {
   name: string;
@@ -22,11 +16,14 @@ const FileCard: React.FC<FileCardProps> = (props) => {
   const { name, mb, href = "/resume_ru.pdf" } = props;
   const [isActive, setIsActive] = useState(false);
 
+  const openFile = () => {
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+
   useEffect(() => {
     if (!isActive) return;
 
     const timeout = setTimeout(() => setIsActive(false), 1000);
-
     return () => clearTimeout(timeout);
   }, [isActive]);
 
@@ -35,7 +32,16 @@ const FileCard: React.FC<FileCardProps> = (props) => {
       className={styles.card}
       p="md"
       radius="lg"
-      w={"100%"}
+      w="100%"
+      role="link"
+      tabIndex={0}
+      onClick={openFile}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openFile();
+        }
+      }}
     >
       <Stack gap={10}>
         <Group justify="space-between" wrap="nowrap" gap={12}>
@@ -43,11 +49,7 @@ const FileCard: React.FC<FileCardProps> = (props) => {
             <Box className={styles.iconWrap}>
               <IconFileTypePdf size={34} />
             </Box>
-            <Title
-              fz={{ base: 15, md: 18 }}
-              order={4}
-              className={styles.fileName}
-            >
+            <Title fz={{ base: 15, md: 18 }} order={4} className={styles.fileName}>
               {name}
             </Title>
           </Group>
@@ -57,9 +59,7 @@ const FileCard: React.FC<FileCardProps> = (props) => {
         </Group>
 
         <Group wrap="nowrap" w="100%" gap={8} align="center">
-          <Box
-            className={`${styles.line} ${isActive ? styles.line_active : ""}`}
-          ></Box>
+          <Box className={`${styles.line} ${isActive ? styles.line_active : ""}`}></Box>
           <ActionIcon
             component="a"
             href={href}
@@ -70,7 +70,10 @@ const FileCard: React.FC<FileCardProps> = (props) => {
             color="brandPrimary.7"
             aria-label={`Скачать ${name}`}
             className={styles.download}
-            onClick={() => setIsActive(true)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsActive(true);
+            }}
           >
             <IconDownload size="30" stroke={2} />
           </ActionIcon>

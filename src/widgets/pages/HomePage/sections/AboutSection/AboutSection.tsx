@@ -7,37 +7,37 @@ import PerformanceCard from "@/shared/ui/PerformanceCard/PerformanceCard";
 import InfiniteSlider from "@/shared/ui/InfiniteSlider/InfiniteSlider";
 import { nbspPrepositions } from "@/shared/lib/nbspPrepositionsю";
 import MotionBox from "@/shared/ui/MotionBox/MotionBox";
+import { Locale } from "@/shared/lib/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-interface AboutSectionProps {}
+interface AboutSectionProps {
+  locale: Locale;
+}
 
-const list = [
-  {
-    Icon: IconRocket,
-    title: "Продукт, который приносит результат",
-    text: nbspPrepositions(
-      "Делаю интерфейсы, которые выглядят премиально и работают быстро: четкая структура, логичные сценарии, высокая конверсия и готовность к масштабированию.",
-    ),
-    stack: ["UI/UX-фокус", "Core Web Vitals", "SEO-ready"],
-  },
-  {
-    Icon: IconCpu,
-    title: "Надежная архитектура и код",
-    text: nbspPrepositions(
-      "Строю поддерживаемую архитектуру с акцентом на качество: типизация, переиспользуемые компоненты, чистая структура и предсказуемое развитие проекта.",
-    ),
-    stack: ["Next.js + TypeScript", "FSD-подход", "API-first"],
-  },
-  {
-    Icon: IconBrandTelegram,
-    title: "Telegram и автоматизация",
-    text: nbspPrepositions(
-      "Разрабатываю Mini Apps, ботов и интеграции, которые сокращают ручные операции, ускоряют обработку заявок и дают прозрачную аналитику.",
-    ),
-    stack: ["Mini Apps", "Telegram Bots", "Business automation"],
-  },
-];
+const AboutSection: React.FC<AboutSectionProps> = async ({ locale }) => {
+  const t = await getTranslations({ locale, namespace: "about" });
 
-const AboutSection: React.FC<AboutSectionProps> = () => {
+  const list = [
+    {
+      Icon: IconRocket,
+      title: t("cards.0.title"),
+      text: nbspPrepositions(t("cards.0.description")),
+      stack: t.raw("cards.0.list"),
+    },
+    {
+      Icon: IconCpu,
+      title: t("cards.1.title"),
+      text: nbspPrepositions(t("cards.1.description")),
+      stack: t.raw("cards.1.list"),
+    },
+    {
+      Icon: IconBrandTelegram,
+      title: t("cards.2.title"),
+      text: nbspPrepositions(t("cards.2.description")),
+      stack: t.raw("cards.2.list"),
+    },
+  ];
+
   return (
     <Section
       ariaLabelledby=""
@@ -45,21 +45,23 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
       className={styles.about_section}
     >
       <Stack align="center" w="100%">
-        <NameSection name="Обо мне" />
+        <NameSection name={t("name")} />
         <MotionBox
           start={{ opacity: 0.1, y: -20 }}
           end={{ opacity: 1, y: 0, x: 0 }}
+          styles={{width: '100%'}}
         >
           <Title
             order={2}
             fz={{ base: 48, md: 64 }}
             fw={900}
             className={"title"}
+            w='100%'
             style={{ fontWeight: "bold" }}
             ta="center"
           >
-            <span className={"title__primary_word"}>Цифровые решения </span>
-            для роста бизнеса
+            <span className={"title__primary_word"}>{t("ctaTitle")} </span>
+            {t("title")}
           </Title>
         </MotionBox>
 
@@ -69,13 +71,7 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
           styles={{ marginLeft: "auto", marginRight: "auto" }}
         >
           <Text ta="center" maw={980}>
-            {nbspPrepositions(`
-            Я занимаюсь fullstack-разработкой и специализируюсь на веб-продуктах и
-            Telegram-решениях. Создаю и запускаю проекты под конкретные задачи
-            бизнеса: от лендингов и корпоративных сайтов до API-сервисов,
-            интеграций с CRM, Telegram Mini Apps и ботов с автоматизацией рутинных
-            процессов
-          `)}
+            {nbspPrepositions(t("description"))}
           </Text>
         </MotionBox>
 
@@ -102,22 +98,7 @@ const AboutSection: React.FC<AboutSectionProps> = () => {
           })}
         </Group>
 
-        <InfiniteSlider
-          items={[
-            "FRONTEND РАЗРАБОТКА",
-            "BACKEND РАЗРАБОТКА",
-            "TELEGRAM MINI APPS",
-            "TELEGRAM BOTS",
-            "REST API И ИНТЕГРАЦИИ",
-            "DEVOPS",
-            "DOCKER-ОКРУЖЕНИЕ",
-            "CI/CD ПАЙПЛАЙНЫ",
-            "АВТОМАТИЗАЦИЯ БИЗНЕС-ПРОЦЕССОВ",
-            "AI-АВТОМАТИЗАЦИЯ",
-            "ОПТИМИЗАЦИЯ ПРОИЗВОДИТЕЛЬНОСТИ",
-            "ТЕХПОДДЕРЖКА И РАЗВИТИЕ ПРОЕКТА",
-          ]}
-        />
+        <InfiniteSlider items={t.raw("slider")} />
       </Stack>
     </Section>
   );

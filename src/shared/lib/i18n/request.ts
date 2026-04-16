@@ -6,15 +6,13 @@ import path from "node:path";
 import { routing } from "./routing";
 
 const namespaces = [
-  "common",
-  "nav",
-  "home",
+  "header",
+  "hero",
   "about",
-  "docs",
-  "faq",
-  "privacy",
-  "terms",
-  "sitemap",
+  "projects",
+  "experience",
+  "stack",
+  "contacts",
   "footer",
 ] as const;
 

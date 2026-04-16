@@ -4,8 +4,12 @@ import { Box, Paper, Stack, Text, Title } from "@mantine/core";
 import NameSection from "@/shared/ui/NameSection/NameSection";
 import TechCard from "@/shared/ui/TechCard/TechCard";
 import MotionBox from "@/shared/ui/MotionBox/MotionBox";
+import { Locale } from "@/shared/lib/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-interface StackSectionProps {}
+interface StackSectionProps {
+  locale: Locale;
+}
 
 const list = [
   {
@@ -119,11 +123,13 @@ const getX = (index: number) => {
       : 0;
 };
 
-const StackSection: React.FC<StackSectionProps> = () => {
+const StackSection: React.FC<StackSectionProps> = async ({ locale }) => {
+  const t = await getTranslations({ locale, namespace: "stack" });
+
   return (
     <Section ariaLabelledby="" id="stack-section">
       <Stack w="100%" align="center">
-        <NameSection name="Мой стек" />
+        <NameSection name={t("name")} />
         <MotionBox
           start={{ opacity: 0.1, y: -20 }}
           end={{ opacity: 1, y: 0, x: 0 }}
@@ -137,8 +143,8 @@ const StackSection: React.FC<StackSectionProps> = () => {
             ta="center"
             style={{ fontWeight: "bold" }}
           >
-            <span className={"title__primary_word"}>Инструменты,</span> которые
-            я использую
+            <span className={"title__primary_word"}>{t("ctaTitle")}</span>{" "}
+            {t("title")}
           </Title>
         </MotionBox>
 
@@ -147,10 +153,7 @@ const StackSection: React.FC<StackSectionProps> = () => {
           end={{ opacity: 1, y: 0, x: 0 }}
           styles={{ width: "100%" }}
         >
-          <Text ta="center">
-            Не просто набор технологий, а инструменты, из которых собираются
-            быстрые, стабильные и масштабируемые продукты.
-          </Text>
+          <Text ta="center">{t("description")}</Text>
         </MotionBox>
 
         <Paper
@@ -176,10 +179,7 @@ const StackSection: React.FC<StackSectionProps> = () => {
                   className={styles.tech_card}
                   duration={0.7}
                 >
-                  <TechCard
-                    title={`${card.title} ${index}`}
-                    stack={card.stack}
-                  />
+                  <TechCard title={`${card.title}`} stack={card.stack} />
                 </MotionBox>
               );
             })}
@@ -195,8 +195,7 @@ const StackSection: React.FC<StackSectionProps> = () => {
             >
               <Stack align="center" gap={10}>
                 <Title order={3} fz={{ base: 22, md: 26 }} ta="center">
-                  Технологии, библиотеки и инструменты, которые формируют основу
-                  моей работы.
+                  {t("center")}
                 </Title>
                 <Text ta="center" opacity={0.7}></Text>
               </Stack>

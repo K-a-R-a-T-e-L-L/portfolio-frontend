@@ -4,45 +4,44 @@ import { Link } from "@/shared/lib/i18n/navigation";
 import { Locale } from "@/shared/lib/i18n/routing";
 import styles from "./Header.module.css";
 import LanguageToggle from "@/shared/ui/LanguageToggle/LanguageToggle";
-import { MEDIA } from "@/shared/lib/media";
 import Brand from "@/shared/ui/Brand/Brand";
 
 export default async function Header({ locale }: { locale: Locale }) {
-  const t = await getTranslations({ locale, namespace: "nav" });
+  const t = await getTranslations({ locale, namespace: "header" });
 
   return (
     <AppShellHeader component="header" className={styles.header}>
       <Container size="xl" h="100%">
         <Group h="100%" justify="space-between" align="center">
-          <Brand locale={locale}/>
+          <Brand locale={locale} />
 
           <Group gap={16} display={{ base: "none", md: "flex" }}>
             <Link href="#about-section" locale={locale} className={styles.link}>
-              Обо мне
+              {t("links.0")}
             </Link>
             <Link
               href="#project-section"
               locale={locale}
               className={styles.link}
             >
-              Проекты
+              {t("links.1")}
             </Link>
             <Link
               href="#experience-section"
               locale={locale}
               className={styles.link}
             >
-              Опыт
+              {t("links.2")}
             </Link>
             <Link href="#stack-section" locale={locale} className={styles.link}>
-              Технологии
+              {t("links.3")}
             </Link>
             <Link
               href="#contacts-section"
               locale={locale}
               className={styles.link}
             >
-              Контакты
+              {t("links.4")}
             </Link>
           </Group>
           <LanguageToggle ruLabel="ru" enLabel="en" />

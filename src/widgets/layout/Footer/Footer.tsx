@@ -1,6 +1,5 @@
 import { Anchor, Box, Container, Divider, Group, Stack, Text } from "@mantine/core";
 import { getTranslations } from "next-intl/server";
-
 import { Link } from "@/shared/lib/i18n/navigation";
 import { Locale } from "@/shared/lib/i18n/routing";
 import styles from "./Footer.module.css";

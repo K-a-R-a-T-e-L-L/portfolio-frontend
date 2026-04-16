@@ -1,0 +1,23 @@
+{
+  "description": "My name is Kirill. I'm a web developer specializing in polished interfaces, scalable architecture, and bringing business ideas to life. I turn concepts into responsive, high-performance solutions that look premium and deliver results.",
+  "ctaButton": "Contact me",
+  "button": "View works",
+  "cards": {
+    "first": "Years of commercial development",
+    "second": "Completed projects",
+    "third": "Mentored developers",
+    "fourth": "Responsive across all devices",
+    "fifth": {
+      "title": "< 2s",
+      "description": "Web application load speed"
+    },
+    "sixth": {
+      "title": "Clean",
+      "description": "Code, reusable components, and maintainable architecture."
+    },
+    "seventh": {
+      "title": "Impact",
+      "description": "Focus on conversion, user retention, and key business goals."
+    }
+  }
+}

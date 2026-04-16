@@ -19,7 +19,7 @@ const LanguageToggle = ({ ruLabel, enLabel }: LanguageToggleProps) => {
       size="xs"
       radius="xl"
       value={locale}
-      disabled
+      // disabled
       data={[
         { value: "ru", label: ruLabel },
         { value: "en", label: enLabel },

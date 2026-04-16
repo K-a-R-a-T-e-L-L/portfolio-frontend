@@ -1,0 +1,77 @@
+{
+  "name": "Мой опыт",
+  "ctaTitle": "разработке",
+  "title": "Путь в",
+  "description": "От обучения и фриланса до коммерческой разработки, наставничества и продуктовой работы.",
+  "cards": [
+    {
+      "time": "2021 — 2022",
+      "title": "Обучение JavaScript",
+      "company": "Университет «Синергия» · годовой курс",
+      "description": "Прошел полный цикл подготовки по JavaScript-разработке: фундамент языка, работа с DOM, асинхронность, базовая архитектура клиентских приложений и практика на учебных проектах.",
+      "stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Git",
+        "REST API",
+        "React",
+        "Express",
+        "SCSS",
+        "Figma"
+      ]
+    },
+    {
+      "time": "2022 — 2024",
+      "title": "Фриланс-разработка",
+      "company": "Проектная работа · биржи и прямые заказы",
+      "description": "Вел клиентские заказы под ключ: лендинги, корпоративные сайты, админ-панели и доработки существующих проектов. Работал с ТЗ, сроками, правками и запуском в продакшн.",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "API интеграции",
+        "DevOps",
+        "Nest.js",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "time": "2024 — 2025",
+      "title": "Frontend Developer / Mentor",
+      "company": "Davtian | Kaskad",
+      "description": "Разрабатывал сайт компании, внедрял и поддерживал ключевые интерфейсы. Параллельно помогал менее опытным frontend-разработчикам: ревью кода, разбор задач, выстраивание рабочих подходов.",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "UI/UX",
+        "Code Review",
+        "Team development",
+        "Kubb",
+        "OpenApi",
+        "SEO optimization"
+      ]
+    },
+    {
+      "time": "2025 — настоящее время",
+      "title": "Fullstack / Product Developer",
+      "company": "ИП «Она хочет»",
+      "description": "Развиваю e-commerce платформу и участвую в запуске стартап-проектов: проектирование функционала, интеграции, поддержка продакшна, оптимизация бизнес-процессов и развитие новых направлений.",
+      "stack": [
+        "Next.js",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "amoCRM",
+        "Telegram Bot API",
+        "Telegram Mini Apps",
+        "AWS S3",
+        "DevOps",
+        "SEO optimization",
+        "Mantine UI"
+      ]
+    }
+  ]
+}

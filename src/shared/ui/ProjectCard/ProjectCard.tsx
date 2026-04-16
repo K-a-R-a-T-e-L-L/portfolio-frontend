@@ -26,6 +26,8 @@ interface ProjectCardProps {
     icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
     text: ReactNode;
   }[];
+  miniTitleFirst: string;
+  miniTitleSecond: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
@@ -38,6 +40,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     technologiesBadge,
     technologies,
     characteristics,
+    miniTitleFirst,
+    miniTitleSecond,
   } = props;
   return (
     <Paper w={"100%"} p="xl" radius="xl" className={styles.card}>
@@ -140,9 +144,13 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
             <Card p="md" radius="lg" className={styles.featuresPanel}>
               <Stack gap={10}>
-                <Text fw={600} c="var(--mantine-color-brandPrimary-1)">
-                  Ключевые характеристики
-                </Text>
+                <Title
+                  order={4}
+                  fw={600}
+                  c="var(--mantine-color-brandPrimary-1)"
+                >
+                  {miniTitleSecond}
+                </Title>
                 <Group gap={10} wrap="wrap">
                   {characteristics.map((el, index) => {
                     const Icon = el.icon;
@@ -175,7 +183,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
                 <Stack gap={8} mt={6}>
                   <Text fw={600} c="var(--mantine-color-brandPrimary-1)">
-                    Полный стек проекта
+                    {miniTitleFirst}
                   </Text>
                   <Group gap={8} wrap="wrap">
                     {technologies.map((tech, index) => (

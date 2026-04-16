@@ -1,0 +1,20 @@
+{
+  "name": "Связь со мной",
+  "titleFirst": "Готовы",
+  "ctaTitle": "обсудить",
+  "titleSecond": "проект?",
+  "description": "Оставьте заявку, и я свяжусь с вами. Либо напишите напрямую через удобный для вас канал из списка контактов.",
+  "miniTitleFirst": "Контакты",
+  "miniTitleSecond": "Оставить заявку",
+  "miniTitleThird": "Резюме",
+  "form": {
+    "labelName": "Ваше имя",
+    "placeholderName": "Например, Кирилл",
+    "labelMethodContact": "Способ связи",
+    "placeholderMethodContact": "Выберете способ связи",
+    "contact": "Контакт",
+    "commentLabel": "Комментарий",
+    "commentPlaceholder": "Кратко опишите задачу",
+    "button": "Отправить"
+  }
+}

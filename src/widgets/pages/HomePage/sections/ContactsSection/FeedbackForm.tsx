@@ -14,8 +14,19 @@ import {
 import styles from "./ContactsSection.module.css";
 import useFeedback from "./useFeedback";
 import { IconAlertCircle, IconCircleCheck } from "@tabler/icons-react";
+import { _Translator } from "next-intl";
 
-interface FeedbackFormProps {}
+interface FeedbackFormProps {
+  title: string;
+  placeholderName: string;
+  labelName: string;
+  labelMethodContact: string;
+  placeholderMethodContact: string;
+  contactLabel: string;
+  commentLabel: string;
+  commentPlaceholder: string;
+  button: string;
+}
 
 const contactMethods = [
   { value: "telegram", label: "Telegram", icon: "/icons/telegram.svg" },
@@ -37,7 +48,19 @@ const fieldClassNames = {
   required: styles.formRequired,
 };
 
-const FeedbackForm: React.FC<FeedbackFormProps> = () => {
+const FeedbackForm: React.FC<FeedbackFormProps> = (props) => {
+  const {
+    title,
+    placeholderName,
+    labelName,
+    labelMethodContact,
+    placeholderMethodContact,
+    contactLabel,
+    commentLabel,
+    commentPlaceholder,
+    button,
+  } = props;
+
   const {
     form,
     onSubmit,
@@ -56,12 +79,12 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
           order={3}
           className={styles.template_title}
         >
-          Оставить заявку
+          {title}
         </Title>
 
         <TextInput
-          label="Ваше имя"
-          placeholder="Например, Кирилл"
+          label={labelName}
+          placeholder={placeholderName}
           withAsterisk
           classNames={fieldClassNames}
           key={form.key("name")}
@@ -70,8 +93,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
         />
 
         <Select
-          label="Способ связи"
-          placeholder="Выберите способ"
+          label={labelMethodContact}
+          placeholder={placeholderMethodContact}
           data={contactMethods.map(({ value, label }) => ({ value, label }))}
           classNames={{
             ...fieldClassNames,
@@ -100,7 +123,7 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
         />
 
         <TextInput
-          label="Контакт"
+          label={contactLabel}
           placeholder="@username / +7... / email"
           withAsterisk
           classNames={fieldClassNames}
@@ -111,8 +134,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
 
         <Box pos="relative">
           <Textarea
-            label="Комментарий"
-            placeholder="Кратко опишите задачу"
+            label={commentLabel}
+            placeholder={commentPlaceholder}
             minRows={4}
             autosize
             withAsterisk
@@ -125,8 +148,12 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
             {(form.values.comment || "").length} / 2000
           </span>
         </Box>
-        <Button type="submit" className={styles.submitButton} loading={isSubmitting}>
-          Отправить
+        <Button
+          type="submit"
+          className={styles.submitButton}
+          loading={isSubmitting}
+        >
+          {button}
         </Button>
         {isSuccess ? (
           <Alert
@@ -143,39 +170,39 @@ const FeedbackForm: React.FC<FeedbackFormProps> = () => {
         {codeError == 500 ? (
           <Alert
             icon={<IconAlertCircle size={30} />}
-            bd='1px solid red'
+            bd="1px solid red"
             title="Ошибка!"
             c="red"
             variant="outline"
             withCloseButton
             onClose={() => setCodeError(null)}
-            color='red'
+            color="red"
           >
             Что-то пошло не так. Пожалуйста, попробуйте позже.
           </Alert>
         ) : codeError == 400 ? (
           <Alert
             icon={<IconAlertCircle size={30} />}
-            bd='1px solid red'
+            bd="1px solid red"
             title="Ошибка!"
             c="red"
             variant="outline"
             withCloseButton
             onClose={() => setCodeError(null)}
-            color='red'
+            color="red"
           >
             Проверьте правильность введнных данных.
           </Alert>
         ) : !codeError ? null : (
           <Alert
             icon={<IconAlertCircle size={30} />}
-            bd='1px solid red'
+            bd="1px solid red"
             title="Ошибка!"
             c="red"
             variant="outline"
             withCloseButton
             onClose={() => setCodeError(null)}
-            color='red'
+            color="red"
           >
             Слишком много попыток. Пожалуйста, попробуйте позже.
           </Alert>

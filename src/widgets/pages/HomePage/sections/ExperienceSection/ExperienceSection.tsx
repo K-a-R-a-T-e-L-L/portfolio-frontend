@@ -6,90 +6,53 @@ import ExperienceCard from "@/shared/ui/ExperienceCard/ExperienceCard";
 import { MEDIA } from "@/shared/lib/media";
 import AnimatedDot from "@/shared/ui/AnimatedDot/AnimatedDot";
 import MotionBox from "@/shared/ui/MotionBox/MotionBox";
+import { Locale } from "@/shared/lib/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-interface ExperienceSectionProps {}
+interface ExperienceSectionProps {
+  locale: Locale;
+}
 
-const list = [
-  {
-    date: "2021 — 2022",
-    title: "Обучение JavaScript",
-    work: "Университет «Синергия» · годовой курс",
-    skills:
-      "Прошел полный цикл подготовки по JavaScript-разработке: фундамент языка, работа с DOM, асинхронность, базовая архитектура клиентских приложений и практика на учебных проектах.",
-    stack: [
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "Git",
-      "REST API",
-      "React",
-      "Express",
-      "SCSS",
-      "Figma",
-    ],
-  },
-  {
-    date: "2022 — 2024",
-    title: "Фриланс-разработка",
-    work: "Проектная работа · биржи и прямые заказы",
-    skills:
-      "Вел клиентские заказы под ключ: лендинги, корпоративные сайты, админ-панели и доработки существующих проектов. Работал с ТЗ, сроками, правками и запуском в продакшн.",
-    stack: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Node.js",
-      "API интеграции",
-      "DevOps",
-      "Nest.js",
-      "Tailwind CSS",
-    ],
-  },
-  {
-    date: "2024 — 2025",
-    title: "Frontend Developer / Mentor",
-    work: "Davtian | Kaskad",
-    skills:
-      "Разрабатывал сайт компании, внедрял и поддерживал ключевые интерфейсы. Параллельно помогал менее опытным frontend-разработчикам: ревью кода, разбор задач, выстраивание рабочих подходов.",
-    stack: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "UI/UX",
-      "Code Review",
-      "Team development",
-      "Kubb",
-      "OpenApi",
-      "SEO optimization",
-    ],
-  },
-  {
-    date: "2025 — настоящее время",
-    title: "Fullstack / Product Developer",
-    work: "ИП «Она хочет»",
-    skills:
-      "Развиваю e-commerce платформу и участвую в запуске стартап-проектов: проектирование функционала, интеграции, поддержка продакшна, оптимизация бизнес-процессов и развитие новых направлений.",
-    stack: [
-      "Next.js",
-      "NestJS",
-      "PostgreSQL",
-      "Redis",
-      "amoCRM",
-      "Telegram Bot API",
-      "Telegram Mini Apps",
-      "AWS S3",
-      "DevOps",
-      "SEO optimization",
-      "Mantine UI",
-    ],
-  },
-];
+const ExperienceSection: React.FC<ExperienceSectionProps> = async ({
+  locale,
+}) => {
+  const t = await getTranslations({ locale, namespace: "experience" });
 
-const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
+  const list = [
+    {
+      date: t("cards.0.time"),
+      title: t("cards.0.title"),
+      work: t("cards.0.company"),
+      skills: t("cards.0.description"),
+      stack: t.raw("cards.0.stack"),
+    },
+    {
+      date: t("cards.1.time"),
+      title: t("cards.1.title"),
+      work: t("cards.1.company"),
+      skills: t("cards.1.description"),
+      stack: t.raw("cards.1.stack"),
+    },
+    {
+      date: t("cards.2.time"),
+      title: t("cards.2.title"),
+      work: t("cards.2.company"),
+      skills: t("cards.2.description"),
+      stack: t.raw("cards.2.stack"),
+    },
+    {
+      date: t("cards.3.time"),
+      title: t("cards.3.title"),
+      work: t("cards.3.company"),
+      skills: t("cards.3.description"),
+      stack: t.raw("cards.3.stack"),
+    },
+  ];
+
   return (
     <Section ariaLabelledby="" id="experience-section">
       <Stack w="100%" align="center" pos="relative">
-        <NameSection name="Мой опыт" />
+        <NameSection name={t("name")} />
         <MotionBox
           start={{ opacity: 0.1, y: -20 }}
           end={{ opacity: 1, y: 0, x: 0 }}
@@ -103,7 +66,8 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
             ta="center"
             style={{ fontWeight: "bold" }}
           >
-            Путь в<span className={"title__primary_word"}> разработке</span>
+            {t("title")}
+            <span className={"title__primary_word"}> {t("ctaTitle")}</span>
           </Title>
         </MotionBox>
 
@@ -112,20 +76,17 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = () => {
           end={{ opacity: 1, y: 0, x: 0 }}
           styles={{ width: "100%" }}
         >
-          <Text ta="center">
-            От обучения и фриланса до коммерческой разработки, наставничества и
-            продуктовой работы.
-          </Text>
+          <Text ta="center">{t("description")}</Text>
         </MotionBox>
 
         <Group w="100%" mt={40} className={styles.box_list}>
-            <Image
-              src={MEDIA.images.line.src}
-              pos="absolute"
-              w="100%"
-              top={0}
-              h="100%"
-            />
+          <Image
+            src={MEDIA.images.line.src}
+            pos="absolute"
+            w="100%"
+            top={0}
+            h="100%"
+          />
 
           {list.map((el, index) => {
             return (

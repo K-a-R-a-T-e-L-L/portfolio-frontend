@@ -1,0 +1,125 @@
+{
+  "name": "My projects",
+  "ctaTitle": "Selected",
+  "title": "works",
+  "description": "Real projects launched in production and solving business problems.",
+  "projects": [
+    {
+      "badges": ["UI Template Platform", "Next.js • NestJS • TypeORM"],
+      "title": "My-UI — a template platform where users publish solutions and compete by rating",
+      "description": "A production service for the UI community: authors submit templates for moderation, publish them in the catalog, collect likes, and reach the top showcase. Implemented features include author profiles, favorites, categories, tags, copy statistics, and a complete template management cycle.",
+      "url": "https://my-ui.karatell.ru",
+      "image": "/images/my-ui.webp",
+      "characteristics": {
+        "title": "Key features",
+        "list": [
+          "User catalog with template publishing and author profiles",
+          "Likes/favorites, code copying, moderation, and rating showcase",
+          "Server architecture on NestJS + PostgreSQL with a scalable data model",
+          "Roles and moderation layer for user content quality control",
+          "Activity and popularity metrics for templates to drive engagement"
+        ]
+      },
+      "stack": {
+        "title": "Full project stack",
+        "list": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "NestJS",
+          "TypeORM",
+          "PostgreSQL",
+          "Mantine UI",
+          "TanStack Query",
+          "next-intl",
+          "JWT",
+          "Swagger / OpenAPI",
+          "Joi",
+          "class-validator",
+          "class-transformer",
+          "Helmet",
+          "cookie-parser",
+          "Kubb",
+          "D3.js",
+          "Embla Carousel",
+          "Swiper",
+          "Swagger UI"
+        ]
+      }
+    },
+    {
+      "badges": ["E-commerce", "Next.js • NestJS • Redis"],
+      "title": "\"Ona Hochet\" — a large-scale commercial flower delivery project across Russia",
+      "description": "A full-featured e-commerce platform: catalog, shopping cart, checkout, recipient scenarios, and address delivery. The system implements multi-city support (subdomains and Russian cities), integrations with amoCRM, Telegram notifications, and operational order processing logic.",
+      "url": "https://onahochet.ru",
+      "image": "/images/ona-hochet.webp",
+      "characteristics": {
+        "title": "Key features",
+        "list": [
+          "Online flower sales and delivery across numerous Russian cities",
+          "Integrations: amoCRM, Telegram notifications, city-based routing",
+          "Thoughtful checkout: recipient, addressing, delivery date/time, special requests",
+          "Catalog, inventory, product cards, and orders with business processing logic",
+          "Multi-city and storefront routing for regional scenarios"
+        ]
+      },
+      "stack": {
+        "title": "Full project stack",
+        "list": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "NestJS",
+          "TypeORM",
+          "PostgreSQL",
+          "Redis",
+          "REST API",
+          "TanStack Query",
+          "Mantine UI",
+          "Telegram Bot API",
+          "amoCRM API",
+          "AWS S3 SDK",
+          "JWT",
+          "Joi",
+          "Swagger / OpenAPI",
+          "Yandex Maps API",
+          "Yandex Metrica",
+          "Kubb"
+        ]
+      }
+    },
+    {
+      "badges": ["Edu Landing", "Next.js • Mantine • NestJS"],
+      "title": "\"Launch System\" — a sales platform for launching an educational product",
+      "description": "A product landing page for the Phenomen Club course with deep content structure: Hero section, modular program, pricing matrix, FAQ, trust blocks, and final funnel. The main goal of the project is converting traffic into applications and payments through a clear user journey.",
+      "url": "https://phenomenclub.ru",
+      "image": "/images/bussines-club.webp",
+      "characteristics": {
+        "title": "Key features",
+        "list": [
+          "Strong marketing page structure for selling an educational product",
+          "Modular presentation of the program and pricing to increase conversion",
+          "Adaptive funnel from the first screen to application/payment without extra steps",
+          "Clear UX hierarchy for high trust and a transparent offer",
+          "Conversion optimization: emphasis on value, objections, and CTAs"
+        ]
+      },
+      "stack": {
+        "title": "Full project stack",
+        "list": [
+          "Next.js",
+          "React",
+          "React DOM",
+          "TypeScript",
+          "Mantine UI",
+          "@mantine/hooks",
+          "@tabler/icons-react",
+          "Tailwind CSS v4",
+          "PostCSS",
+          "ESLint",
+          "Yandex Metrica"
+        ]
+      }
+    }
+  ]
+}

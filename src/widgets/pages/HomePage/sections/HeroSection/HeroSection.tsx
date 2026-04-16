@@ -23,57 +23,16 @@ import AnimatedDot from "@/shared/ui/AnimatedDot/AnimatedDot";
 import { nbspPrepositions } from "@/shared/lib/nbspPrepositionsю";
 import AnimatedTitle from "./AnimatedTitle";
 import MotionBox from "@/shared/ui/MotionBox/MotionBox";
+import { Locale } from "@/shared/lib/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-interface HeroSectionProps {}
+interface HeroSectionProps {
+  locale: Locale;
+}
 
-const listRowsCode = [
-  <span>
-    <span className={styles.keyword}>const</span>
-    <span className={styles.identifier}> candidate</span>
-    <span className={styles.punctuator}> =</span>
-    <span className={styles.staples}> {"{"}</span>
-  </span>,
-  <span className={styles.inside}>
-    <span className={styles.identifier}>role</span>
-    <span className={styles.punctuator}> :</span>
-    <span className={styles.string}> "Web Developer"</span>
-    <span className={styles.punctuator}>,</span>
-  </span>,
-  <span className={styles.inside}>
-    <span className={styles.identifier}>focus</span>
-    <span className={styles.punctuator}> :</span>
-    <span className={styles.string}> "Frontend + Backend"</span>
-    <span className={styles.punctuator}>,</span>
-  </span>,
-  <span className={styles.inside}>
-    <span className={styles.identifier}>strength</span>
-    <span className={styles.punctuator}> :</span>
-    <span className={styles.string}> "Design-driven development"</span>
-    <span className={styles.punctuator}>,</span>
-  </span>,
-  <span className={styles.inside}>
-    <span className={styles.identifier}>stack</span>
-    <span className={styles.punctuator}> :</span>
-    <span className={styles.staples}> {"["}</span>
-    <span className={styles.string}> "Next.js"</span>
-    <span className={styles.punctuator}>,</span>
-    <span className={styles.string}> "NestJS"</span>
-    <span className={styles.punctuator}>,</span>
-    <span className={styles.string}> "TypeScript"</span>
-    <span className={styles.staples}> {"]"}</span>
-  </span>,
-  <span className={styles.inside}>
-    <span className={styles.identifier}>value</span>
-    <span className={styles.punctuator}> :</span>
-    <span className={styles.string}>
-      {" "}
-      "Pixel-perfect + performant + reliable"
-    </span>
-  </span>,
-  <span className={styles.staples}> {"}"}</span>,
-];
+const HeroSection: React.FC<HeroSectionProps> = async ({ locale }) => {
+  const t = await getTranslations({ locale, namespace: "hero" });
 
-const HeroSection: React.FC<HeroSectionProps> = () => {
   return (
     <Section
       ariaLabelledby=""
@@ -125,13 +84,7 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                 opacity={0.6}
                 ta={{ base: "center", md: "left" }}
               >
-                {nbspPrepositions(`
-                Меня зовут Кирилл. Я веб-разработчик, специализирующийся на
-                отточенных интерфейсах, масштабируемой архитектуре и реализации
-                бизнес-идей. Превращаю идеи в адаптивные,
-                высокопроизводительные решения, которые выглядят премиально и
-                приносят результат.
-              `)}
+                {nbspPrepositions(t("description"))}
               </Text>
             </MotionBox>
             <Group mt={10} className={styles.left_col_group_buttons}>
@@ -148,7 +101,7 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                   }}
                   radius="100px"
                 >
-                  Связаться со мной
+                  {t("ctaButton")}
                 </Button>
               </MotionBox>
               <MotionBox
@@ -156,7 +109,7 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                 end={{ opacity: 1, x: 0 }}
               >
                 <Button size="lg" variant="light" radius="100px">
-                  Посмотреть работы
+                  {t("button")}
                 </Button>
               </MotionBox>
             </Group>
@@ -170,25 +123,25 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                 start={{ opacity: 0.1, y: 10 }}
                 end={{ opacity: 1, y: 0 }}
               >
-                <MetricCard title="4+" text="Года коммерческой разработки" />
+                <MetricCard title="4+" text={t("cards.first")} />
               </MotionBox>
               <MotionBox
                 start={{ opacity: 0.1, y: 10 }}
                 end={{ opacity: 1, y: 0 }}
               >
-                <MetricCard title="30+" text="Реализованных проектов" />
+                <MetricCard title="30+" text={t("cards.second")} />
               </MotionBox>
               <MotionBox
                 start={{ opacity: 0.1, y: 10 }}
                 end={{ opacity: 1, y: 0 }}
               >
-                <MetricCard title="5" text="Наставленных разработчиков" />
+                <MetricCard title="5" text={t("cards.third")} />
               </MotionBox>
             </Flex>
           </Stack>
         </GridCol>
         <GridCol span={{ base: 12, md: 5 }}>
-          <CodeCard code={listRowsCode}>
+          <CodeCard>
             <Stack gap={10} mt={{ base: 20, md: 0 }}>
               <Group
                 gap={10}
@@ -212,7 +165,7 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                         100%
                       </>
                     }
-                    text="Адаптивность для всех видов устройств"
+                    text={t("cards.fourth")}
                     size="md"
                   />
                 </MotionBox>
@@ -229,10 +182,10 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                         <IconBrandSpeedtest
                           style={{ transform: "translateY(3px)" }}
                         />{" "}
-                        {"< 2 с"}
+                        {t("cards.fifth.title")}
                       </>
                     }
-                    text="Скорость загрузки веб-приложений"
+                    text={t("cards.fifth.description")}
                     size="md"
                   />
                 </MotionBox>
@@ -254,17 +207,17 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                     title={
                       <>
                         <IconLeaf style={{ transform: "translateY(3px)" }} />{" "}
-                        Чистый
+                        {t("cards.sixth.title")}
                       </>
                     }
-                    text="Код, переиспользуемые компоненты и поддерживаемая архитектура."
+                    text={t("cards.sixth.description")}
                     size="md"
                   />
                 </MotionBox>
                 <MotionBox
                   start={{ opacity: 0.1, y: 10, x: 10 }}
                   end={{ opacity: 1, y: 0, x: 0 }}
-                  styles={{ width: "50%", height: '100%' }}
+                  styles={{ width: "50%", height: "100%" }}
                   className={styles.card}
                 >
                   <MetricCard
@@ -274,10 +227,10 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
                         <IconBusinessplan
                           style={{ transform: "translateY(3px)" }}
                         />{" "}
-                        Влияние
+                        {t("cards.seventh.title")}
                       </>
                     }
-                    text="Фокус на конверсию, удержание пользователей и ключевые бизнес-цели."
+                    text={t("cards.seventh.description")}
                     size="md"
                   />
                 </MotionBox>

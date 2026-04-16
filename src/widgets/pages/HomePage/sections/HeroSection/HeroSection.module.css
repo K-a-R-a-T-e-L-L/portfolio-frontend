@@ -22,30 +22,6 @@
     color-mix(in srgb, var(--mantine-color-brandSecondaryA-8) 90%, black 10%);
 }
 
-.keyword {
-  color: var(--mantine-color-brandSecondaryA-4);
-}
-
-.punctuator {
-  color: var(--mantine-color-brandSecondaryA-7);
-}
-
-.staples {
-  color: var(--mantine-color-brandSecondaryB-3);
-}
-
-.string {
-  color: var(--mantine-color-brandPrimary-4);
-}
-
-.identifier {
-  color: var(--mantine-color-brandPrimary-1);
-}
-
-.inside {
-  padding-left: 17px;
-}
-
 @media (width < 992px) {
   .badge {
     align-self: auto;

@@ -1,0 +1,77 @@
+{
+  "name": "My experience",
+  "ctaTitle": "in development",
+  "title": "Path",
+  "description": "From education and freelancing to commercial development, mentoring, and product work.",
+  "cards": [
+    {
+      "time": "2021 — 2022",
+      "title": "JavaScript Education",
+      "company": "Synergy University · year-long course",
+      "description": "Completed a full training cycle in JavaScript development: language fundamentals, DOM manipulation, asynchronous programming, basic client-side application architecture, and practice on educational projects.",
+      "stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Git",
+        "REST API",
+        "React",
+        "Express",
+        "SCSS",
+        "Figma"
+      ]
+    },
+    {
+      "time": "2022 — 2024",
+      "title": "Freelance Development",
+      "company": "Project work · freelance platforms and direct orders",
+      "description": "Handled turnkey client projects: landing pages, corporate websites, admin panels, and improvements to existing projects. Worked with technical specifications, deadlines, revisions, and production launches.",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "API integrations",
+        "DevOps",
+        "Nest.js",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "time": "2024 — 2025",
+      "title": "Frontend Developer / Mentor",
+      "company": "Davtian | Kaskad",
+      "description": "Developed the company website, implemented and maintained key interfaces. Simultaneously assisted less experienced frontend developers with code reviews, task breakdowns, and establishing workflow approaches.",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "UI/UX",
+        "Code Review",
+        "Team development",
+        "Kubb",
+        "OpenApi",
+        "SEO optimization"
+      ]
+    },
+    {
+      "time": "2025 — present",
+      "title": "Fullstack / Product Developer",
+      "company": "IE \"Ona Hochet\"",
+      "description": "Developing an e-commerce platform and participating in startup project launches: feature design, integrations, production support, business process optimization, and development of new directions.",
+      "stack": [
+        "Next.js",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "amoCRM",
+        "Telegram Bot API",
+        "Telegram Mini Apps",
+        "AWS S3",
+        "DevOps",
+        "SEO optimization",
+        "Mantine UI"
+      ]
+    }
+  ]
+}

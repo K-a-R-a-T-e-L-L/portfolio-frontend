@@ -3,7 +3,11 @@ import { IconSettings } from "@tabler/icons-react";
 import type { ReactNode } from "react";
 import styles from "./Main.module.css";
 
-export default function Main({ children }: { children: ReactNode }) {
+interface MainProps {
+  children: ReactNode;
+}
+
+const Main: React.FC<MainProps> = ({ children }) => {
   return (
     <AppShellMain>
       <IconSettings
@@ -16,4 +20,6 @@ export default function Main({ children }: { children: ReactNode }) {
       </Container>
     </AppShellMain>
   );
-}
+};
+
+export default Main;

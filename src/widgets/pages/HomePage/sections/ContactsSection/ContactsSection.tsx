@@ -13,14 +13,20 @@ import ContactCard from "@/shared/ui/ContactCard/ContactCard";
 import FeedbackForm from "./FeedbackForm";
 import FileCard from "@/shared/ui/FileCard/FileCard";
 import MotionBox from "@/shared/ui/MotionBox/MotionBox";
+import { Locale } from "@/shared/lib/i18n/routing";
+import { getTranslations } from "next-intl/server";
 
-interface ContactsSectionProps {}
+interface ContactsSectionProps {
+  locale: Locale;
+}
 
-const ContactsSection: React.FC<ContactsSectionProps> = () => {
+const ContactsSection: React.FC<ContactsSectionProps> = async ({ locale }) => {
+  const t = await getTranslations({ locale, namespace: "contacts" });
+
   return (
     <Section ariaLabelledby="" id="contacts-section">
       <Stack align="center" w="100%">
-        <NameSection name="Связь со мной" />
+        <NameSection name={t("name")} />
         <MotionBox
           start={{ opacity: 0.1, y: -20 }}
           end={{ opacity: 1, y: 0, x: 0 }}
@@ -34,8 +40,9 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
             style={{ fontWeight: "bold" }}
             ta="center"
           >
-            Готовы<span className={"title__primary_word"}> обсудить </span>
-            проект?
+            {t("titleFirst")}
+            <span className={"title__primary_word"}> {t("ctaTitle")} </span>
+            {t("titleSecond")}
           </Title>
         </MotionBox>
 
@@ -45,8 +52,7 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
           styles={{ width: "100%", display: "grid", placeItems: "center" }}
         >
           <Text ta="center" maw={980}>
-            Оставьте заявку, и я свяжусь с вами. Либо напишите напрямую через
-            удобный для вас канал из списка контактов.
+            {t("description")}
           </Text>
         </MotionBox>
 
@@ -74,7 +80,7 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
                   order={3}
                   className={styles.template_title}
                 >
-                  Контакты
+                  {t("miniTitleFirst")}
                 </Title>
                 <ContactCard
                   Icon={IconBrandTelegram}
@@ -121,7 +127,17 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
               end={{ opacity: 1, y: 0, x: 0 }}
               styles={{ width: "100%" }}
             >
-              <FeedbackForm />
+              <FeedbackForm
+                title={t("miniTitleSecond")}
+                placeholderName={t("form.placeholderName")}
+                labelName={t("form.labelName")}
+                labelMethodContact={t("form.labelMethodContact")}
+                placeholderMethodContact={t("form.placeholderMethodContact")}
+                contactLabel={t("form.contact")}
+                commentLabel={t("form.commentLabel")}
+                commentPlaceholder={t("form.commentPlaceholder")}
+                button={t("form.button")}
+              />
             </MotionBox>
           </Paper>
         </Group>
@@ -132,7 +148,7 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
               order={3}
               className={styles.template_title}
             >
-              Резюме
+              {t("miniTitleThird")}
             </Title>
             <Group wrap="nowrap" className={styles.group_cards}>
               <MotionBox
@@ -141,9 +157,9 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
                 styles={{ width: "100%" }}
               >
                 <FileCard
-                  name="resume_ru.pdf"
-                  mb="100mb"
-                  href="/resume_ru.pdf"
+                  name="Fullstack-Разработчик_Сухоруков-Кирилл-Сергеевич.pdf"
+                  mb="56.6 kb"
+                  href="/Fullstack-Разработчик_Сухоруков-Кирилл-Сергеевич.pdf"
                 />
               </MotionBox>
               <MotionBox
@@ -152,9 +168,9 @@ const ContactsSection: React.FC<ContactsSectionProps> = () => {
                 styles={{ width: "100%" }}
               >
                 <FileCard
-                  name="resume_en.pdf"
-                  mb="98mb"
-                  href="/resume_en.pdf"
+                  name="Fullstack-Developer_Sukhorukov-Kirill-Sergeevich.pdf"
+                  mb="46.8 kb"
+                  href="/Fullstack-Developer_Sukhorukov-Kirill-Sergeevich.pdf"
                 />
               </MotionBox>
             </Group>
