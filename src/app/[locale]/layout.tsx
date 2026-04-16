@@ -35,7 +35,7 @@ export async function generateMetadata({
   const keywords = t.raw("keywords") as string[];
   const canonical = `${siteUrl}/${normalizedLocale}`;
   const localeTag = normalizedLocale === "ru" ? "ru_RU" : "en_US";
-  const ogImage = `/preview.webp`;
+  const ogImage = `${siteUrl}/images/preview.png`;
 
   return {
     title,
@@ -67,8 +67,9 @@ export async function generateMetadata({
       images: [
         {
           url: ogImage,
-          width: 512,
-          height: 512,
+          width: 1200,
+          height: 630,
+          type: "image/png",
           alt: siteName,
         },
       ],
@@ -77,7 +78,12 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage],
+      images: [
+        {
+          url: ogImage,
+          alt: siteName,
+        },
+      ],
     },
   };
 }
