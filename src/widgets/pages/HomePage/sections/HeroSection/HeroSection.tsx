@@ -25,6 +25,7 @@ import AnimatedTitle from "./AnimatedTitle";
 import MotionBox from "@/shared/ui/MotionBox/MotionBox";
 import { Locale } from "@/shared/lib/i18n/routing";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/shared/lib/i18n/navigation";
 
 interface HeroSectionProps {
   locale: Locale;
@@ -92,25 +93,37 @@ const HeroSection: React.FC<HeroSectionProps> = async ({ locale }) => {
                 start={{ opacity: 0.1, x: -10 }}
                 end={{ opacity: 1, x: 0 }}
               >
-                <Button
-                  size="lg"
-                  variant="gradient"
-                  gradient={{
-                    from: "brandPrimary.7",
-                    to: "brandSecondaryA.5",
-                  }}
-                  radius="100px"
+                <Link
+                  href="#contacts-section"
+                  locale={locale}
+                  className={styles.link}
                 >
-                  {t("ctaButton")}
-                </Button>
+                  <Button
+                    size="lg"
+                    variant="gradient"
+                    gradient={{
+                      from: "brandPrimary.7",
+                      to: "brandSecondaryA.5",
+                    }}
+                    radius="100px"
+                  >
+                    {t("ctaButton")}
+                  </Button>
+                </Link>
               </MotionBox>
               <MotionBox
                 start={{ opacity: 0.1, x: 10 }}
                 end={{ opacity: 1, x: 0 }}
               >
-                <Button size="lg" variant="light" radius="100px">
-                  {t("button")}
-                </Button>
+                <Link
+                  href="#project-section"
+                  locale={locale}
+                  className={styles.link}
+                >
+                  <Button size="lg" variant="light" radius="100px">
+                    {t("button")}
+                  </Button>
+                </Link>
               </MotionBox>
             </Group>
             <Flex
