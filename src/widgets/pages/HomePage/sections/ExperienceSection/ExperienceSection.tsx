@@ -86,6 +86,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = async ({
             w="100%"
             top={0}
             h="100%"
+            alt="Линия опыта"
           />
 
           {list.map((el, index) => {

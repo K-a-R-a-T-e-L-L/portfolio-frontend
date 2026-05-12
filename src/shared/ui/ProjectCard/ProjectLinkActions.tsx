@@ -34,6 +34,7 @@ const ProjectLinkActions: React.FC<ProjectLinkActionsProps> = ({
         onClick={handleCopy}
         title={copied ? "Copied" : "Copy link"}
         className={iconClassName}
+        aria-label="Скопировать ссылку"
       >
         {copied ? <IconCheck size={18} /> : <IconCopy size={18} />}
       </ActionIcon>
@@ -47,6 +48,7 @@ const ProjectLinkActions: React.FC<ProjectLinkActionsProps> = ({
         variant="light"
         c="brandSecondaryA.3"
         title="Open project"
+        aria-label="Перейти по ссылке"
         className={iconClassName}
       >
         <IconExternalLink size={18} />

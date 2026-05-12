@@ -7,6 +7,8 @@ import {
   TargetAndTransition,
   VariantLabels,
 } from "framer-motion";
+import { useMediaQuery } from "@mantine/hooks";
+import { Box } from "@mantine/core";
 
 interface MotionBoxProps {
   children: ReactNode;
@@ -15,7 +17,7 @@ interface MotionBoxProps {
   duration?: number;
   delay?: number;
   ease?: Easing | Easing[];
-  styles?: MotionStyle;
+  styles?: React.CSSProperties;
   className?: string;
 }
 
@@ -31,7 +33,22 @@ const MotionBox: React.FC<MotionBoxProps> = (props) => {
     className,
   } = props;
 
-  return (
+  const isMobile = useMediaQuery("(max-width: 767px)");
+
+  return isMobile ? (
+    <Box
+    
+      style={{
+        width: "fit-content",
+        display: "inline-block",
+        alignSelf: "flex-start",
+        ...styles,
+      }}
+       className={className}
+    >
+      {children}
+    </Box>
+  ) : (
     <motion.div
       style={{
         width: "fit-content",

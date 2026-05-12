@@ -7,7 +7,7 @@ import { Locale } from "@/shared/lib/i18n/routing";
 const Brand = ({ locale }: { locale: Locale }) => {
   return (
     <Link href="#hero-section" locale={locale} className={styles.brand}>
-      <Image src={MEDIA.images.logo.src} w={50} h={50} />
+      <Image src={MEDIA.images.logo.src} w={50} h={50} alt="Логотип K_a_R_a_T_e_L_L"/>
       <span className={styles.brand__text}>
         <span className={styles.brand__focus}>P</span>ortfolio
       </span>
