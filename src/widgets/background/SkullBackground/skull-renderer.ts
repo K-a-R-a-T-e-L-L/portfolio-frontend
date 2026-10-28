@@ -79,38 +79,7 @@ export async function createSkullRenderer(
       vertexColors: true,
       side: THREE.DoubleSide,
     });
-    const position = mesh.geometry.attributes.position;
-    const colors = new Uint8Array(position.count * 3);
-    for (let i = 0; i < position.count; i++) {
-      const x = position.getX(i),
-        y = position.getY(i),
-        z = position.getZ(i);
-      const radius = Math.hypot(
-        (Math.abs(x) - 0.04) / 0.029,
-        (y - 0.025) / 0.034,
-      );
-      const inside = mesh.name === "cranium" && z > 0.025 && z < 0.125;
-      const socketShade = inside
-        ? THREE.MathUtils.smoothstep(radius, 0.82, 1.25) * 0.995 + 0.005
-        : 1;
-      // The recessed nasal surface sits above the upper jaw, behind the rim.
-      // Depth gating preserves the projecting bone instead of painting an oval on it.
-      const noseRadius = Math.hypot(x / 0.016, (y - 0.009) / 0.024);
-      const nasalRecess = 1 - THREE.MathUtils.smoothstep(z, 0.103, 0.124);
-      const noseShade =
-        mesh.name === "cranium" && z > 0.045
-          ? 1 -
-            (1 - THREE.MathUtils.smoothstep(noseRadius, 0.7, 1.12)) *
-              nasalRecess *
-              0.995
-          : 1;
-      const value = Math.min(socketShade, noseShade);
-      colors.fill(Math.round(value * 255), i * 3, i * 3 + 3);
-    }
-    mesh.geometry.setAttribute(
-      "color",
-      new THREE.BufferAttribute(colors, 3, true),
-    );
+    // Vertex shading is baked by scripts/bake-skull.mjs.
     mesh.material = surface;
   }
   oldMaterials.forEach((material) => material.dispose());
@@ -168,6 +137,17 @@ export async function createSkullRenderer(
     eyes.add(halo);
   }
   model.add(eyes);
+  // Compile while the static poster remains visible; avoid synchronous shader
+  // compilation on the first animated frame when the driver supports it.
+  try {
+    await renderer.compileAsync(scene, camera);
+    if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+  } catch (error) {
+    disposeTree(scene);
+    renderer.dispose();
+    renderer.forceContextLoss();
+    throw error;
+  }
   const cubeScene = document.querySelector("[data-model]")?.parentElement;
   const mouth = new THREE.Vector3();
   const heroTarget = new THREE.Vector3();

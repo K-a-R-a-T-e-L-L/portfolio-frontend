@@ -74,9 +74,15 @@ surface at local y=0.009 and fades with depth before the projecting bony rim.
 
 
 ## Social preview and hero composition
-Open Graph and Twitter large-image cards use the owner-supplied social-neon.jpg
-(1200x630, contained without cropping); titles and descriptions remain localized.
-The same Russian-language artwork is used for both locales as requested.
+Open Graph and Twitter cards use separate owner-supplied RU/EN artwork (1200x630).
+The social-ru/social-en filenames include a content hash; update the hash and
+metadata mapping when replacing artwork. Do not add per-request timestamps.
+Titles and descriptions remain localized. This versions images, not Telegram's page cache.
+Cube faces use coordinate-based turquoise/cyan/blue gradients, dark side faces
+and static inset edge highlights for depth without extra animation loops.
+Fine-pointer hover makes only the hovered voxel's six faces translucent (0.28).
+Keep the preserve-3d parent opaque to avoid flattening; reduced motion disables
+the opacity transition. Touch devices keep the solid appearance.
 Hero skull starts with jaw 0.95 rad and opacity 0.25. Its mouth follows the actual
 cube container with perspective compensation, blending into the scroll path
 by progress 0.16. Initial scale is 0.85 desktop / 0.60 mobile.
@@ -84,8 +90,11 @@ by progress 0.16. Initial scale is 0.85 desktop / 0.60 mobile.
 
 ## Performance
 The skull keeps all 188,871 triangles and original positions. Normal attributes
-use KHR_mesh_quantization normalized bytes; runtime shading colors use normalized
-Uint8 buffers. Reused vectors and a cached cube reference avoid per-frame allocations.
+use KHR_mesh_quantization normalized bytes; shading colors are baked offline with
+scripts/bake-skull.mjs into normalized Uint8 COLOR_0 attributes. The runtime loads
+scattering-skull-shaded.glb and prepares shaders with compileAsync before showing
+the canvas; the poster stays visible during initialization. Reused vectors and a
+cached cube reference avoid per-frame allocations.
 DPR adapts on resize (mobile <=1). Responsive project-image sizes match the layout.
 Social artwork is JPEG quality88 (71KB instead of981KB PNG). Hero mouth anchor
 is shifted right to 60% of the cube scene width.

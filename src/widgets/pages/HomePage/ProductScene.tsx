@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import styles from "./Portfolio.module.css";
 
 const modules = Array.from({ length: 27 }, (_, i) => ({
@@ -124,7 +124,9 @@ export default function ProductScene({
             className={`${styles.voxel} ${i === 13 ? styles.core : ""}`}
             style={{
               transform: `translate3d(${x * 66}px,${y * 66}px,${z * 66}px)`,
-            }}
+              "--tile-hue": 174 + (x + 1) * 8 + (y + 1) * 4 + (1 - z) * 3,
+              "--tile-light": `${49 - (y + 1) * 5 - (1 - z) * 3}%`,
+            } as CSSProperties}
           >
             {faces.map((face) => (
               <span key={face} className={`${styles.face} ${styles[face]}`} />

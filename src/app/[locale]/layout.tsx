@@ -35,7 +35,12 @@ export async function generateMetadata({
   const keywords = t.raw("keywords") as string[];
   const canonical = `${siteUrl}/${normalizedLocale}`;
   const localeTag = normalizedLocale === "ru" ? "ru_RU" : "en_US";
-  const ogImage = `${siteUrl}/images/social-neon.jpg`;
+  // Content-versioned URLs refresh image caches only when the artwork changes.
+  const socialImages = {
+    ru: "social-ru-062a297740.jpg",
+    en: "social-en-76e275a1a4.jpg",
+  };
+  const ogImage = `${siteUrl}/images/${socialImages[normalizedLocale]}`;
 
   return {
     title,

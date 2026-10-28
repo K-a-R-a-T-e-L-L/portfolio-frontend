@@ -189,35 +189,53 @@
   display: block;
   position: absolute;
   inset: 0;
-  border: 1px solid #97f8e86e;
+  border: 1px solid #5deeff99;
+  border-radius: 2px;
+  box-shadow: inset 1px 1px 2px #c5ffff9c, inset -2px -2px 4px #00183c88;
   backface-visibility: hidden;
 }
 .front {
   transform: translateZ(30px);
-  background: #2ad8c2;
+  background: linear-gradient(135deg, hsl(var(--tile-hue) 96% calc(var(--tile-light) + 13%)), hsl(var(--tile-hue) 95% var(--tile-light)) 42%, hsl(var(--tile-hue) 96% calc(var(--tile-light) - 17%)));
 }
 .back {
   transform: rotateY(180deg) translateZ(30px);
-  background: #072a49;
+  background: linear-gradient(135deg, #075878, #03122d);
 }
 .left {
   transform: rotateY(-90deg) translateZ(30px);
-  background: #148a7d;
+  background: linear-gradient(115deg, hsl(var(--tile-hue) 95% 30%), #022842 85%);
 }
 .right {
   transform: rotateY(90deg) translateZ(30px);
-  background: #1771c3;
+  background: linear-gradient(125deg, hsl(calc(var(--tile-hue) + 8) 78% 41%), hsl(calc(var(--tile-hue) + 10) 76% 27%) 65%, #082d42);
 }
 .top {
   transform: rotateX(90deg) translateZ(30px);
-  background: #97f8e8;
+  background: linear-gradient(145deg, #b0fff5, hsl(var(--tile-hue) 100% 64%) 45%, hsl(calc(var(--tile-hue) + 8) 100% 43%));
 }
 .bottom {
   transform: rotateX(-90deg) translateZ(30px);
-  background: #0b4a43;
+  background: linear-gradient(145deg, #04677f, #021930);
 }
 .core .face {
   background: #c8fdf4;
+}
+@media (hover: hover) and (pointer: fine) {
+  .face {
+    transition: opacity 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  /* Fade individual faces, not the preserve-3d parent: keep depth sorting intact. */
+  .voxel:hover > .face {
+    opacity: 0.28;
+    border-color: #d5fff9;
+    box-shadow: inset 2px 2px 7px #d5fff9, inset -1px -1px 3px #63dbff;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .voxel > .face {
+    transition: none;
+  }
 }
 .orbit,
 .orbitInner {
@@ -1074,17 +1092,6 @@
 }
 .timeline li:hover h3 {
   color: #70bbff;
-}
-.scene .face {
-  transition:
-    background-color 0.35s,
-    border-color 0.35s;
-}
-.scene:hover .front {
-  background: #44e7d2;
-}
-.scene:hover .right {
-  background: #218ef4;
 }
 .aboutIntro {
   min-width: 0;
