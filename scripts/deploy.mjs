@@ -10,6 +10,8 @@ async function api(path, body) {
     signal: AbortSignal.timeout(30000),
   });
   if (!response.ok) throw new Error(`Dokploy ${path.split('?')[0]} HTTP ${response.status}`);
+  // Deploy may acknowledge the request with an empty successful response.
+  if (body) return;
   return response.json();
 }
 async function matches(id) {
