@@ -1,10 +1,11 @@
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import RootProvider from "@/processes/providers/RootProvider";
 import { routing } from "@/shared/lib/i18n/routing";
+import { siteUrl } from "@/shared/lib/site-url";
 
 type LocaleLayoutProps = {
   children: ReactNode;
@@ -24,7 +25,6 @@ export async function generateMetadata({
   const normalizedLocale = hasLocale(routing.locales, locale)
     ? locale
     : routing.defaultLocale;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const t = await getTranslations({
     locale: normalizedLocale,
     namespace: "seo",
@@ -35,7 +35,7 @@ export async function generateMetadata({
   const keywords = t.raw("keywords") as string[];
   const canonical = `${siteUrl}/${normalizedLocale}`;
   const localeTag = normalizedLocale === "ru" ? "ru_RU" : "en_US";
-  const ogImage = `${siteUrl}/images/preview.png`;
+  const ogImage = `${siteUrl}/images/social-neon.jpg`;
 
   return {
     title,
@@ -69,7 +69,7 @@ export async function generateMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          type: "image/png",
+          type: "image/jpeg",
           alt: siteName,
         },
       ],
@@ -100,9 +100,5 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  return (
-    <NextIntlClientProvider>
-      <RootProvider locale={locale}>{children}</RootProvider>
-    </NextIntlClientProvider>
-  );
+  return <RootProvider locale={locale}>{children}</RootProvider>;
 }

@@ -5,50 +5,41 @@
   "description": "Real projects launched in production and solving business problems.",
   "projects": [
     {
-      "badges": ["UI Template Platform", "Next.js • NestJS • TypeORM"],
-      "title": "My-UI — a template platform where users publish solutions and compete by rating",
-      "description": "A production service for the UI community: authors submit templates for moderation, publish them in the catalog, collect likes, and reach the top showcase. Implemented features include author profiles, favorites, categories, tags, copy statistics, and a complete template management cycle.",
-      "url": "https://my-ui.karatell.ru",
-      "image": "/images/my-ui.webp",
+      "badges": [
+        "CMS",
+        "Next.js · NestJS · PostgreSQL"
+      ],
+      "title": "VidSave — service website with CMS and lead processing",
+      "description": "Public pages, catalog, publishing, media and lead management.",
+      "url": "https://vidsave.karatell.ru",
+      "image": "/images/vidsave.webp",
       "characteristics": {
         "title": "Key features",
         "list": [
-          "User catalog with template publishing and author profiles",
-          "Likes/favorites, code copying, moderation, and rating showcase",
-          "Server architecture on NestJS + PostgreSQL with a scalable data model",
-          "Roles and moderation layer for user content quality control",
-          "Activity and popularity metrics for templates to drive engagement"
+          "Responsive service pages",
+          "CMS and catalog",
+          "Publishing controls",
+          "Lead processing",
+          "Technical SEO"
         ]
       },
       "stack": {
         "title": "Full project stack",
         "list": [
           "Next.js",
-          "React",
           "TypeScript",
           "NestJS",
-          "TypeORM",
           "PostgreSQL",
-          "Mantine UI",
-          "TanStack Query",
-          "next-intl",
-          "JWT",
-          "Swagger / OpenAPI",
-          "Joi",
-          "class-validator",
-          "class-transformer",
-          "Helmet",
-          "cookie-parser",
-          "Kubb",
-          "D3.js",
-          "Embla Carousel",
-          "Swiper",
-          "Swagger UI"
+          "Mantine",
+          "S3"
         ]
       }
     },
     {
-      "badges": ["E-commerce", "Next.js • NestJS • Redis"],
+      "badges": [
+        "E-commerce",
+        "Next.js • NestJS • Redis"
+      ],
       "title": "\"Ona Hochet\" — a large-scale commercial flower delivery project across Russia",
       "description": "A full-featured e-commerce platform: catalog, shopping cart, checkout, recipient scenarios, and address delivery. The system implements multi-city support (subdomains and Russian cities), integrations with amoCRM, Telegram notifications, and operational order processing logic.",
       "url": "https://onahochet.ru",
@@ -89,7 +80,10 @@
       }
     },
     {
-      "badges": ["Edu Landing", "Next.js • Mantine • NestJS"],
+      "badges": [
+        "Edu Landing",
+        "Next.js • Mantine • NestJS"
+      ],
       "title": "\"Launch System\" — a sales platform for launching an educational product",
       "description": "A product landing page for the Phenomen Club course with deep content structure: Hero section, modular program, pricing matrix, FAQ, trust blocks, and final funnel. The main goal of the project is converting traffic into applications and payments through a clear user journey.",
       "url": "https://phenomenclub.ru",

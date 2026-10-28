@@ -14,7 +14,6 @@ import {
 import styles from "./ContactsSection.module.css";
 import useFeedback from "./useFeedback";
 import { IconAlertCircle, IconCircleCheck } from "@tabler/icons-react";
-import { _Translator } from "next-intl";
 
 interface FeedbackFormProps {
   title: string;

@@ -1,6 +1,6 @@
-import { ActionIcon, Card, Group, Stack, Text } from "@mantine/core";
+import { Card, Group, Stack, Text } from "@mantine/core";
 import styles from "./ContactCard.module.css";
-import { IconBrandTelegram, IconCopy, IconProps } from "@tabler/icons-react";
+import { IconProps } from "@tabler/icons-react";
 import Link from "next/link";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import CopyContactButton from "./CopyContactButton";

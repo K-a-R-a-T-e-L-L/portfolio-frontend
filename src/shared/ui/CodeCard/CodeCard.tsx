@@ -7,50 +7,50 @@ interface CodeCardProps {
 }
 
 const listRowsCode = [
-  <span>
+  <span key="declaration">
     <span className={styles.keyword}>const</span>
     <span className={styles.identifier}> candidate</span>
     <span className={styles.punctuator}> =</span>
     <span className={styles.staples}> {"{"}</span>
   </span>,
-  <span className={styles.inside}>
+  <span key="role" className={styles.inside}>
     <span className={styles.identifier}>role</span>
     <span className={styles.punctuator}> :</span>
-    <span className={styles.string}> "Web Developer"</span>
+    <span className={styles.string}>{' "Web Developer"'}</span>
     <span className={styles.punctuator}>,</span>
   </span>,
-  <span className={styles.inside}>
+  <span key="focus" className={styles.inside}>
     <span className={styles.identifier}>focus</span>
     <span className={styles.punctuator}> :</span>
-    <span className={styles.string}> "Frontend + Backend"</span>
+    <span className={styles.string}>{' "Frontend + Backend"'}</span>
     <span className={styles.punctuator}>,</span>
   </span>,
-  <span className={styles.inside}>
+  <span key="strength" className={styles.inside}>
     <span className={styles.identifier}>strength</span>
     <span className={styles.punctuator}> :</span>
-    <span className={styles.string}> "Design-driven development"</span>
+    <span className={styles.string}>{' "Design-driven development"'}</span>
     <span className={styles.punctuator}>,</span>
   </span>,
-  <span className={styles.inside}>
+  <span key="stack" className={styles.inside}>
     <span className={styles.identifier}>stack</span>
     <span className={styles.punctuator}> :</span>
     <span className={styles.staples}> {"["}</span>
-    <span className={styles.string}> "Next.js"</span>
+    <span className={styles.string}>{' "Next.js"'}</span>
     <span className={styles.punctuator}>,</span>
-    <span className={styles.string}> "NestJS"</span>
+    <span className={styles.string}>{' "NestJS"'}</span>
     <span className={styles.punctuator}>,</span>
-    <span className={styles.string}> "TypeScript"</span>
+    <span className={styles.string}>{' "TypeScript"'}</span>
     <span className={styles.staples}> {"]"}</span>
   </span>,
-  <span className={styles.inside}>
+  <span key="value" className={styles.inside}>
     <span className={styles.identifier}>value</span>
     <span className={styles.punctuator}> :</span>
     <span className={styles.string}>
       {" "}
-      "Pixel-perfect + performant + reliable"
+      {'"Pixel-perfect + performant + reliable"'}
     </span>
   </span>,
-  <span className={styles.staples}> {"}"}</span>,
+  <span key="end" className={styles.staples}> {"}"}</span>,
 ];
 
 const CodeCard: React.FC<CodeCardProps> = (props) => {

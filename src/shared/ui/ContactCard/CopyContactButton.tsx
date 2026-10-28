@@ -15,7 +15,7 @@ const CopyContactButton: React.FC<CopyContactButtonProps> = ({ url }) => {
       await navigator.clipboard.writeText(url);
       setIsCopy(true);
       setTimeout(() => setIsCopy(false), 1500);
-    } catch (error) {
+    } catch {
       setIsCopy(false);
     }
   };

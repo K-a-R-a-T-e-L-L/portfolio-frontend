@@ -53,7 +53,7 @@ const useFeedback = () => {
 
       setIsSuccess(true);
       form.reset();
-    } catch (error) {
+    } catch {
       setCodeError(500);
     } finally {
       setIsSubmitting(false);

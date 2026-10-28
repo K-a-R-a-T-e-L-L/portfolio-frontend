@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import {
   Easing,
   motion,
-  MotionStyle,
   TargetAndTransition,
   VariantLabels,
 } from "framer-motion";

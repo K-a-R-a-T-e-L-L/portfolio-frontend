@@ -1,17 +1,17 @@
 {
-  "title": "Fullstack-разработчик | React, Next.js, Node.js, NestJS",
-  "description": "Разрабатываю веб-продукты на React/Next.js и Node.js/NestJS: от интерфейсов и API до интеграций, Telegram Mini Apps и автоматизации бизнес-процессов.",
-  "siteName": "Портфолио",
+  "title": "Кирилл Сухоруков — Fullstack-разработчик веб-продуктов",
+  "description": "CRM, веб-приложения, Mini Apps и PWA, боты Telegram/MAX, сайты и интернет-магазины. Дизайн, frontend, backend, интеграции и запуск.",
+  "siteName": "Кирилл Сухоруков · Портфолио",
   "keywords": [
-    "React разработчик",
-    "Next.js",
+    "Fullstack",
     "TypeScript",
-    "Node.js",
+    "React",
+    "Next.js",
     "NestJS",
-    "Fullstack разработчик",
-    "Telegram Mini Apps",
-    "Telegram Bot API",
-    "Интеграции и автоматизация",
-    "Продуктовая разработка"
+    "CRM",
+    "Mini Apps",
+    "PWA",
+    "Telegram",
+    "MAX"
   ]
 }

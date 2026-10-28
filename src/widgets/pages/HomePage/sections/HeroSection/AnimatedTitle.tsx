@@ -1,16 +1,11 @@
 "use client";
 import { usePrintingTextAnimation } from "@/shared/hooks/usePrintingTextAnimation";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const AnimatedTitle = () => {
   const [result1] = usePrintingTextAnimation(["FRONT ULL-STACK"], 100, "RONT");
   const [result2] = usePrintingTextAnimation(["DEVELOPER"], 50, "S");
-  const [symbol, setSymbol] = useState(<>&nbsp;</>);
-
-  useEffect(() => {
-    if (result2 !== "") setSymbol(<></>);
-  }, [result2]);
+  const symbol = result2 === "" ? <>&nbsp;</> : null;
 
   return (
     <motion.span

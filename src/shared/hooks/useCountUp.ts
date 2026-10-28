@@ -27,7 +27,7 @@ const useCountUp = (
     });
 
     return () => controls.stop();
-  }, [isInView, to, duration]);
+  }, [isInView, to, duration, decimals]);
 
   return value;
 };

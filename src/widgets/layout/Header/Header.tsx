@@ -1,52 +1,74 @@
-﻿import { AppShellHeader, Container, Group, Image } from "@mantine/core";
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/shared/lib/i18n/navigation";
-import { Locale } from "@/shared/lib/i18n/routing";
+import Link from "next/link";
+import type { Locale } from "@/shared/lib/i18n/routing";
+import { getPortfolioContent } from "@/widgets/pages/HomePage/content";
+import MobileMenu from "./MobileMenu";
 import styles from "./Header.module.css";
-import LanguageToggle from "@/shared/ui/LanguageToggle/LanguageToggle";
-import Brand from "@/shared/ui/Brand/Brand";
+import ScrollNavigation from "./ScrollNavigation";
+import { IconArrowUpRight, IconBrandTelegram } from "@tabler/icons-react";
 
-export default async function Header({ locale }: { locale: Locale }) {
-  const t = await getTranslations({ locale, namespace: "header" });
-
+export default function Header({ locale }: { locale: Locale }) {
+  const t = getPortfolioContent(locale);
+  const ids = [
+    "project-section",
+    "stack-section",
+    "experience-section",
+    "contacts-section",
+  ];
   return (
-    <AppShellHeader component="header" className={styles.header}>
-      <Container size="xl" h="100%">
-        <Group h="100%" justify="space-between" align="center">
-          <Brand locale={locale} />
-
-          <Group gap={16} display={{ base: "none", md: "flex" }}>
-            <Link href="#about-section" locale={locale} className={styles.link}>
-              {t("links.0")}
-            </Link>
+    <header className={styles.header}>
+      <a className={styles.skip} href="#main-content">
+        {t.skip}
+      </a>
+      <div className={styles.inner}>
+        <Link className={styles.brand} href={`/${locale}`} aria-label={t.name}>
+          <span className={styles.mark}>
+            ks<span>.</span>
+          </span>
+          <span className={styles.brandName}>{t.name}</span>
+        </Link>
+        <ScrollNavigation labels={t.nav} ids={ids} locale={locale} />
+        <div className={styles.right}>
+          <a
+            className={styles.channel}
+            href="https://t.me/K_a_R_a_T_e_L_L_channel"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={
+              locale === "ru" ? "Мой Telegram-канал" : "My Telegram channel"
+            }
+          >
+            <IconBrandTelegram size={17} />
+            <span>{locale === "ru" ? "TG-канал" : "TG channel"}</span>
+            <IconArrowUpRight size={14} />
+          </a>
+          <nav
+            className={styles.languages}
+            aria-label={locale === "ru" ? "Язык" : "Language"}
+          >
             <Link
-              href="#project-section"
-              locale={locale}
-              className={styles.link}
+              href="/ru"
+              lang="ru"
+              hrefLang="ru"
+              aria-current={locale === "ru" ? "page" : undefined}
             >
-              {t("links.1")}
+              RU
             </Link>
+            <span>/</span>
             <Link
-              href="#experience-section"
-              locale={locale}
-              className={styles.link}
+              href="/en"
+              lang="en"
+              hrefLang="en"
+              aria-current={locale === "en" ? "page" : undefined}
             >
-              {t("links.2")}
+              EN
             </Link>
-            <Link href="#stack-section" locale={locale} className={styles.link}>
-              {t("links.3")}
-            </Link>
-            <Link
-              href="#contacts-section"
-              locale={locale}
-              className={styles.link}
-            >
-              {t("links.4")}
-            </Link>
-          </Group>
-          <LanguageToggle ruLabel="ru" enLabel="en" />
-        </Group>
-      </Container>
-    </AppShellHeader>
+          </nav>
+          <MobileMenu labels={t.nav} ids={ids} locale={locale} menu={t.menu} />
+        </div>
+      </div>
+      <div className={styles.progressTrack} aria-hidden="true">
+        <span data-scroll-progress />
+      </div>
+    </header>
   );
 }

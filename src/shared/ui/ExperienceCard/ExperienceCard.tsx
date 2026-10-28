@@ -1,6 +1,5 @@
 import { Box, Card, Group, Paper, Stack, Text, Title } from "@mantine/core";
 import styles from "./ExperienceCard.module.css";
-import AnimatedDot from "../AnimatedDot/AnimatedDot";
 
 interface ExperienceCardProps {
   date: string;

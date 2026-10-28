@@ -1,6 +1,5 @@
 "use client";
 import { useGetCursorCoordinates } from "@/shared/hooks/useGetCursorCoordinates";
-import { useEffect } from "react";
 import styles from "./CustomCursor.module.css";
 
 const CustomCursor = () => {

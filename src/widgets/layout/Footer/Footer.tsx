@@ -1,84 +1,88 @@
-import { Anchor, Box, Container, Divider, Group, Stack, Text } from "@mantine/core";
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/shared/lib/i18n/navigation";
-import { Locale } from "@/shared/lib/i18n/routing";
+import {
+  IconArrowUpRight,
+  IconArrowUp,
+  IconBrandTelegram,
+} from "@tabler/icons-react";
+import type { Locale } from "@/shared/lib/i18n/routing";
+import { getPortfolioContent } from "@/widgets/pages/HomePage/content";
 import styles from "./Footer.module.css";
-import Brand from "@/shared/ui/Brand/Brand";
 
-export default async function Footer({ locale }: { locale: Locale }) {
-  const t = await getTranslations({ locale, namespace: "footer" });
-
+export default function Footer({ locale }: { locale: Locale }) {
+  const t = getPortfolioContent(locale),
+    ru = locale === "ru";
+  const ids = [
+    "project-section",
+    "stack-section",
+    "experience-section",
+    "contacts-section",
+  ];
   return (
-    <Box component="footer" className={styles.footerRoot} px={{ base: 12, sm: 16 }}>
-      <Container size="xl" py={20}>
-        <Stack gap={14}>
-          <Group w="100%" align="flex-start" justify="space-between" gap={18}>
-          <Box mr={30}><Brand locale={locale} /></Box>
-
-            <Stack gap={8} flex="1 1 280px">
-            <Text className={styles.blockTitle}>{t("menuTitle")}</Text>
-              <Group gap={16} style={{ rowGap: 10 }}>
-              <Link href="/#about-section" locale={locale} className={styles.link}>
-                {t("about")}
-              </Link>
-              <Link href="/#project-section" locale={locale} className={styles.link}>
-                {t("projects")}
-              </Link>
-              <Link href="/#experience-section" locale={locale} className={styles.link}>
-                {t("experience")}
-              </Link>
-              <Link href="/#stack-section" locale={locale} className={styles.link}>
-                {t("stack")}
-              </Link>
-              <Link href="/#contacts-section" locale={locale} className={styles.link}>
-                {t("contacts")}
-              </Link>
-            </Group>
-          </Stack>
-
-            <Stack gap={8} flex="1 1 280px">
-            <Text className={styles.blockTitle}>{t("contactsTitle")}</Text>
-              <Group gap={14} style={{ rowGap: 10 }}>
-              <Anchor
-                href="https://t.me/K_a_R_a_T_e_L_L"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                Telegram
-              </Anchor>
-              <Anchor href="mailto:kirillcuhorukov6@gmail.com" className={styles.link}>
-                Email
-              </Anchor>
-              <Anchor
-                href="https://github.com/K-a-R-a-T-e-L-L"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                GitHub
-              </Anchor>
-              <Anchor
-                href="https://wa.me/79617160943"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                WhatsApp
-              </Anchor>
-            </Group>
-          </Stack>
-          </Group>
-
-          <Divider color="rgba(112, 142, 196, 0.24)" />
-
-          <Group justify="space-between" w="100%" style={{ rowGap: 8, columnGap: 16 }}>
-            <Text size="xs" c="dimmed">
-              {t("copyright")}
-            </Text>
-          </Group>
-        </Stack>
-      </Container>
-    </Box>
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
+        <div className={styles.top}>
+          <div className={styles.invitation}>
+            <h2>
+              {ru ? "Давайте соберём" : "Let’s build"}
+              <br />
+              <span>{ru ? "следующий продукт." : "what’s next."}</span>
+            </h2>
+            <a
+              className={styles.discuss}
+              href="https://t.me/K_a_R_a_T_e_L_L"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {ru ? "Обсудить задачу" : "Discuss a project"}
+              <IconArrowUpRight size={23} />
+            </a>
+          </div>
+          <a
+            className={styles.channel}
+            href="https://t.me/K_a_R_a_T_e_L_L_channel"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className={styles.channelIcon}>
+              <IconBrandTelegram size={29} />
+            </span>
+            <span>
+              <strong>
+                {ru ? "Мой Telegram-канал" : "My Telegram channel"}
+              </strong>
+              <span>{ru ? "Присоединиться к каналу" : "Join the channel"}</span>
+            </span>
+            <IconArrowUpRight size={22} />
+          </a>
+        </div>
+        <div className={styles.linksRow}>
+          <a className={styles.signature} href={`/${locale}#hero-section`}>
+            ks<span>.</span>
+            <span>
+              {t.name}
+              <small>{t.role}</small>
+            </span>
+          </a>
+          <nav aria-label={ru ? "Навигация в подвале" : "Footer navigation"}>
+            {t.nav.map((label, i) => (
+              <a key={label} href={`/${locale}#${ids[i]}`}>
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+        <div className={styles.bottom}>
+          <span>
+            © {new Date().getFullYear()} {t.name}
+          </span>
+          <span className={styles.note}>
+            <span aria-hidden="true">{"</>"}</span> {t.footer}
+          </span>
+          <a href={`/${locale}#hero-section`}>
+            {t.top}
+            <IconArrowUp size={16} />
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 }

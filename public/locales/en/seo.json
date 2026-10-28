@@ -1,17 +1,17 @@
 {
-  "title": "Fullstack Developer | React, Next.js, Node.js, NestJS",
-  "description": "I build web products with React/Next.js and Node.js/NestJS: from interfaces and API to integrations, Telegram Mini Apps, and business process automation.",
-  "siteName": "Portfolio",
+  "title": "Kirill Sukhorukov — Fullstack Product Developer",
+  "description": "CRM systems, web applications, Mini Apps, PWAs, Telegram/MAX bots, websites and online stores. Design, frontend, backend, integrations and launch.",
+  "siteName": "Kirill Sukhorukov · Portfolio",
   "keywords": [
-    "React Engineer",
+    "Fullstack",
+    "TypeScript",
     "React",
     "Next.js",
-    "TypeScript",
-    "Node.js",
     "NestJS",
-    "Telegram Mini Apps",
-    "Telegram Bot API",
-    "Product Engineering",
-    "Automation and Integrations"
+    "CRM",
+    "Mini Apps",
+    "PWA",
+    "Telegram",
+    "MAX"
   ]
 }

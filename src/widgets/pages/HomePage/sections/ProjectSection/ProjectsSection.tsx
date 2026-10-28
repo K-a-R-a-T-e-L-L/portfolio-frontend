@@ -2,7 +2,6 @@
 import { Group, Stack, Text, Title } from "@mantine/core";
 import NameSection from "@/shared/ui/NameSection/NameSection";
 import ProjectCard from "@/shared/ui/ProjectCard/ProjectCard";
-import { MEDIA } from "@/shared/lib/media";
 import {
   IconAffiliate,
   IconChartBar,
