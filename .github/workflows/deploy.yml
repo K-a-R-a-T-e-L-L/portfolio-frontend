@@ -50,9 +50,9 @@ jobs:
             ${{ env.REGISTRY }}/${{ vars.GHCR_NAMESPACE }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Trigger Dokploy deploy
-        run: |
-          curl -X POST "${{ vars.DOKPLOY_URL }}/api/application.deploy" \
-            -H "accept: application/json" \
-            -H "x-api-key: ${{ secrets.DOKPLOY_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d "{\"applicationId\":\"${{ secrets.DOKPLOY_APPLICATION_ID }}\"}"
+        env:
+          DOKPLOY_URL: ${{ vars.DOKPLOY_URL }}
+          DOKPLOY_API_KEY: ${{ secrets.DOKPLOY_API_KEY }}
+          DOKPLOY_APPLICATION_ID: ${{ secrets.DOKPLOY_APPLICATION_ID }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+        run: node scripts/deploy.mjs
