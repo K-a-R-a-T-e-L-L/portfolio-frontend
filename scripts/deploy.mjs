@@ -26,7 +26,7 @@ if (!target) {
   const candidates = new Set();
   function visit(value) {
     if (!value || typeof value !== 'object') return;
-    if (value.applicationId && /portfolio/i.test(`${value.name || ''} ${value.appName || ''}`)) candidates.add(value.applicationId);
+    if (value.applicationId) candidates.add(value.applicationId);
     for (const child of Object.values(value)) if (typeof child === 'object') visit(child);
   }
   visit(projects);
