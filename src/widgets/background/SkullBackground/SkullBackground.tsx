@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import {
+  scheduleVisualFrame,
+  cancelVisualFrame,
+} from "@/shared/lib/visual-frame";
 import styles from "./SkullBackground.module.css";
 
 export default function SkullBackground() {
@@ -19,13 +23,11 @@ export default function SkullBackground() {
           ReturnType<typeof import("./skull-renderer").createSkullRenderer>
         >
       | undefined;
-    let frame = 0,
-      timer = 0,
+    let timer = 0,
       loading = false,
       disposed = false,
       lost = false;
     const draw = () => {
-      frame = 0;
       if (disposed || lost || document.hidden || motion.matches || !engine)
         return;
       const range = document.documentElement.scrollHeight - innerHeight;
@@ -46,13 +48,22 @@ export default function SkullBackground() {
           : scrollY <= end
             ? 0.5 + ((scrollY - start) / Math.max(1, end - start)) * 0.15
             : 0.65 + ((scrollY - end) / Math.max(1, range - end)) * 0.35;
-      engine.render(range > 0 ? Math.min(1, Math.max(0, progress)) : 0);
-      // Reveal only after the first frame has been drawn at the current scroll position.
-      if (element.dataset.state !== "ready") element.dataset.state = "ready";
+      const cubeRect = document
+        .querySelector("[data-model]")
+        ?.parentElement?.getBoundingClientRect();
+      return () => {
+        if (disposed || lost || motion.matches || !engine) return;
+        engine.render(
+          range > 0 ? Math.min(1, Math.max(0, progress)) : 0,
+          cubeRect,
+        );
+        // Reveal only after the first frame has been drawn at the current scroll position.
+        if (element.dataset.state !== "ready") element.dataset.state = "ready";
+      };
     };
     const schedule = () => {
-      if (!frame && !disposed && !motion.matches && !document.hidden)
-        frame = requestAnimationFrame(draw);
+      if (!disposed && !motion.matches && !document.hidden)
+        scheduleVisualFrame(draw);
     };
     const load = async () => {
       if (loading || engine || disposed || motion.matches || document.hidden)
@@ -74,7 +85,11 @@ export default function SkullBackground() {
           return;
         }
         engine = result;
-        element.dataset.state = motion.matches ? "static" : lost ? "fallback" : "loading";
+        element.dataset.state = motion.matches
+          ? "static"
+          : lost
+            ? "fallback"
+            : "loading";
         schedule();
       } catch {
         if (!disposed) element.dataset.state = "fallback";
@@ -84,8 +99,7 @@ export default function SkullBackground() {
     };
     const preference = () => {
       if (motion.matches) {
-        cancelAnimationFrame(frame);
-        frame = 0;
+        cancelVisualFrame(draw);
         element.dataset.state = "static";
       } else if (engine) {
         element.dataset.state = lost ? "fallback" : "loading";
@@ -96,8 +110,7 @@ export default function SkullBackground() {
     };
     const visibility = () => {
       if (document.hidden) {
-        cancelAnimationFrame(frame);
-        frame = 0;
+        cancelVisualFrame(draw);
       } else {
         void load();
         schedule();
@@ -106,8 +119,7 @@ export default function SkullBackground() {
     const contextLost = (event: Event) => {
       event.preventDefault();
       lost = true;
-      cancelAnimationFrame(frame);
-      frame = 0;
+      cancelVisualFrame(draw);
       if (!disposed) element.dataset.state = "fallback";
     };
     const contextRestored = () => {
@@ -131,7 +143,7 @@ export default function SkullBackground() {
       disposed = true;
       abort.abort();
       clearTimeout(timer);
-      cancelAnimationFrame(frame);
+      cancelVisualFrame(draw);
       observer.disconnect();
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);

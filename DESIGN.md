@@ -92,9 +92,9 @@ by progress 0.16. Initial scale is 0.85 desktop / 0.60 mobile.
 The skull keeps all 188,871 triangles and original positions. Normal attributes
 use KHR_mesh_quantization normalized bytes; shading colors are baked offline with
 scripts/bake-skull.mjs into normalized Uint8 COLOR_0 attributes. The runtime loads
-scattering-skull-shaded.glb and prepares shaders with compileAsync before showing
+scattering-skull-meshopt.glb and prepares shaders with compileAsync before showing
 the canvas. During loading the poster fades away; after the first frame at the current scroll position the canvas fades in over 700ms. The static poster remains the no-JS, reduced-motion and error fallback. Reused vectors and a
-cached cube reference avoid per-frame allocations.
+separate read/write phases reduce avoidable layout work.
 DPR adapts on resize (mobile <=1). Responsive project-image sizes match the layout.
 Social artwork is JPEG quality88 (71KB instead of981KB PNG). Hero mouth anchor
 is shifted right to 60% of the cube scene width.
@@ -112,3 +112,5 @@ PageMotion progressively enhances server-rendered content using IntersectionObse
 Startup correction: server HTML starts with data-state=loading, so a differently positioned static poster cannot flash before hydration. A noscript style and reduced-motion CSS preserve the static fallback. Fonts settle before the first model frame.
 
 Motion timing: entrance 1000ms with cubic-bezier(.22,.61,.36,1), stagger140ms (capped420ms on scroll/560ms at startup). Desktop code types each line over600ms with120ms between lines; mobile lines fade over450ms with120ms between them. Code begins300ms after its block starts.
+
+Scroll widgets share a demand-driven visual-frame queue: geometry is measured for all scheduled widgets before any style writes. PageMotion uses IntersectionObserver geometry instead of synchronously measuring all content during hydration. Cube pointer input updates only the model rotation; voxel transforms update when scroll deformation or responsive mode changes. Server-rendered assembled voxel positions are reused on startup. Model parsing, scene setup and shader preparation yield between stages. Meshopt generation is lossless and verifies every decoded buffer; no LOD or lower pixel ratio was introduced.

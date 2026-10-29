@@ -30,6 +30,8 @@ export async function createSkullRenderer(
 ) {
   if (signal.aborted) throw new DOMException("Aborted", "AbortError");
   const model = await createSkullModel(signal);
+  // Let input/paint run between parsing the model and creating the WebGL context.
+  await new Promise<void>((resolve) => setTimeout(resolve, 0));
   if (signal.aborted) {
     disposeTree(model);
     throw new DOMException("Aborted", "AbortError");
@@ -137,9 +139,10 @@ export async function createSkullRenderer(
     eyes.add(halo);
   }
   model.add(eyes);
-  // Compile while the static poster remains visible; avoid synchronous shader
-  // compilation on the first animated frame when the driver supports it.
+  // Separate scene setup from shader preparation; keep the canvas hidden until ready.
   try {
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
+    if (signal.aborted) throw new DOMException("Aborted", "AbortError");
     await renderer.compileAsync(scene, camera);
     if (signal.aborted) throw new DOMException("Aborted", "AbortError");
   } catch (error) {
@@ -148,14 +151,13 @@ export async function createSkullRenderer(
     renderer.forceContextLoss();
     throw error;
   }
-  const cubeScene = document.querySelector("[data-model]")?.parentElement;
   const mouth = new THREE.Vector3();
   const heroTarget = new THREE.Vector3();
   let disposed = false,
     width = 0,
     height = 0;
   return {
-    render(progress: number) {
+    render(progress: number, cubeRect?: DOMRect) {
       if (disposed) return;
       const w = innerWidth,
         h = innerHeight,
@@ -185,9 +187,9 @@ export async function createSkullRenderer(
       jaw.rotation.x = pose.jaw;
       // Align the open mouth with the actual cube, including stacked mobile layouts.
       const heroBlend = 1 - THREE.MathUtils.smoothstep(progress, 0, 0.16);
-      if (heroBlend > 0 && cubeScene) {
-        const rect = cubeScene.getBoundingClientRect();
-        const targetX = rect.left + rect.width * 0.60;
+      if (heroBlend > 0 && cubeRect) {
+        const rect = cubeRect;
+        const targetX = rect.left + rect.width * 0.6;
         const targetY = rect.top + rect.height * 0.46;
         mouth
           .set(0, -0.075, 0.1)

@@ -1,5 +1,9 @@
 "use client";
 import { useEffect, useRef, type CSSProperties } from "react";
+import {
+  scheduleVisualFrame,
+  cancelVisualFrame,
+} from "@/shared/lib/visual-frame";
 import styles from "./Portfolio.module.css";
 
 const modules = Array.from({ length: 27 }, (_, i) => ({
@@ -27,37 +31,60 @@ export default function ProductScene({
       scene.querySelectorAll<HTMLElement>("[data-module]"),
     );
     const model = scene.querySelector<HTMLElement>("[data-model]");
-    let frame = 0,
-      pointerX = 0,
+    let pointerX = 0,
       pointerY = 0;
+    let structureDirty = true,
+      progress = 0,
+      scale = 1;
+    // The server already renders the assembled voxel positions.
+    let renderedProgress = 0,
+      renderedCompact = compact.matches;
     let visible = true,
       disposed = false;
     const draw = () => {
-      frame = 0;
       if (disposed || !model) return;
-      const rect = hero.getBoundingClientRect();
-      const progress = reduced.matches
-        ? 0
-        : Math.min(1, Math.max(0, -rect.top / (rect.height * 0.52)));
-      const spread = Math.max(0, (progress - 0.12) / 0.88);
-      const collapse = Math.max(0, (progress - 0.6) / 0.4);
-      const scale = compact.matches
-        ? Math.min(0.76, scene.clientWidth / 380)
-        : 1;
-      model.style.transform = `translate3d(-50%,-50%,0) scale(${scale * (1 + progress * 0.32)}) rotateX(${-22 + progress * 20 + (reduced.matches ? 0 : pointerY)}deg) rotateY(${-34 + progress * 75 + (reduced.matches ? 0 : pointerX)}deg) rotateZ(${-8 + progress * 12}deg)`;
-      blocks.forEach((block, i) => {
-        const { x, y, z } = modules[i];
-        const seed = Math.sin(i * 127.1 + 5) * 0.5;
-        const gap = 66 + spread * (compact.matches ? 65 : 125);
-        block.style.transform = `translate3d(${x * gap + seed * collapse * 130}px,${y * gap + Math.sin(i * 2.4) * collapse * 100}px,${z * gap}px) rotateX(${collapse * ((i % 3) - 1) * 100}deg) rotateZ(${collapse * seed * 180}deg) scale(${1 - collapse * 0.83})`;
-        block.style.opacity = `${1 - collapse * 0.62}`;
-      });
-      scene.dataset.phase =
-        progress > 0.6 ? "particles" : progress > 0.15 ? "layers" : "assembled";
+      const updateStructure = structureDirty;
+      structureDirty = false;
+      if (updateStructure) {
+        const rect = hero.getBoundingClientRect();
+        progress = reduced.matches
+          ? 0
+          : Math.min(1, Math.max(0, -rect.top / (rect.height * 0.52)));
+        scale = compact.matches ? Math.min(0.76, scene.clientWidth / 380) : 1;
+      }
+      return () => {
+        if (disposed) return;
+        model.style.transform = `translate3d(-50%,-50%,0) scale(${scale * (1 + progress * 0.32)}) rotateX(${-22 + progress * 20 + (reduced.matches ? 0 : pointerY)}deg) rotateY(${-34 + progress * 75 + (reduced.matches ? 0 : pointerX)}deg) rotateZ(${-8 + progress * 12}deg)`;
+        if (
+          !updateStructure ||
+          (progress === renderedProgress && compact.matches === renderedCompact)
+        )
+          return;
+        renderedProgress = progress;
+        renderedCompact = compact.matches;
+        const spread = Math.max(0, (progress - 0.12) / 0.88);
+        const collapse = Math.max(0, (progress - 0.6) / 0.4);
+        blocks.forEach((block, i) => {
+          const { x, y, z } = modules[i];
+          const seed = Math.sin(i * 127.1 + 5) * 0.5;
+          const gap = 66 + spread * (compact.matches ? 65 : 125);
+          block.style.transform = `translate3d(${x * gap + seed * collapse * 130}px,${y * gap + Math.sin(i * 2.4) * collapse * 100}px,${z * gap}px) rotateX(${collapse * ((i % 3) - 1) * 100}deg) rotateZ(${collapse * seed * 180}deg) scale(${1 - collapse * 0.83})`;
+          block.style.opacity = `${1 - collapse * 0.62}`;
+        });
+        scene.dataset.phase =
+          progress > 0.6
+            ? "particles"
+            : progress > 0.15
+              ? "layers"
+              : "assembled";
+      };
     };
     const schedule = () => {
-      if (visible && !document.hidden && !frame && !disposed)
-        frame = requestAnimationFrame(draw);
+      if (visible && !document.hidden && !disposed) scheduleVisualFrame(draw);
+    };
+    const layoutChanged = () => {
+      structureDirty = true;
+      schedule();
     };
     const pointer = (event: PointerEvent) => {
       if (reduced.matches || event.pointerType !== "mouse") return;
@@ -76,27 +103,31 @@ export default function ProductScene({
     const observer = new IntersectionObserver(
       ([entry]) => {
         visible = entry.isIntersecting;
-        schedule();
+        layoutChanged();
       },
       { rootMargin: "120px" },
     );
     observer.observe(hero);
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    document.addEventListener("visibilitychange", schedule);
-    reduced.addEventListener("change", schedule);
+    const resize = new ResizeObserver(layoutChanged);
+    resize.observe(hero);
+    resize.observe(scene);
+    window.addEventListener("scroll", layoutChanged, { passive: true });
+    window.addEventListener("resize", layoutChanged);
+    document.addEventListener("visibilitychange", layoutChanged);
+    reduced.addEventListener("change", layoutChanged);
     window.addEventListener("pointermove", pointer, { passive: true });
     document.documentElement.addEventListener("pointerleave", reset);
     window.addEventListener("blur", reset);
-    draw();
+    schedule();
     return () => {
       disposed = true;
-      cancelAnimationFrame(frame);
+      cancelVisualFrame(draw);
       observer.disconnect();
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      document.removeEventListener("visibilitychange", schedule);
-      reduced.removeEventListener("change", schedule);
+      resize.disconnect();
+      window.removeEventListener("scroll", layoutChanged);
+      window.removeEventListener("resize", layoutChanged);
+      document.removeEventListener("visibilitychange", layoutChanged);
+      reduced.removeEventListener("change", layoutChanged);
       window.removeEventListener("pointermove", pointer);
       document.documentElement.removeEventListener("pointerleave", reset);
       window.removeEventListener("blur", reset);
@@ -122,11 +153,13 @@ export default function ProductScene({
             key={i}
             data-module
             className={`${styles.voxel} ${i === 13 ? styles.core : ""}`}
-            style={{
-              transform: `translate3d(${x * 66}px,${y * 66}px,${z * 66}px)`,
-              "--tile-hue": 174 + (x + 1) * 8 + (y + 1) * 4 + (1 - z) * 3,
-              "--tile-light": `${49 - (y + 1) * 5 - (1 - z) * 3}%`,
-            } as CSSProperties}
+            style={
+              {
+                transform: `translate3d(${x * 66}px,${y * 66}px,${z * 66}px)`,
+                "--tile-hue": 174 + (x + 1) * 8 + (y + 1) * 4 + (1 - z) * 3,
+                "--tile-light": `${49 - (y + 1) * 5 - (1 - z) * 3}%`,
+              } as CSSProperties
+            }
           >
             {faces.map((face) => (
               <span key={face} className={`${styles.face} ${styles[face]}`} />
