@@ -57,17 +57,17 @@ export default function HomePage({ locale }: { locale: Locale }) {
         aria-labelledby="hero-title"
       >
         <div className={styles.heroCopy}>
-          <p className={styles.identity}>
+          <p data-reveal className={styles.identity}>
             {t.name}
             <span>{t.role}</span>
           </p>
-          <h1 id="hero-title">
+          <h1 data-reveal id="hero-title">
             {t.hero.first}
             <br />
             <span>{t.hero.last}</span>
           </h1>
-          <p className={styles.heroDescription}>{t.hero.description}</p>
-          <div className={styles.heroActions}>
+          <p data-reveal className={styles.heroDescription}>{t.hero.description}</p>
+          <div data-reveal className={styles.heroActions}>
             <a className={styles.primaryButton} href="#project-section">
               {t.hero.work}
               <IconArrowDown size={19} />
@@ -92,13 +92,13 @@ export default function HomePage({ locale }: { locale: Locale }) {
         className={styles.section}
         aria-labelledby="projects-title"
       >
-        <div className={styles.sectionHeading}>
+        <div data-reveal className={styles.sectionHeading}>
           <h2 id="projects-title">{t.projectsTitle}</h2>
           <p>{t.projectsIntro}</p>
         </div>
         <div className={styles.projects}>
           {t.projects.map((project) => (
-            <article key={project.url} className={styles.project}>
+            <article key={project.url} data-reveal className={styles.project}>
               <a
                 className={`${styles.projectVisual} ${styles[project.color]}`}
                 href={project.url}
@@ -178,13 +178,13 @@ export default function HomePage({ locale }: { locale: Locale }) {
         className={`${styles.section} ${styles.capabilitiesSection}`}
         aria-labelledby="capabilities-title"
       >
-        <div className={styles.sectionHeading}>
+        <div data-reveal className={styles.sectionHeading}>
           <h2 id="capabilities-title">{t.capabilitiesTitle}</h2>
           <p>{t.capabilitiesIntro}</p>
         </div>
         <div className={styles.capabilities}>
           {t.capabilities.map((item) => (
-            <div className={styles.capability} key={item.title}>
+            <div data-reveal className={styles.capability} key={item.title}>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
               <span>{item.tags}</span>
@@ -198,10 +198,10 @@ export default function HomePage({ locale }: { locale: Locale }) {
         aria-labelledby="about-title"
       >
         <div className={styles.aboutIntro}>
-          <h2 id="about-title">{t.aboutTitle}</h2>
+          <h2 data-reveal id="about-title">{t.aboutTitle}</h2>
           <ProfileCode locale={locale} />
         </div>
-        <div className={styles.aboutCopy}>
+        <div data-reveal className={styles.aboutCopy}>
           <p>{t.about}</p>
           <p>{t.own}</p>
           <div className={styles.stack}>
@@ -219,7 +219,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         className={styles.section}
         aria-labelledby="experience-title"
       >
-        <div className={styles.experienceHeading}>
+        <div data-reveal className={styles.experienceHeading}>
           <h2 id="experience-title">{t.experienceTitle}</h2>
           <a className={styles.textButton} href={t.resumePath} download>
             {t.resume}
@@ -228,7 +228,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
         <ol className={styles.timeline}>
           {t.experience.map((item) => (
-            <li key={item.date}>
+            <li data-reveal key={item.date}>
               <span className={styles.date}>{item.date}</span>
               <div>
                 <h3>{item.role}</h3>
@@ -244,7 +244,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         className={`${styles.section} ${styles.contacts}`}
         aria-labelledby="contact-title"
       >
-        <div className={styles.contactCopy}>
+        <div data-reveal className={styles.contactCopy}>
           <h2 id="contact-title">{t.contactTitle}</h2>
           <p>{t.contactText}</p>
           <a

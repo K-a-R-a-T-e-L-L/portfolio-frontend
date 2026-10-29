@@ -4,6 +4,7 @@ import Header from "@/widgets/layout/Header/Header";
 import Footer from "@/widgets/layout/Footer/Footer";
 import Main from "@/widgets/layout/Main/Main";
 import SkullBackground from "@/widgets/background/SkullBackground/SkullBackground";
+import PageMotion from "@/widgets/pages/HomePage/PageMotion";
 export default function RootProvider({
   children,
   locale,
@@ -17,6 +18,7 @@ export default function RootProvider({
       <Header locale={locale} />
       <Main>{children}</Main>
       <Footer locale={locale} />
+      <PageMotion key={locale} />
     </>
   );
 }

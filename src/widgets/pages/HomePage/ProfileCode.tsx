@@ -46,6 +46,8 @@ export default function ProfileCode({ locale }: { locale: Locale }) {
   ];
   return (
     <figure
+      data-reveal
+      data-type-code
       className={styles.profileCode}
       aria-label={
         locale === "ru"
@@ -69,6 +71,7 @@ export default function ProfileCode({ locale }: { locale: Locale }) {
                 {index + 1}
               </span>
               <span
+                data-type-line
                 className={styles.codeValue}
                 style={{
                   paddingLeft: index > 0 && index < 6 ? "1.2em" : undefined,

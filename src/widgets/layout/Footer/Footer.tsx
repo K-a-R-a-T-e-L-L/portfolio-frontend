@@ -20,7 +20,7 @@ export default function Footer({ locale }: { locale: Locale }) {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.top}>
-          <div className={styles.invitation}>
+          <div data-reveal className={styles.invitation}>
             <h2>
               {ru ? "Давайте соберём" : "Let’s build"}
               <br />
@@ -37,7 +37,7 @@ export default function Footer({ locale }: { locale: Locale }) {
             </a>
           </div>
           <a
-            className={styles.channel}
+            data-reveal className={styles.channel}
             href="https://t.me/K_a_R_a_T_e_L_L_channel"
             target="_blank"
             rel="noopener noreferrer"

@@ -93,7 +93,7 @@ The skull keeps all 188,871 triangles and original positions. Normal attributes
 use KHR_mesh_quantization normalized bytes; shading colors are baked offline with
 scripts/bake-skull.mjs into normalized Uint8 COLOR_0 attributes. The runtime loads
 scattering-skull-shaded.glb and prepares shaders with compileAsync before showing
-the canvas; the poster stays visible during initialization. Reused vectors and a
+the canvas. During loading the poster fades away; after the first frame at the current scroll position the canvas fades in over 700ms. The static poster remains the no-JS, reduced-motion and error fallback. Reused vectors and a
 cached cube reference avoid per-frame allocations.
 DPR adapts on resize (mobile <=1). Responsive project-image sizes match the layout.
 Social artwork is JPEG quality88 (71KB instead of981KB PNG). Hero mouth anchor
@@ -105,3 +105,10 @@ are deterministic and reversible: initial0.95 -> closed at0.18–0.26 -> open0.5
 at0.5–0.65 -> closed at0.86–0.91 -> final0.22. These are choreography fractions,
 anchored to the capabilities section, not raw whole-page scroll percentages.
 
+
+## Entrance and scroll motion
+PageMotion progressively enhances server-rendered content using IntersectionObserver and native Web Animations. Sections reveal once with 24px translation and opacity; profile code types line by line on desktop and fades line by line on mobile. Reduced motion, keyboard navigation and find-in-page reveal content immediately. No animation dependency or perpetual frame loop is added.
+
+Startup correction: server HTML starts with data-state=loading, so a differently positioned static poster cannot flash before hydration. A noscript style and reduced-motion CSS preserve the static fallback. Fonts settle before the first model frame.
+
+Motion timing: entrance 1000ms with cubic-bezier(.22,.61,.36,1), stagger140ms (capped420ms on scroll/560ms at startup). Desktop code types each line over600ms with120ms between lines; mobile lines fade over450ms with120ms between them. Code begins300ms after its block starts.

@@ -118,6 +118,11 @@ main {
 [id$="-section"] {
   scroll-margin-top: 80px;
 }
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion-pending] {
+    opacity: 0;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

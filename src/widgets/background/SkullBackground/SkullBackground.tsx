@@ -12,6 +12,7 @@ export default function SkullBackground() {
       surface = canvas.current;
     if (!element || !surface) return;
     const motion = matchMedia("(prefers-reduced-motion: reduce)");
+    element.dataset.state = motion.matches ? "static" : "loading";
     const abort = new AbortController();
     let engine:
       | Awaited<
@@ -46,6 +47,8 @@ export default function SkullBackground() {
             ? 0.5 + ((scrollY - start) / Math.max(1, end - start)) * 0.15
             : 0.65 + ((scrollY - end) / Math.max(1, range - end)) * 0.35;
       engine.render(range > 0 ? Math.min(1, Math.max(0, progress)) : 0);
+      // Reveal only after the first frame has been drawn at the current scroll position.
+      if (element.dataset.state !== "ready") element.dataset.state = "ready";
     };
     const schedule = () => {
       if (!frame && !disposed && !motion.matches && !document.hidden)
@@ -55,6 +58,7 @@ export default function SkullBackground() {
       if (loading || engine || disposed || motion.matches || document.hidden)
         return;
       loading = true;
+      element.dataset.state = "loading";
       try {
         const { createSkullRenderer } = await import("./skull-renderer");
         if (disposed || motion.matches || document.hidden) return;
@@ -63,8 +67,14 @@ export default function SkullBackground() {
           result.dispose();
           return;
         }
+        // Font metrics determine the cube anchor; do not reveal a provisional pose.
+        await document.fonts.ready;
+        if (disposed) {
+          result.dispose();
+          return;
+        }
         engine = result;
-        element.dataset.state = motion.matches ? "static" : "ready";
+        element.dataset.state = motion.matches ? "static" : lost ? "fallback" : "loading";
         schedule();
       } catch {
         if (!disposed) element.dataset.state = "fallback";
@@ -78,7 +88,7 @@ export default function SkullBackground() {
         frame = 0;
         element.dataset.state = "static";
       } else if (engine) {
-        element.dataset.state = lost ? "fallback" : "ready";
+        element.dataset.state = lost ? "fallback" : "loading";
         schedule();
       } else {
         void load();
@@ -103,7 +113,7 @@ export default function SkullBackground() {
     const contextRestored = () => {
       lost = false;
       if (!disposed) {
-        element.dataset.state = motion.matches ? "static" : "ready";
+        element.dataset.state = motion.matches ? "static" : "loading";
         schedule();
       }
     };
@@ -138,8 +148,11 @@ export default function SkullBackground() {
       className={styles.background}
       aria-hidden="true"
       data-skull-background
-      data-state="static"
+      data-state="loading"
     >
+      <noscript>
+        <style>{`[data-skull-background][data-state="loading"] img { opacity: .12 !important; }`}</style>
+      </noscript>
       <div className={styles.light} />
       <Image
         className={styles.poster}
@@ -149,7 +162,9 @@ export default function SkullBackground() {
         alt=""
         unoptimized
       />
-      <canvas ref={canvas} className={styles.canvas} />
+      <div className={styles.canvasLayer}>
+        <canvas ref={canvas} className={styles.canvas} />
+      </div>
       <div className={styles.vignette} />
     </div>
   );
